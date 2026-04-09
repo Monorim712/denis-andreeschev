@@ -1,0 +1,41 @@
+{
+  "name": "denis-andreeschev",
+  "version": "1.0.0",
+  "description": "Сайт адвоката Андреещева Дениса",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "generate:types": "payload generate:types"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Monorim712/denis-andreeschev.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Monorim712/denis-andreeschev/issues"
+  },
+  "homepage": "https://github.com/Monorim712/denis-andreeschev#readme",
+  "dependencies": {
+    "@payloadcms/db-sqlite": "^3.82.1",
+    "@payloadcms/next": "^3.82.1",
+    "@payloadcms/richtext-lexical": "^3.82.1",
+    "graphql": "^16.13.2",
+    "next": "^16.2.3",
+    "payload": "^3.82.1",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^6.0.2"
+  }
+}
