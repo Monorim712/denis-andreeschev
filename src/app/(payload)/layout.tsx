@@ -5,6 +5,7 @@ import React from 'react'
 import { RootLayout, handleServerFunctions } from '@payloadcms/next/layouts'
 import { importMap } from './admin/importMap.js'
 import configPromise from '@/payload.config'
+// @ts-ignore
 import '@payloadcms/next/css'
 
 type Args = {
