@@ -4,7 +4,7 @@
   "description": "Сайт адвоката Андреещева Дениса",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack -p 3005",
     "build": "next build",
     "start": "next start",
     "generate:types": "payload generate:types"
@@ -22,20 +22,23 @@
   },
   "homepage": "https://github.com/Monorim712/denis-andreeschev#readme",
   "dependencies": {
-    "@payloadcms/db-sqlite": "^3.82.1",
-    "@payloadcms/next": "^3.82.1",
-    "@payloadcms/richtext-lexical": "^3.82.1",
+    "@payloadcms/db-sqlite": "^3.83.0",
+    "@payloadcms/next": "^3.83.0",
+    "@payloadcms/richtext-lexical": "^3.83.0",
     "graphql": "^16.13.2",
-    "next": "^16.2.3",
-    "payload": "^3.82.1",
+    "next": "^15.5.15",
+    "payload": "^3.83.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "sharp": "^0.34.5"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
     "@types/node": "^25.5.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "postcss": "^8.5.9",
+    "tailwindcss": "^4.2.2",
     "typescript": "^6.0.2"
   }
 }

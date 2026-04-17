@@ -1,77 +1,561 @@
-import { getPayload } from 'payload'
-import config from '@/payload.config'
+import Link from 'next/link'
+import { ReviewsBlock } from './components/ReviewsBlock'
+import { CertificatesBlock } from './components/CertificatesBlock'
+import { AskFormClient } from './components/AskFormClient'
+import { FormModal } from './components/FormModal'
 
-export default async function HomePage() {
-  const payload = await getPayload({ config })
-  const settings = await payload.findGlobal({ slug: 'site-settings' })
+const services = [
+  { icon: 'gavel', title: 'Расторжение брака', desc: 'Развод через суд или ЗАГС. Представительство без вашего присутствия.' },
+  { icon: 'home_work', title: 'Раздел имущества', desc: 'Защита вашей доли в квартирах, бизнесе, автомобилях и накоплениях.' },
+  { icon: 'family_restroom', title: 'Споры о детях', desc: 'Определение места жительства ребёнка и порядка общения.' },
+  { icon: 'account_balance_wallet', title: 'Алименты', desc: 'Взыскание, изменение размера, задолженность по алиментам.' },
+  { icon: 'shield_person', title: 'Лишение родительских прав', desc: 'Лишение или ограничение родительских прав в интересах ребёнка.' },
+  { icon: 'handshake', title: 'Досудебное урегулирование', desc: 'Мировые соглашения и медиация без судебных войн.' },
+]
 
-  const services = (settings.services as Array<{ title: string; description: string }>) || []
+const advantages = [
+  { title: 'Берусь за дело за 24 часа', desc: 'Пока другие «изучают вопрос» — я уже <strong>готовлю стратегию</strong>. Время работает против вас, и я это знаю.' },
+  { title: 'Нападаю, а не только защищаюсь', desc: 'Не жду удара — <strong>формирую встречные иски</strong> и забираю инициативу. Противник играет по моим правилам.' },
+  { title: 'Говорю по-человечески', desc: 'Никаких «в соответствии с п. 3 ст. 256 ГК РФ». Вы <strong>всегда понимаете</strong>, что происходит и зачем.' },
+  { title: 'Цена — сразу и навсегда', desc: 'Называю <strong>точную сумму</strong> до начала работы. Никаких «а ещё надо доплатить» в процессе.' },
+  { title: 'Скажу правду, даже неудобную', desc: 'Не обещаю 100% победу, если шансы 50/50. Зато вы <strong>точно знаете</strong>, на что рассчитывать.' },
+  { title: 'Отвечаю даже в полночь', desc: 'Развод не ждёт рабочих часов. Вопрос в 3 ночи? <strong>Отвечу</strong>. Паника перед заседанием? Разберём.' },
+]
 
+const steps = [
+  { n: '1', title: 'Бесплатная консультация', desc: 'Оценим ситуацию, расскажем о рисках и перспективах. 15 минут — без обязательств.' },
+  { n: '2', title: 'Анализ и стратегия', desc: 'Изучим документы, оценим риски, разработаем план действий.' },
+  { n: '3', title: 'Досудебное урегулирование', desc: 'Пытаемся договориться мирно. В 40% случаев удаётся избежать суда.' },
+  { n: '4', title: 'Сбор доказательств', desc: 'Фиксируем ваши права: чеки, переписки, свидетели.' },
+  { n: '5', title: 'Судебное представительство', desc: 'Представляем ваши интересы в суде. Вам не обязательно присутствовать.' },
+  { n: '6', title: 'Контроль исполнения', desc: 'Следим за исполнением решения суда. Работаем до результата.' },
+]
+
+const faqItems = [
+  { q: 'Муж/жена не даёт видеться с ребёнком. Что делать?', a: 'Это нарушение закона. Оба родителя имеют равные права на общение с ребёнком. Подаём в суд заявление об определении порядка общения — суд установит точный график, который обязаны соблюдать обе стороны. За нарушение — штраф и даже изменение места жительства ребёнка.' },
+  { q: 'Супруг спрятал имущество или переписал на родственников. Можно что-то сделать?', a: 'Да. Сделки по выводу имущества можно оспорить в суде, если они совершены без вашего согласия. Также суд вправе наложить арест на спорное имущество, чтобы его не продали до раздела. Чем раньше обратитесь — тем больше шансов вернуть.' },
+  { q: 'Сколько длится развод и можно ли ускорить?', a: 'Простой развод без споров — 1-2 месяца. С разделом имущества и детьми — от 3 до 8 месяцев. Ускорить можно: грамотная подготовка документов, правильная подсудность и отсутствие процессуальных ошибок экономят 2-3 месяца.' },
+  { q: 'Сколько стоят услуги адвоката?', a: 'Простой развод — от 20 000 ₽, сложные дела с разделом имущества и спорами о детях — от 50 000 ₽. Точную стоимость называю после анализа ситуации и фиксирую в договоре. Никаких доплат в процессе — сколько сказал, столько и будет.' },
+  { q: 'Можно ли отсудить ребёнка отцу?', a: 'Да, и таких решений всё больше. Суд смотрит не на пол родителя, а на интересы ребёнка: жилищные условия, доход, участие в воспитании, мнение самого ребёнка (с 10 лет). Правильно собранная доказательная база — ключ к успеху.' },
+  { q: 'Нужно ли мне лично ходить в суд?', a: 'Нет. По доверенности я полностью представляю ваши интересы — от подачи иска до получения решения. Вам не придётся видеться с бывшим супругом, отпрашиваться с работы или нервничать в коридоре суда.' },
+  { q: 'Бывший супруг подал на алименты больше, чем я зарабатываю. Что делать?', a: 'Размер алиментов определяется судом на основе подтверждённого дохода. Если требования завышены — предоставим справки, докажем реальный заработок. Также можно подать встречный иск об уменьшении размера алиментов.' },
+  { q: 'Квартира куплена до брака, но супруг претендует на неё. Заберут?', a: 'Добрачное имущество разделу не подлежит. Но если в браке делался капитальный ремонт за общие деньги — суд может признать увеличение стоимости совместным имуществом. Важно доказать, когда и на чьи средства приобретено жильё.' },
+]
+
+const certificates = [
+  { src: '/images/certificates/certificate 1_page-0001.jpg', alt: 'Сертификат 1' },
+  { src: '/images/certificates/certificate 2_page-0001.jpg', alt: 'Сертификат 2' },
+  { src: '/images/certificates/certificate 3_page-0001.jpg', alt: 'Сертификат 3' },
+  { src: '/images/certificates/gramota-new.jpg', alt: 'Почётная грамота' },
+]
+
+const reviews = [
+  { id: 1, name: 'Алексей М.', source: 'yandex-karty', date: '12.03.2025', text: 'Обращался к Денису Валерьевичу по вопросу раздела имущества при разводе. Очень грамотный специалист, всё объяснил простым языком, без лишней юридической воды. Дело выиграли, я остался доволен результатом. Рекомендую!' },
+  { id: 2, name: 'Марина К.', source: 'yandex-uslugi', date: '05.02.2025', text: 'Денис Валерьевич помог мне с взысканием алиментов. Бывший муж скрывал доходы, но адвокат нашёл способ доказать реальный заработок. Теперь получаю справедливые алименты. Спасибо огромное!' },
+  { id: 3, name: 'Ирина С.', source: 'harant', date: '18.01.2025', text: 'Разводилась через суд, муж был категорически против. Денис Валерьевич взял всё на себя — мне даже не пришлось появляться в суде. Развод оформили за 2 месяца. Профессионал своего дела.' },
+  { id: 4, name: 'Дмитрий П.', source: 'avito', date: '22.12.2024', text: 'Обратился за помощью в определении порядка общения с ребёнком. Бывшая жена не давала видеться с сыном. Адвокат подготовил все документы, представил мои интересы в суде. Теперь вижу ребёнка регулярно. Очень благодарен!' },
+  { id: 5, name: 'Елена В.', source: 'yandex-karty', date: '10.11.2024', text: 'Консультировалась по вопросу раздела квартиры. Денис Валерьевич сразу оценил шансы, рассказал все варианты. Выбрали оптимальную стратегию, в итоге получила свою долю. Честный и порядочный адвокат.' },
+  { id: 6, name: 'Сергей Н.', source: 'yandex-uslugi', date: '03.10.2024', text: 'Нужна была помощь с уменьшением размера алиментов после рождения второго ребёнка в новой семье. Андреещев грамотно всё оформил, суд снизил алименты до справедливого размера.' },
+  { id: 7, name: 'Анна Р.', source: 'harant', date: '15.09.2024', text: 'Обращалась по поводу лишения родительских прав бывшего мужа. Ситуация была сложная, но Денис Валерьевич нашёл подход. Дело выиграно, ребёнок в безопасности. Спасибо за профессионализм!' },
+  { id: 8, name: 'Олег Т.', source: 'avito', date: '28.08.2024', text: 'Развод с разделом бизнеса — думал, это будет кошмар. Но адвокат Андреещев разложил всё по полочкам, предложил стратегию. В итоге удалось договориться на досудебном этапе. Сэкономил и нервы, и деньги.' },
+]
+
+const pricing = [
+  { service: 'Первичная консультация по телефону', price: 'бесплатно', highlight: true },
+  { service: 'Консультация юриста в офисе', price: 'от 2 000 ₽' },
+  { service: 'Помощь при расторжении брака', price: 'от 5 000 ₽' },
+  { service: 'Помощь при ограничении и лишении родительских прав', price: 'от 5 000 ₽' },
+  { service: 'Помощь при разделе совместно нажитого имущества', price: 'от 5 000 ₽' },
+  { service: 'Помощь при взыскании алиментов', price: 'от 3 000 ₽' },
+  { service: 'Помощь при установлении отцовства', price: 'от 2 500 ₽' },
+  { service: 'Разрешение семейных споров о порядке общения с детьми', price: 'от 5 000 ₽' },
+  { service: 'Составление исков о разделе совместного нажитого имущества', price: 'от 5 000 ₽' },
+  { service: 'Разрешение семейных споров о месте проживания детей', price: 'от 5 000 ₽' },
+  { service: 'Составление исков об определении порядка общения с детьми', price: 'от 5 000 ₽' },
+  { service: 'Помощь в восстановлении родительских прав', price: 'от 5 000 ₽' },
+  { service: 'Признание браков недействительными', price: 'от 10 000 ₽' },
+]
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LegalService',
+  name: 'Адвокат Андреещев Денис Валерьевич',
+  description: 'Адвокат по семейным делам в Воронеже',
+  url: 'https://denis-andreeschev.ru',
+  telephone: ['+79204130096', '+79507770608'],
+  email: 'denis.andreeschev2015@yandex.ru',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Московский проспект, д. 90',
+    addressLocality: 'Воронеж',
+    addressRegion: 'Воронежская область',
+    addressCountry: 'RU',
+  },
+  areaServed: { '@type': 'City', name: 'Воронеж' },
+  priceRange: 'от 3000 ₽',
+}
+
+export default function HomePage() {
   return (
-    <main>
-      {/* Hero */}
-      <section className="hero">
-        <div className="container">
-          <h1>{settings.heroTitle}</h1>
-          <p className="subtitle">{settings.heroSubtitle}</p>
-          <a href={`tel:${(settings.phone as string)?.replace(/[\s()-]/g, '')}`} className="btn">
-            Позвонить
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div className="max-w-[1440px] mx-auto px-6 py-3 flex items-center gap-8 flex-nowrap">
+          <a href="#" className="shrink-0 leading-tight flex items-center gap-3">
+            <img src="/images/logo.png" alt="Логотип" className="w-10 h-10" />
+            <div>
+              <span className="font-serif text-navy-900 text-sm block">Адвокат по семейным делам</span>
+              <span className="font-serif font-bold text-navy-900 text-lg block">Андреещев Д.В.</span>
+            </div>
           </a>
+          <div className="hidden lg:flex flex-1 items-center justify-center gap-6 xl:gap-8 flex-nowrap">
+            <a href="#services" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Услуги</a>
+            <a href="#advantages" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Преимущества</a>
+            <a href="#about" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Об адвокате</a>
+            <a href="#steps" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Этапы</a>
+            <a href="#pricing" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Цены</a>
+            <a href="#credentials" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Сертификаты</a>
+            <a href="#reviews" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Отзывы</a>
+            <a href="#faq" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">FAQ</a>
+            <a href="#contacts" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Контакты</a>
+          </div>
+          <div className="flex items-center gap-3 shrink-0 ml-auto lg:ml-0">
+            <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-[#26A5E4] flex items-center justify-center hover:brightness-110 transition-all"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+            <a href="https://max.ru/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full flex items-center justify-center hover:brightness-110 transition-all" style={{background: 'linear-gradient(135deg, #6C3AED, #2563EB)'}}><img src="/images/icons/max-icon.png" alt="Max" className="w-5 h-5" /></a>
+            <a href="tel:+79204130096" className="w-9 h-9 rounded-full bg-navy-900 flex items-center justify-center text-white hover:bg-gold-400 hover:text-navy-900 transition-colors"><span className="material-symbols-outlined text-lg">call</span></a>
+            <FormModal title="Задать вопрос" buttonText="Отправить" className="font-serif btn-gold px-6 py-2.5 text-navy-900 font-semibold text-sm transition-transform whitespace-nowrap">
+              Задать вопрос
+            </FormModal>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero */}
+      <header className="relative min-h-screen flex items-center bg-navy-900 overflow-hidden pt-20">
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-900/20 via-transparent to-navy-900/60" />
+        <div className="relative z-20 max-w-[1440px] mx-auto px-6 w-full">
+          <div className="relative flex flex-col lg:flex-row items-center lg:items-end">
+            <div className="relative z-20 flex-1 pt-40 pb-16 lg:pb-16">
+              <span className="absolute top-4 left-0 text-gold-400 font-serif tracking-[0.25em] uppercase text-sm block leading-tight">Адвокат<br />по семейным делам</span>
+              <h1 className="font-serif text-6xl md:text-7xl xl:text-8xl text-white font-bold leading-[0.95] mb-10">
+                Денис<br /><span className="text-gold-400">Андреещев</span>
+              </h1>
+              <FormModal title="Бесплатная консультация" buttonText="Записаться" className="btn-gold inline-block px-10 py-5 text-navy-900 font-bold text-lg transition-transform">
+                Бесплатная консультация
+              </FormModal>
+            </div>
+            <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 z-10 hidden lg:block">
+              <img src="/images/photos/hero-main.webp" alt="Адвокат Андреещев" className="h-[85vh] w-auto object-contain object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 10%, black 90%, transparent 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 10%, black 90%, transparent 100%)' }} />
+            </div>
+            <div className="relative z-20 flex-1 self-start pt-4 pb-0 hidden lg:flex justify-end">
+              <p className="font-serif text-white text-5xl xl:text-6xl font-bold leading-[2.1] text-right">Защита того,<br />что <span className="text-gold-400">дороже</span><br /><span className="text-gold-400">всего!</span></p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Stats */}
+      <section className="bg-gold-50 py-12">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="flex flex-col items-center">
+              <div className="w-24 h-24 rounded-full bg-navy-900 flex items-center justify-center mb-3">
+                <span className="font-serif text-2xl font-bold text-gold-400">500+</span>
+              </div>
+              <div className="text-navy-900 text-sm font-semibold">выигранных дел</div>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-24 h-24 rounded-full bg-navy-900 flex items-center justify-center mb-3">
+                <span className="font-serif text-2xl font-bold text-gold-400">10+</span>
+              </div>
+              <div className="text-navy-900 text-sm font-semibold">лет опыта</div>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-24 h-24 rounded-full bg-navy-900 flex items-center justify-center mb-3">
+                <span className="font-serif text-2xl font-bold text-gold-400">95%</span>
+              </div>
+              <div className="text-navy-900 text-sm font-semibold">положительных решений</div>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-24 h-24 rounded-full bg-navy-900 flex items-center justify-center mb-3">
+                <span className="font-serif text-2xl font-bold text-gold-400">24/7</span>
+              </div>
+              <div className="text-navy-900 text-sm font-semibold">на связи</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gender Choice */}
+      <section id="gender" className="py-20" style={{ background: 'linear-gradient(135deg, #F5EBD0 0%, #E8D19A 100%)' }}>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-8">
+            <div className="gold-line mx-auto mb-6" />
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-navy-900 mb-4">Расскажите о себе</h2>
+            <p className="text-navy-900/60 text-lg">Нажмите на гирю, чтобы увидеть решения для вашей ситуации</p>
+          </div>
+          <div className="relative max-w-2xl mx-auto">
+            <img src="/images/photos/scales.webp" alt="Весы правосудия" className="w-full h-auto" />
+            <Link href="/dlya-muzhchin" className="absolute top-[45%] left-[3%] w-[35%] h-[35%] rounded-2xl hover:bg-gold-400/20 transition-all cursor-pointer" title="Я муж / отец" />
+            <Link href="/dlya-zhenshchin" className="absolute top-[42%] right-[3%] w-[35%] h-[38%] rounded-2xl hover:bg-gold-400/20 transition-all cursor-pointer" title="Я жена / мать" />
+          </div>
         </div>
       </section>
 
       {/* Services */}
-      <section className="services" id="services">
-        <div className="container">
-          <h2>Услуги</h2>
-          <div className="services-grid">
-            {services.map((service, i) => (
-              <div key={i} className="service-card">
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
+      <section id="services" className="py-24 bg-navy-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="gold-line mx-auto mb-6" />
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Чем я могу помочь</h2>
+            <p className="text-gray-400 text-lg">Специализируюсь на семейных делах — это моя основная практика</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {services.map((s, i) => {
+              const big = i === 0 || i === 3 || i === 4
+              return (
+                <div
+                  key={i}
+                  className={`relative overflow-hidden rounded-3xl p-8 card-hover flex flex-col justify-between min-h-[220px] ${
+                    big ? 'lg:col-span-2 bg-navy-800 text-white' : 'bg-white text-navy-900 border border-gold-200'
+                  }`}
+                >
+                  <div>
+                    <div className={`mb-4 ${big ? 'text-gold-400' : 'text-navy-900/60'}`}><span className="material-symbols-outlined text-3xl">{s.icon}</span></div>
+                    <h3 className={`font-bold mb-3 ${big ? 'text-2xl md:text-3xl' : 'text-xl'}`}>{s.title}</h3>
+                    {big && <p className="text-gray-300 text-base leading-relaxed max-w-xl">{s.desc}</p>}
+                    {!big && <p className="text-gray-500 text-sm leading-relaxed">{s.desc}</p>}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Advantages */}
+      <section id="advantages" className="relative py-24 bg-white overflow-hidden">
+        <img src="/images/photos/advantages-bg.webp" alt="" className="absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none" />
+        <div className="absolute inset-0 bg-white/50 pointer-events-none" />
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="gold-line mx-auto mb-6" />
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-navy-900 mb-4">Почему выбирают меня</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {advantages.map((a, i) => {
+              const variants = ['p-7', 'p-9', 'p-6', 'p-8', 'p-7', 'p-9']
+              const rotations = ['-rotate-1', 'rotate-1', '-rotate-[0.5deg]', 'rotate-[0.5deg]', '-rotate-1', 'rotate-1']
+              const bg = i % 2 === 0 ? 'bg-[#FAF5E6] text-navy-900' : 'bg-navy-900 text-white'
+              return (
+                <div
+                  key={i}
+                  className={`${variants[i]} ${bg} ${rotations[i]} card-hover relative`}
+                  style={{
+                    border: '10px solid #8B6F3A',
+                    outline: '2px solid #D4B877',
+                    outlineOffset: '-14px',
+                    borderRadius: '4px',
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.35), 0 6px 12px rgba(0,0,0,0.25), inset 0 0 0 2px rgba(0,0,0,0.15)',
+                  }}
+                >
+                  <div className="w-10 h-10 rounded-lg btn-gold flex items-center justify-center text-navy-900 font-bold mb-5">{i + 1}</div>
+                  <h3 className={`text-lg font-bold mb-3 ${i % 2 === 0 ? 'text-navy-900' : 'text-white'}`}>{a.title}</h3>
+                  <p className={`text-sm leading-relaxed ${i % 2 === 0 ? 'text-navy-900/70' : 'text-gray-300'}`} dangerouslySetInnerHTML={{ __html: a.desc }} />
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* About / Quote */}
+      <section id="about" className="pt-12 pb-0 bg-gold-200">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <div className="flex-shrink-0">
+              <img src="/images/photos/about.webp" alt="Адвокат Андреещев" width={480} height={600} className="block" style={{ marginBottom: '-1px', marginLeft: '-30px' }} />
+            </div>
+            <div>
+              <div className="gold-line mb-6" />
+              <p className="text-gold-600 font-semibold tracking-[0.15em] uppercase text-sm mb-4">Адвокат по семейным спорам</p>
+              <h2 className="font-serif text-4xl md:text-5xl font-bold text-navy-900 mb-8">Андреещев Денис <span className="text-gold-400">Валерьевич</span></h2>
+              <p className="text-navy-900/80 text-xl leading-relaxed mb-6">
+                Пока другие адвокаты берутся за всё подряд — от ДТП до земельных споров — я занимаюсь <strong className="text-navy-900">только семейными делами</strong>. Каждый день. Уже больше 10 лет. Знаю каждого судью в Воронеже и как он принимает решения.
+              </p>
+              <p className="text-navy-900/80 text-xl leading-relaxed mb-8">
+                Развод — это не просто суд. Это ваши дети, ваш дом, ваши нервы. <strong className="text-navy-900">Я сделаю так, чтобы вы прошли через это один раз и правильно</strong> — без лишних заседаний, без сюрпризов, без потерь, которых можно избежать.
+              </p>
+              <p className="text-navy-900/80 text-xl leading-relaxed mb-8">
+                Я не просто веду дело — <strong className="text-navy-900">я сопровождаю вас от хаоса к спокойствию</strong>. Через все жизненные сложности, пока вы не почувствуете, что худшее позади.
+              </p>
+              <div className="text-navy-900 font-semibold text-lg">Адвокат, рег. номер 36/2348 в реестре адвокатов Воронежской области</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Steps */}
+      <section id="steps" className="relative py-24 bg-navy-900 overflow-hidden">
+        <img src="/images/photos/steps-bg.webp" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" style={{ filter: 'blur(8px)', transform: 'scale(1.05)' }} />
+        <div className="absolute inset-0 bg-navy-900/40 pointer-events-none" />
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="gold-line mx-auto mb-6" />
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Прозрачная схема работы</h2>
+            <p className="text-gray-400 text-lg">6 понятных этапов от консультации до результата</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {steps.map((s) => {
+              const styles: Record<string, { span: string; bg: string; title: string; text: string }> = {
+                '1': { span: 'lg:col-span-2', bg: 'bg-white/10 backdrop-blur-md border border-white/20', title: 'text-white text-2xl md:text-3xl', text: 'text-gray-300' },
+                '2': { span: '', bg: 'bg-white border border-gold-200', title: 'text-navy-900 text-xl', text: 'text-gray-500' },
+                '3': { span: '', bg: 'bg-white border border-gold-200', title: 'text-navy-900 text-xl', text: 'text-gray-500' },
+                '4': { span: 'lg:col-span-2', bg: 'bg-white/10 backdrop-blur-md border border-white/20', title: 'text-white text-2xl md:text-3xl', text: 'text-gray-300' },
+                '5': { span: 'lg:col-span-2', bg: 'bg-white/10 backdrop-blur-md border border-white/20', title: 'text-white text-2xl md:text-3xl', text: 'text-gray-300' },
+                '6': { span: '', bg: 'bg-white border border-gold-200', title: 'text-navy-900 text-xl', text: 'text-gray-500' },
+              }
+              const st = styles[s.n]
+              return (
+              <div key={s.n} className={`relative overflow-hidden rounded-3xl p-8 card-hover flex flex-col justify-between min-h-[220px] ${st.span} ${st.bg}`}>
+                <div>
+                  <div className="w-10 h-10 rounded-lg btn-gold flex items-center justify-center flex-shrink-0 mb-4">
+                    <span className="text-navy-900 font-bold">{s.n}</span>
+                  </div>
+                  <h3 className={`font-bold mb-3 ${st.title}`}>{s.title}</h3>
+                  <p className={`text-sm leading-relaxed ${st.text}`}>{s.desc}</p>
+                </div>
               </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="py-24 bg-navy-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="gold-line mx-auto mb-6" />
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Стоимость услуг</h2>
+            <p className="text-gray-400 text-lg">Фиксированная цена в договоре — без скрытых доплат</p>
+          </div>
+          <div className="rounded-2xl border border-white/10 overflow-hidden">
+            {pricing.map((row, i) => (
+              <div key={i} className={`flex items-center justify-between gap-4 px-6 py-5 ${i % 2 === 0 ? 'bg-white/5' : 'bg-white/[0.02]'} ${i < pricing.length - 1 ? 'border-b border-white/5' : ''}`}>
+                <span className="text-white text-sm md:text-base">{row.service}</span>
+                <span className={`font-bold text-sm md:text-base whitespace-nowrap ${row.highlight ? 'text-gold-400' : 'text-gold-300'}`}>{row.price}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-gray-500 text-sm text-center mt-6">* Точная стоимость определяется после анализа вашей ситуации</p>
+        </div>
+      </section>
+
+      {/* Consultation CTA */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="bg-white rounded-2xl border-2 border-navy-900 shadow-lg overflow-hidden">
+            <div className="flex flex-col lg:flex-row items-end gap-8">
+              <div className="flex-1 p-8 md:p-12">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-gray-400 line-through text-lg">3 000 ₽</span>
+                  <span className="text-gold-400 font-bold text-2xl">Бесплатно</span>
+                  <span className="text-gray-500 text-sm">/ первичная консультация — 15 минут</span>
+                </div>
+                <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy-900 mb-6">15 минут, которые могут сэкономить вам миллионы</h2>
+                <ul className="space-y-3 mb-8">
+                  {['Покажу слабые места — где вы теряете деньги, детей или имущество прямо сейчас', 'Разберём ошибки, которые ещё можно исправить, пока не поздно', 'Честно скажу — нужен вам адвокат или справитесь без меня', 'Назову точные сроки и стоимость — без «это зависит от многих факторов»'].map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-gray-600">
+                      <span className="text-gold-500 mt-0.5">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <FormModal title="Записаться на консультацию" buttonText="Записаться" className="btn-gold rounded-xl px-10 py-5 text-navy-900 font-bold text-lg text-center transition-transform">
+                    Записаться
+                  </FormModal>
+                  <a href="tel:+79204130096" className="bg-navy-900 rounded-xl px-10 py-5 text-white font-semibold text-center hover:bg-navy-800 transition-colors">
+                    Позвонить
+                  </a>
+                </div>
+              </div>
+              <div className="flex-shrink-0 hidden lg:block self-end">
+                <img src="/images/photos/cta-photo.webp" alt="Адвокат Андреещев" className="h-[400px] w-auto object-contain block" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Certificates */}
+      <CertificatesBlock certificates={certificates} />
+
+      {/* Reviews */}
+      <ReviewsBlock reviews={reviews} />
+
+      {/* FAQ */}
+      <section id="faq" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="gold-line mx-auto mb-6" />
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-navy-900 mb-4">Частые вопросы</h2>
+          </div>
+          <div className="space-y-4">
+            {faqItems.map((item, i) => (
+              <details key={i} className="group rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #F5EBD0 0%, #E8D19A 100%)' }}>
+                <summary className="flex items-center justify-between p-6 cursor-pointer hover:brightness-105 transition-all">
+                  <span className="font-semibold text-navy-900 pr-4">{item.q}</span>
+                  <span className="text-navy-900 text-2xl flex-shrink-0 group-open:rotate-45 transition-transform">+</span>
+                </summary>
+                <div className="px-6 pb-6 text-navy-900/80 leading-relaxed">{item.a}</div>
+              </details>
             ))}
           </div>
         </div>
       </section>
 
-      {/* About */}
-      <section className="about" id="about">
-        <div className="container">
-          <h2>{settings.aboutTitle}</h2>
-          <p>{settings.aboutText}</p>
-        </div>
-      </section>
-
       {/* Contacts */}
-      <section className="contacts" id="contacts">
-        <div className="container">
-          <h2>Контакты</h2>
-          <div className="contacts-grid">
-            <div className="contact-item">
-              <strong>Телефон</strong>
-              <a href={`tel:${(settings.phone as string)?.replace(/[\s()-]/g, '')}`}>
-                {settings.phone}
-              </a>
+      <section id="contacts" className="py-20 bg-navy-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="gold-line mx-auto mb-6" />
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Контакты</h2>
+            <p className="text-gray-400 text-lg">Свяжитесь со мной любым удобным способом — на связи 24/7!</p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="flex flex-col items-center text-center px-4">
+              <div className="w-52 h-52 rounded-full border-4 border-gold-400 overflow-hidden mb-6 mt-4">
+                <img src="/images/photos/about.webp" alt="Адвокат Андреещев" className="w-full h-full object-cover object-top" />
+              </div>
+              <h3 className="font-serif text-2xl font-bold text-white mb-1">Андреещев Денис</h3>
+              <h3 className="font-serif text-2xl font-bold text-white mb-3">Валерьевич</h3>
+              <p className="text-gold-400 font-semibold text-sm mb-4">Адвокат по семейным делам</p>
+              <div className="w-12 h-[2px] bg-gold-400 mb-4" />
+              <p className="text-gray-400 text-sm leading-relaxed mb-6">Член Адвокатской палаты Воронежской области. Более 10 лет практики в сфере семейного права.</p>
+              <div className="flex items-center gap-3">
+                <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-[#26A5E4] hover:brightness-110 flex items-center justify-center transition-all"><svg viewBox="0 0 24 24" className="w-6 h-6 fill-white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+                <a href="https://max.ru/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:brightness-110" style={{background: 'linear-gradient(135deg, #6C3AED, #2563EB)'}}><img src="/images/icons/max-icon.png" alt="Max" className="w-6 h-6" /></a>
+              </div>
             </div>
-            <div className="contact-item">
-              <strong>Email</strong>
-              <a href={`mailto:${settings.email}`}>{settings.email}</a>
+
+            <div className="space-y-4 flex flex-col justify-center">
+              <div className="flex items-center gap-5 p-5 rounded-xl bg-white/5 border border-white/10">
+                <div className="w-14 h-14 rounded-xl bg-gold-400/20 flex items-center justify-center flex-shrink-0">
+                  <span className="material-symbols-outlined text-gold-400 text-2xl">call</span>
+                </div>
+                <div>
+                  <div className="text-gray-500 text-xs uppercase tracking-wider mb-1">Телефон</div>
+                  <a href="tel:+79204130096" className="text-white font-bold text-lg hover:text-gold-400 transition-colors block">8 (920) 413-00-96</a>
+                  <a href="tel:+79507770608" className="text-white font-semibold text-sm hover:text-gold-400 transition-colors block">8 (950) 777-06-08</a>
+                </div>
+              </div>
+              <div className="flex items-center gap-5 p-5 rounded-xl bg-white/5 border border-white/10">
+                <div className="w-14 h-14 rounded-xl bg-gold-400/20 flex items-center justify-center flex-shrink-0">
+                  <span className="material-symbols-outlined text-gold-400 text-2xl">mail</span>
+                </div>
+                <div>
+                  <div className="text-gray-500 text-xs uppercase tracking-wider mb-1">Email</div>
+                  <a href="mailto:denis.andreeschev2015@yandex.ru" className="text-white font-bold hover:text-gold-400 transition-colors">denis.andreeschev2015@yandex.ru</a>
+                </div>
+              </div>
+              <div className="flex items-center gap-5 p-5 rounded-xl bg-white/5 border border-white/10">
+                <div className="w-14 h-14 rounded-xl bg-gold-400/20 flex items-center justify-center flex-shrink-0">
+                  <span className="material-symbols-outlined text-gold-400 text-2xl">schedule</span>
+                </div>
+                <div>
+                  <div className="text-gray-500 text-xs uppercase tracking-wider mb-1">Режим работы</div>
+                  <div className="text-white font-bold">Круглосуточно, без выходных</div>
+                  <div className="flex items-center gap-1.5 mt-1"><span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" /><span className="text-green-400 text-xs">На связи сейчас</span></div>
+                </div>
+              </div>
+              <div className="flex items-center gap-5 p-5 rounded-xl bg-white/5 border border-white/10">
+                <div className="w-14 h-14 rounded-xl bg-gold-400/20 flex items-center justify-center flex-shrink-0">
+                  <span className="material-symbols-outlined text-gold-400 text-2xl">location_on</span>
+                </div>
+                <div>
+                  <div className="text-gray-500 text-xs uppercase tracking-wider mb-1">Адрес</div>
+                  <div className="text-white font-bold">г. Воронеж</div>
+                  <div className="text-gray-400 text-sm">Московский проспект, д. 90</div>
+                </div>
+              </div>
             </div>
-            <div className="contact-item">
-              <strong>Адрес</strong>
-              <p>{settings.address}</p>
+
+            <div className="h-[500px] lg:h-auto min-h-[500px] rounded-2xl overflow-hidden">
+              <iframe
+                src="https://yandex.ru/map-widget/v1/?um=constructor%3A1&source=constructor&ll=39.2199%2C51.6615&z=16&pt=39.2199%2C51.6615%2Cpm2rdm"
+                title="Карта"
+                className="w-full h-full border-0"
+              />
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <p>&copy; {new Date().getFullYear()} Адвокат Андреещев Денис. Все права защищены.</p>
+      <footer className="bg-navy-900 pt-16 pb-8">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <img src="/images/logo.png" alt="Логотип" className="w-12 h-12 brightness-0 invert" />
+                <span className="font-serif text-white font-bold text-lg">Адвокат Андреещев Д.В.</span>
+              </div>
+              <div className="space-y-3">
+                <a href="tel:+79204130096" className="flex items-center gap-3 text-gray-300 hover:text-gold-400 transition-colors">
+                  <span className="material-symbols-outlined text-gold-400 text-lg">call</span>
+                  <span>8 (920) 413-00-96</span>
+                </a>
+                <a href="tel:+79507770608" className="flex items-center gap-3 text-gray-300 hover:text-gold-400 transition-colors">
+                  <span className="material-symbols-outlined text-gold-400 text-lg">call</span>
+                  <span>8 (950) 777-06-08</span>
+                </a>
+                <a href="mailto:denis.andreeschev2015@yandex.ru" className="flex items-center gap-3 text-gray-300 hover:text-gold-400 transition-colors">
+                  <span className="material-symbols-outlined text-gold-400 text-lg">mail</span>
+                  <span>denis.andreeschev2015@yandex.ru</span>
+                </a>
+              </div>
+              <div className="flex items-center gap-3 mt-5">
+                <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#26A5E4] hover:brightness-110 flex items-center justify-center transition-all"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+                <a href="https://max.ru/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center hover:brightness-110 transition-all" style={{background: 'linear-gradient(135deg, #6C3AED, #2563EB)'}}><img src="/images/icons/max-icon.png" alt="Max" className="w-5 h-5" /></a>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-serif text-white font-bold uppercase tracking-wider text-sm mb-6">Разделы сайта</h3>
+              <div className="flex flex-col gap-3">
+                <a href="#services" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Услуги</a>
+                <a href="#advantages" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Преимущества</a>
+                <a href="#about" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Об адвокате</a>
+                <a href="#steps" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Этапы работы</a>
+                <a href="#credentials" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Сертификаты</a>
+                <a href="#reviews" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Отзывы</a>
+                <a href="#pricing" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Цены</a>
+                <a href="#faq" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Вопросы</a>
+                <a href="#contacts" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Контакты</a>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-serif text-white font-bold uppercase tracking-wider text-sm mb-6">Правовая информация</h3>
+              <div className="flex flex-col gap-3">
+                <a href="/privacy" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Политика конфиденциальности</a>
+                <a href="/data-processing" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Политика обработки персональных данных</a>
+                <a href="/cookies" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Соглашение об использовании Cookie</a>
+                <a href="/consent" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Согласие на обработку персональных данных</a>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="text-gray-500 text-sm">© 2025 Адвокат Андреещев Денис Валерьевич. Все права защищены.</div>
+            <div className="text-gray-500 text-sm text-right">Содержимое сайта не является публичной офертой.<br />Рег. номер 36/2348 в реестре адвокатов Воронежской области</div>
+          </div>
         </div>
       </footer>
-    </main>
+    </>
   )
 }

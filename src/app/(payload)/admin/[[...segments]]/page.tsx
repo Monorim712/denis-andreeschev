@@ -2,7 +2,7 @@
 /* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
 import type { Metadata } from 'next'
 import { RootPage, generatePageMetadata } from '@payloadcms/next/views'
-import { importMap } from '../importMap'
+import { importMap } from '../importMap.js'
 import configPromise from '@/payload.config'
 
 type Args = {
