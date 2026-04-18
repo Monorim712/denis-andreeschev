@@ -3,6 +3,8 @@
 import { useState, useCallback, useEffect } from 'react'
 
 const mainLinks = [
+  { href: '/dlya-muzhchin', label: 'Защита прав мужчин' },
+  { href: '/dlya-zhenshchin', label: 'Защита прав женщин' },
   { href: '/#services', label: 'Услуги' },
   { href: '/#advantages', label: 'Преимущества' },
   { href: '/#about', label: 'Об адвокате' },
@@ -12,8 +14,6 @@ const mainLinks = [
   { href: '/#reviews', label: 'Отзывы' },
   { href: '/#faq', label: 'Вопросы' },
   { href: '/#contacts', label: 'Контакты' },
-  { href: '/dlya-muzhchin', label: 'Защита прав мужчин' },
-  { href: '/dlya-zhenshchin', label: 'Защита прав женщин' },
 ]
 
 const legalLinks = [

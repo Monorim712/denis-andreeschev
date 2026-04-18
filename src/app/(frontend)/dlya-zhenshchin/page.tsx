@@ -52,7 +52,7 @@ export default function FemaleLandingPage() {
 
       {/* Nav */}
       <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
-        <div className="max-w-[1440px] mx-auto px-6 py-3 flex items-center gap-8 flex-nowrap">
+        <div className="max-w-[1440px] mx-auto px-6 py-3 flex items-center justify-center lg:justify-start gap-8 flex-nowrap">
           <a href="/" className="shrink-0 leading-tight flex items-center gap-3">
             <img src="/images/logo.png" alt="Логотип" className="w-10 h-10" />
             <div>
@@ -83,25 +83,25 @@ export default function FemaleLandingPage() {
       </nav>
 
       {/* Hero */}
-      <header className="relative min-h-screen flex items-center overflow-hidden pt-20" style={{ background: 'linear-gradient(165deg, #2A3A1E 0%, #3A4A2C 40%, #4D6340 100%)' }}>
+      <header className="relative lg:min-h-screen flex items-end lg:items-center overflow-hidden pt-20" style={{ background: 'linear-gradient(165deg, #2A3A1E 0%, #3A4A2C 40%, #4D6340 100%)' }}>
         <div className="absolute right-0 bottom-0 w-1/2 h-full hidden lg:flex items-end justify-center z-[1]">
           <Image src="/images/photos/hero-female.webp" alt="Адвокат Андреещев" width={600} height={700} className="h-full w-auto object-contain object-bottom" priority />
         </div>
         <div className="relative z-20 max-w-7xl mx-auto px-6 w-full">
           <div className="max-w-2xl">
-            <span className="text-gold-400 font-medium tracking-[0.15em] mb-4 block uppercase text-xs">Защита прав женщин при разводе</span>
+            <span className="text-gold-400 font-medium tracking-[0.15em] mb-4 block uppercase text-xs text-center lg:text-left mt-[20px] lg:mt-0">Защита прав женщин при разводе</span>
             <div className="w-[60px] h-[3px] bg-gold-400 mb-8" />
-            <h1 className="font-serif text-5xl md:text-7xl text-white font-bold leading-tight mb-6">
+            <h1 className="font-serif text-5xl md:text-7xl text-white font-bold leading-tight mb-6 text-center lg:text-left">
               Защищаю права<br /><span className="text-gold-400">женщин</span> при разводе
             </h1>
-            <p className="text-xl text-gray-300 mb-10 font-light max-w-lg">Добьюсь справедливых алиментов, защищу ваше имущество и обеспечу стабильность для вас и детей.</p>
+            <p className="text-xl text-gray-300 mb-10 font-light max-w-lg text-center lg:text-left">Добьюсь справедливых алиментов, защищу ваше имущество и обеспечу стабильность для вас и детей.</p>
+            <div className="flex justify-center lg:hidden -mb-5">
+              <img src="/images/photos/hero-female.webp" alt="Адвокат Андреещев" className="h-[55vh] w-auto object-contain object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 15%, black 90%, transparent 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 15%, black 90%, transparent 100%)' }} />
+            </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <a href="tel:+79204130096" className="btn-gold rounded-xl px-8 py-4 text-navy-900 font-bold text-lg text-center transition-transform hover:scale-[0.98]">Бесплатная консультация</a>
               <a href="#problems" className="bg-white rounded-xl px-8 py-4 text-navy-900 font-semibold text-lg text-center hover:bg-gray-100 transition-colors">С чем вы столкнулись?</a>
             </div>
-          </div>
-          <div className="flex justify-center mt-8 lg:hidden">
-            <img src="/images/photos/hero-female.webp" alt="Адвокат Андреещев" className="h-[45vh] w-auto object-contain object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 15%, black 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 15%, black 100%)' }} />
           </div>
         </div>
       </header>
@@ -141,7 +141,7 @@ export default function FemaleLandingPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="flex-shrink-0">
-              <img src="/images/photos/quote-female.webp" alt="Адвокат Андреещев" className="w-[350px] h-auto rounded-2xl shadow-2xl object-cover" />
+              <img src="/images/photos/quote-female.webp" alt="Адвокат Андреещев" className="w-full lg:w-[350px] h-auto rounded-2xl shadow-2xl object-cover" />
             </div>
             <div>
               <div className="w-[60px] h-[3px] bg-gold-400 mb-6" />
@@ -199,12 +199,14 @@ export default function FemaleLandingPage() {
           <div className="p-8 md:p-12 rounded-2xl border border-gray-200 bg-white">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
               <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-gray-400 line-through text-lg">3 000 ₽</span>
-                  <span className="text-navy-700 font-bold text-2xl">Бесплатно</span>
+                <div className="flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-3 mb-4 text-center sm:text-left">
+                  <div className="flex items-center gap-3">
+                    <span className="text-gray-400 line-through text-lg">3 000 ₽</span>
+                    <span className="text-navy-700 font-bold text-2xl">Бесплатно</span>
+                  </div>
                   <span className="text-gray-400 text-sm">/ первичная консультация — 15 минут</span>
                 </div>
-                <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy-900 mb-6">Не ждите, пока он спрячет имущество</h2>
+                <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy-900 mb-6 text-center lg:text-left">Не ждите, пока он спрячет имущество</h2>
                 <ul className="space-y-3">
                   {['Узнаете, на что Вы имеете право — алименты, имущество, жильё', 'Поймёте, как доказать реальные доходы мужа', 'Получите план защиты на ближайшие 48 часов', 'Разберём, можно ли развестись без его согласия'].map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-navy-900/70">
@@ -323,26 +325,26 @@ export default function FemaleLandingPage() {
       <footer className="bg-navy-900 pt-16 pb-24 lg:pb-8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-            <div>
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
               <div className="flex items-center gap-3 mb-6">
                 <img src="/images/logo.png" alt="Логотип" className="w-12 h-12 brightness-0 invert" />
                 <span className="font-serif text-white font-bold text-lg">Адвокат Андреещев Д.В.</span>
               </div>
               <div className="space-y-3">
-                <a href="tel:+79204130096" className="flex items-center gap-3 text-gray-300 hover:text-gold-400 transition-colors">
+                <a href="tel:+79204130096" className="flex items-center justify-center lg:justify-start gap-3 text-gray-300 hover:text-gold-400 transition-colors">
                   <span className="material-symbols-outlined text-gold-400 text-lg">call</span>
                   <span>8 (920) 413-00-96</span>
                 </a>
-                <a href="tel:+79507770608" className="flex items-center gap-3 text-gray-300 hover:text-gold-400 transition-colors">
+                <a href="tel:+79507770608" className="flex items-center justify-center lg:justify-start gap-3 text-gray-300 hover:text-gold-400 transition-colors">
                   <span className="material-symbols-outlined text-gold-400 text-lg">call</span>
                   <span>8 (950) 777-06-08</span>
                 </a>
-                <a href="mailto:denis.andreeschev2015@yandex.ru" className="flex items-center gap-3 text-gray-300 hover:text-gold-400 transition-colors">
+                <a href="mailto:denis.andreeschev2015@yandex.ru" className="flex items-center justify-center lg:justify-start gap-3 text-gray-300 hover:text-gold-400 transition-colors">
                   <span className="material-symbols-outlined text-gold-400 text-lg">mail</span>
-                  <span>denis.andreeschev2015@yandex.ru</span>
+                  <span className="text-sm lg:text-base break-all">denis.andreeschev2015@yandex.ru</span>
                 </a>
               </div>
-              <div className="flex items-center gap-3 mt-5">
+              <div className="hidden lg:flex items-center gap-3 mt-5">
                 <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#26A5E4] hover:brightness-110 flex items-center justify-center transition-all"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
                 <a href="https://max.ru/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center hover:brightness-110 transition-all" style={{background: 'linear-gradient(135deg, #6C3AED, #2563EB)'}}><img src="/images/icons/max-icon.png" alt="Max" className="w-5 h-5" /></a>
               </div>
@@ -361,7 +363,7 @@ export default function FemaleLandingPage() {
               </div>
             </div>
 
-            <div>
+            <div className="text-center lg:text-left">
               <h3 className="font-serif text-white font-bold uppercase tracking-wider text-sm mb-6">Правовая информация</h3>
               <div className="flex flex-col gap-3">
                 <a href="/privacy" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Политика конфиденциальности</a>
@@ -373,8 +375,8 @@ export default function FemaleLandingPage() {
           </div>
 
           <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="text-gray-500 text-sm">© 2025 Адвокат Андреещев Денис Валерьевич. Все права защищены.</div>
-            <div className="text-gray-500 text-sm text-right">Содержимое сайта не является публичной офертой.<br />Рег. номер 36/2348 в реестре адвокатов Воронежской области</div>
+            <div className="text-gray-500 text-sm text-center md:text-left">© 2025 Адвокат Андреещев Денис Валерьевич. Все права защищены.</div>
+            <div className="text-gray-500 text-sm text-center md:text-right">Содержимое сайта не является публичной офертой.<br />Рег. номер 36/2348 в реестре адвокатов Воронежской области</div>
           </div>
         </div>
       </footer>
