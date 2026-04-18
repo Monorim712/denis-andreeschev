@@ -111,21 +111,33 @@ export function ReviewsBlock({ reviews }: { reviews: Review[] }) {
           <p className="text-gray-400 text-lg">Реальные отзывы с Яндекс.Карт, Яндекс.Услуг, Harant.ru и Авито</p>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
-          {FILTERS.map((f) => (
-            <button
-              key={f.value}
-              onClick={() => { setFilter(f.value); resetAuto() }}
-              className={`px-5 py-2 border-2 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 ${
-                filter === f.value
-                  ? 'border-gold-400 bg-gold-400 text-navy-900'
-                  : 'border-white/20 text-white hover:border-gold-400'
-              }`}
-            >
-              {f.icon && <img src={f.icon} alt="" className="w-5 h-5" />}
-              {f.label}
-            </button>
-          ))}
+        <div className="flex flex-col lg:flex-row flex-wrap items-center justify-center gap-2 mb-10">
+          <button
+            onClick={() => { setFilter('all'); resetAuto() }}
+            className={`w-full lg:w-auto px-5 py-2 border-2 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2 ${
+              filter === 'all'
+                ? 'border-gold-400 bg-gold-400 text-navy-900'
+                : 'border-white/20 text-white hover:border-gold-400'
+            }`}
+          >
+            Все
+          </button>
+          <div className="grid grid-cols-2 lg:flex gap-2 w-full lg:w-auto">
+            {FILTERS.filter(f => f.value !== 'all').map((f) => (
+              <button
+                key={f.value}
+                onClick={() => { setFilter(f.value); resetAuto() }}
+                className={`px-5 py-2 border-2 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2 ${
+                  filter === f.value
+                    ? 'border-gold-400 bg-gold-400 text-navy-900'
+                    : 'border-white/20 text-white hover:border-gold-400'
+                }`}
+              >
+                {f.icon && <img src={f.icon} alt="" className="w-5 h-5" />}
+                {f.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {filtered.length === 0 ? (

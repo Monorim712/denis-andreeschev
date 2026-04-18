@@ -3,6 +3,7 @@ import { ReviewsBlock } from './components/ReviewsBlock'
 import { CertificatesBlock } from './components/CertificatesBlock'
 import { AskFormClient } from './components/AskFormClient'
 import { FormModal } from './components/FormModal'
+import { MobileToolbar } from './components/MobileToolbar'
 
 const services = [
   { icon: 'gavel', title: 'Расторжение брака', desc: 'Развод через суд или ЗАГС. Представительство без вашего присутствия.' },
@@ -102,7 +103,7 @@ export default function HomePage() {
 
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
-        <div className="max-w-[1440px] mx-auto px-6 py-3 flex items-center gap-8 flex-nowrap">
+        <div className="max-w-[1440px] mx-auto px-6 py-3 flex items-center justify-center lg:justify-start gap-8 flex-nowrap">
           <a href="#" className="shrink-0 leading-tight flex items-center gap-3">
             <img src="/images/logo.png" alt="Логотип" className="w-10 h-10" />
             <div>
@@ -121,7 +122,7 @@ export default function HomePage() {
             <a href="#faq" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">FAQ</a>
             <a href="#contacts" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Контакты</a>
           </div>
-          <div className="flex items-center gap-3 shrink-0 ml-auto lg:ml-0">
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
             <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-[#26A5E4] flex items-center justify-center hover:brightness-110 transition-all"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
             <a href="https://max.ru/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full flex items-center justify-center hover:brightness-110 transition-all" style={{background: 'linear-gradient(135deg, #6C3AED, #2563EB)'}}><img src="/images/icons/max-icon.png" alt="Max" className="w-5 h-5" /></a>
             <a href="tel:+79204130096" className="w-9 h-9 rounded-full bg-navy-900 flex items-center justify-center text-white hover:bg-gold-400 hover:text-navy-900 transition-colors"><span className="material-symbols-outlined text-lg">call</span></a>
@@ -133,20 +134,23 @@ export default function HomePage() {
       </nav>
 
       {/* Hero */}
-      <header className="relative min-h-screen flex items-center bg-navy-900 overflow-hidden pt-20">
+      <header className="relative lg:min-h-screen flex items-end lg:items-center bg-navy-900 overflow-hidden pt-20">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-900/20 via-transparent to-navy-900/60" />
         <div className="relative z-20 max-w-[1440px] mx-auto px-6 w-full">
           <div className="relative flex flex-col lg:flex-row items-center lg:items-end">
-            <div className="relative z-20 flex-1 pt-40 pb-16 lg:pb-16">
-              <span className="absolute top-4 left-0 text-gold-400 font-serif tracking-[0.25em] uppercase text-sm block leading-tight">Адвокат<br />по семейным делам</span>
-              <h1 className="font-serif text-6xl md:text-7xl xl:text-8xl text-white font-bold leading-[0.95] mb-10">
+            <div className="relative z-20 flex-1 pt-8 lg:pt-40 pb-0 lg:pb-16 flex flex-col items-center lg:items-start">
+              <span className="text-gold-400 font-serif tracking-[0.25em] uppercase text-sm block leading-tight text-center lg:text-left lg:absolute lg:top-4 lg:left-0 mb-[60px] lg:mb-0">Адвокат<br />по семейным делам</span>
+              <h1 className="font-serif text-6xl md:text-7xl xl:text-8xl text-white font-bold leading-[0.95] mb-0 lg:mb-10 text-center lg:text-left">
                 Денис<br /><span className="text-gold-400">Андреещев</span>
               </h1>
-              <FormModal title="Бесплатная консультация" buttonText="Записаться" className="btn-gold inline-block px-10 py-5 text-navy-900 font-bold text-lg transition-transform">
+              <div className="flex justify-center lg:hidden -mb-5" style={{ marginTop: '-15px', paddingLeft: '10px' }}>
+                <img src="/images/photos/hero-main.webp" alt="Адвокат Андреещев" className="h-[45vh] w-auto object-contain object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 15%, black 90%, transparent 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 15%, black 90%, transparent 100%)' }} />
+              </div>
+              <FormModal title="Бесплатная консультация" buttonText="Записаться" className="btn-gold px-10 py-5 text-navy-900 font-bold text-lg transition-transform w-full lg:w-auto lg:inline-block text-center">
                 Бесплатная консультация
               </FormModal>
             </div>
-            <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 z-10 hidden lg:block">
+            <div className="relative z-10 hidden lg:flex justify-center lg:absolute lg:-bottom-24 lg:left-1/2 lg:-translate-x-1/2">
               <img src="/images/photos/hero-main.webp" alt="Адвокат Андреещев" className="h-[85vh] w-auto object-contain object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 10%, black 90%, transparent 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 10%, black 90%, transparent 100%)' }} />
             </div>
             <div className="relative z-20 flex-1 self-start pt-4 pb-0 hidden lg:flex justify-end">
@@ -275,13 +279,13 @@ export default function HomePage() {
       <section id="about" className="pt-12 pb-0 bg-gold-200">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 hidden lg:block">
               <img src="/images/photos/about.webp" alt="Адвокат Андреещев" width={480} height={600} className="block" style={{ marginBottom: '-1px', marginLeft: '-30px' }} />
             </div>
             <div>
-              <div className="gold-line mb-6" />
-              <p className="text-gold-600 font-semibold tracking-[0.15em] uppercase text-sm mb-4">Адвокат по семейным спорам</p>
-              <h2 className="font-serif text-4xl md:text-5xl font-bold text-navy-900 mb-8">Андреещев Денис <span className="text-gold-400">Валерьевич</span></h2>
+              <div className="gold-line mb-6 mx-auto lg:mx-0" />
+              <p className="text-gold-600 font-semibold tracking-[0.15em] uppercase text-sm mb-4 text-center lg:text-left">Адвокат по семейным спорам</p>
+              <h2 className="font-serif text-4xl md:text-5xl font-bold text-navy-900 mb-8 text-center lg:text-left">Андреещев Денис <span className="text-gold-400">Валерьевич</span></h2>
               <p className="text-navy-900/80 text-xl leading-relaxed mb-6">
                 Пока другие адвокаты берутся за всё подряд — от ДТП до земельных споров — я занимаюсь <strong className="text-navy-900">только семейными делами</strong>. Каждый день. Уже больше 10 лет. Знаю каждого судью в Воронеже и как он принимает решения.
               </p>
@@ -294,6 +298,9 @@ export default function HomePage() {
               <div className="text-navy-900 font-semibold text-lg">Адвокат, рег. номер 36/2348 в реестре адвокатов Воронежской области</div>
             </div>
           </div>
+        </div>
+        <div className="lg:hidden flex justify-center mt-8">
+          <img src="/images/photos/about.webp" alt="Адвокат Андреещев" className="w-[70%] max-w-[360px] object-contain block" style={{ marginBottom: '-1px' }} />
         </div>
       </section>
 
@@ -355,17 +362,19 @@ export default function HomePage() {
       </section>
 
       {/* Consultation CTA */}
-      <section className="py-12 bg-white">
+      <section className="py-6 lg:py-12 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="bg-white rounded-2xl border-2 border-navy-900 shadow-lg overflow-hidden">
-            <div className="flex flex-col lg:flex-row items-end gap-8">
+            <div className="flex flex-col lg:flex-row items-end gap-0 lg:gap-8">
               <div className="flex-1 p-8 md:p-12">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-gray-400 line-through text-lg">3 000 ₽</span>
-                  <span className="text-gold-400 font-bold text-2xl">Бесплатно</span>
+                <div className="flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-3 mb-4 text-center sm:text-left">
+                  <div className="flex items-center gap-3">
+                    <span className="text-gray-400 line-through text-lg">3 000 ₽</span>
+                    <span className="text-gold-400 font-bold text-2xl">Бесплатно</span>
+                  </div>
                   <span className="text-gray-500 text-sm">/ первичная консультация — 15 минут</span>
                 </div>
-                <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy-900 mb-6">15 минут, которые могут сэкономить вам миллионы</h2>
+                <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy-900 mb-6 text-center lg:text-left">15 минут, которые могут сэкономить вам миллионы</h2>
                 <ul className="space-y-3 mb-8">
                   {['Покажу слабые места — где вы теряете деньги, детей или имущество прямо сейчас', 'Разберём ошибки, которые ещё можно исправить, пока не поздно', 'Честно скажу — нужен вам адвокат или справитесь без меня', 'Назову точные сроки и стоимость — без «это зависит от многих факторов»'].map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-gray-600">
@@ -383,8 +392,8 @@ export default function HomePage() {
                   </a>
                 </div>
               </div>
-              <div className="flex-shrink-0 hidden lg:block self-end">
-                <img src="/images/photos/cta-photo.webp" alt="Адвокат Андреещев" className="h-[400px] w-auto object-contain block" />
+              <div className="flex-shrink-0 self-end -mt-5 lg:mt-0">
+                <img src="/images/photos/cta-photo.webp" alt="Адвокат Андреещев" className="h-[250px] lg:h-[400px] w-auto object-contain block mx-auto" />
               </div>
             </div>
           </div>
@@ -459,7 +468,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <div className="text-gray-500 text-xs uppercase tracking-wider mb-1">Email</div>
-                  <a href="mailto:denis.andreeschev2015@yandex.ru" className="text-white font-bold hover:text-gold-400 transition-colors">denis.andreeschev2015@yandex.ru</a>
+                  <a href="mailto:denis.andreeschev2015@yandex.ru" className="text-white font-bold hover:text-gold-400 transition-colors text-sm lg:text-base break-all">denis.andreeschev2015@yandex.ru</a>
                 </div>
               </div>
               <div className="flex items-center gap-5 p-5 rounded-xl bg-white/5 border border-white/10">
@@ -495,36 +504,38 @@ export default function HomePage() {
         </div>
       </section>
 
+      <MobileToolbar />
+
       {/* Footer */}
-      <footer className="bg-navy-900 pt-16 pb-8">
+      <footer className="bg-navy-900 pt-16 pb-24 lg:pb-8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-            <div>
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
               <div className="flex items-center gap-3 mb-6">
                 <img src="/images/logo.png" alt="Логотип" className="w-12 h-12 brightness-0 invert" />
                 <span className="font-serif text-white font-bold text-lg">Адвокат Андреещев Д.В.</span>
               </div>
               <div className="space-y-3">
-                <a href="tel:+79204130096" className="flex items-center gap-3 text-gray-300 hover:text-gold-400 transition-colors">
+                <a href="tel:+79204130096" className="flex items-center justify-center lg:justify-start gap-3 text-gray-300 hover:text-gold-400 transition-colors">
                   <span className="material-symbols-outlined text-gold-400 text-lg">call</span>
                   <span>8 (920) 413-00-96</span>
                 </a>
-                <a href="tel:+79507770608" className="flex items-center gap-3 text-gray-300 hover:text-gold-400 transition-colors">
+                <a href="tel:+79507770608" className="flex items-center justify-center lg:justify-start gap-3 text-gray-300 hover:text-gold-400 transition-colors">
                   <span className="material-symbols-outlined text-gold-400 text-lg">call</span>
                   <span>8 (950) 777-06-08</span>
                 </a>
-                <a href="mailto:denis.andreeschev2015@yandex.ru" className="flex items-center gap-3 text-gray-300 hover:text-gold-400 transition-colors">
+                <a href="mailto:denis.andreeschev2015@yandex.ru" className="flex items-center justify-center lg:justify-start gap-3 text-gray-300 hover:text-gold-400 transition-colors">
                   <span className="material-symbols-outlined text-gold-400 text-lg">mail</span>
                   <span>denis.andreeschev2015@yandex.ru</span>
                 </a>
               </div>
-              <div className="flex items-center gap-3 mt-5">
+              <div className="hidden lg:flex items-center gap-3 mt-5">
                 <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#26A5E4] hover:brightness-110 flex items-center justify-center transition-all"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
                 <a href="https://max.ru/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center hover:brightness-110 transition-all" style={{background: 'linear-gradient(135deg, #6C3AED, #2563EB)'}}><img src="/images/icons/max-icon.png" alt="Max" className="w-5 h-5" /></a>
               </div>
             </div>
 
-            <div>
+            <div className="hidden lg:block">
               <h3 className="font-serif text-white font-bold uppercase tracking-wider text-sm mb-6">Разделы сайта</h3>
               <div className="flex flex-col gap-3">
                 <a href="#services" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Услуги</a>
@@ -539,7 +550,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div>
+            <div className="text-center lg:text-left">
               <h3 className="font-serif text-white font-bold uppercase tracking-wider text-sm mb-6">Правовая информация</h3>
               <div className="flex flex-col gap-3">
                 <a href="/privacy" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Политика конфиденциальности</a>
@@ -550,9 +561,9 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
             <div className="text-gray-500 text-sm">© 2025 Адвокат Андреещев Денис Валерьевич. Все права защищены.</div>
-            <div className="text-gray-500 text-sm text-right">Содержимое сайта не является публичной офертой.<br />Рег. номер 36/2348 в реестре адвокатов Воронежской области</div>
+            <div className="text-gray-500 text-sm text-center md:text-right">Содержимое сайта не является публичной офертой.<br />Рег. номер 36/2348 в реестре адвокатов Воронежской области</div>
           </div>
         </div>
       </footer>

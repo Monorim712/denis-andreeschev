@@ -69,7 +69,7 @@ export function CertificatesBlock({ certificates }: { certificates: Certificate[
   }, [doc])
 
   return (
-    <section id="credentials" className="py-24 bg-white">
+    <section id="credentials" className="py-12 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <div className="gold-line mx-auto mb-6" />

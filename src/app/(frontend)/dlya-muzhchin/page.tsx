@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { FormModal } from '../components/FormModal'
+import { MobileToolbar } from '../components/MobileToolbar'
 
 export const metadata: Metadata = {
   title: 'Адвокат для мужчин при разводе в Воронеже — защита прав отцов',
@@ -70,7 +71,7 @@ export default function MaleLandingPage() {
             <a href="#faq" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">FAQ</a>
             <a href="#contacts" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Контакты</a>
           </div>
-          <div className="flex items-center gap-3 shrink-0 ml-auto lg:ml-0">
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
             <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-[#26A5E4] flex items-center justify-center hover:brightness-110 transition-all"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
             <a href="https://max.ru/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full flex items-center justify-center hover:brightness-110 transition-all" style={{background: 'linear-gradient(135deg, #6C3AED, #2563EB)'}}><img src="/images/icons/max-icon.png" alt="Max" className="w-5 h-5" /></a>
             <a href="tel:+79204130096" className="w-9 h-9 rounded-full bg-navy-900 flex items-center justify-center text-white hover:bg-gold-400 hover:text-navy-900 transition-colors"><span className="material-symbols-outlined text-lg">call</span></a>
@@ -98,6 +99,9 @@ export default function MaleLandingPage() {
               <a href="tel:+79204130096" className="btn-gold rounded-xl px-8 py-4 text-navy-900 font-bold text-lg text-center transition-transform hover:scale-[0.98]">Бесплатная консультация</a>
               <a href="#problems" className="bg-white rounded-xl px-8 py-4 text-navy-900 font-semibold text-lg text-center hover:bg-gray-100 transition-colors">С чем вы столкнулись?</a>
             </div>
+          </div>
+          <div className="flex justify-center mt-8 lg:hidden">
+            <img src="/images/photos/hero-male.webp" alt="Адвокат Андреещев" className="h-[45vh] w-auto object-contain object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 15%, black 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 15%, black 100%)' }} />
           </div>
         </div>
       </header>
@@ -313,8 +317,10 @@ export default function MaleLandingPage() {
         </div>
       </section>
 
+      <MobileToolbar />
+
       {/* Footer */}
-      <footer className="bg-navy-900 pt-16 pb-8">
+      <footer className="bg-navy-900 pt-16 pb-24 lg:pb-8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div>
@@ -342,7 +348,7 @@ export default function MaleLandingPage() {
               </div>
             </div>
 
-            <div>
+            <div className="hidden lg:block">
               <h3 className="font-serif text-white font-bold uppercase tracking-wider text-sm mb-6">Разделы</h3>
               <div className="flex flex-col gap-3">
                 <a href="/" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Главная</a>
