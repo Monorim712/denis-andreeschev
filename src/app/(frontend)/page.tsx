@@ -44,10 +44,13 @@ const faqItems = [
 ]
 
 const certificates = [
+  { src: '/images/certificates/gramota-new.jpg', alt: 'Почётная грамота' },
   { src: '/images/certificates/certificate 1_page-0001.jpg', alt: 'Сертификат 1' },
   { src: '/images/certificates/certificate 2_page-0001.jpg', alt: 'Сертификат 2' },
   { src: '/images/certificates/certificate 3_page-0001.jpg', alt: 'Сертификат 3' },
-  { src: '/images/certificates/gramota-new.jpg', alt: 'Почётная грамота' },
+  { src: '/images/certificates/certificate 4_page-0001.jpg', alt: 'Сертификат 4' },
+  { src: '/images/certificates/certificate 5_page-0001.jpg', alt: 'Сертификат 5' },
+  { src: '/images/certificates/certificate 6_page-0001.jpg', alt: 'Сертификат 6' },
 ]
 
 const reviews = [
