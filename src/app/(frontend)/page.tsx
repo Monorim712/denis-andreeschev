@@ -15,12 +15,12 @@ const services = [
 ]
 
 const advantages = [
-  { title: 'Берусь за дело за 24 часа', desc: 'Пока другие «изучают вопрос» — я уже <strong>готовлю стратегию</strong>. Время работает против вас, и я это знаю.' },
-  { title: 'Нападаю, а не только защищаюсь', desc: 'Не жду удара — <strong>формирую встречные иски</strong> и забираю инициативу. Противник играет по моим правилам.' },
-  { title: 'Говорю по-человечески', desc: 'Никаких «в соответствии с п. 3 ст. 256 ГК РФ». Вы <strong>всегда понимаете</strong>, что происходит и зачем.' },
-  { title: 'Цена — сразу и навсегда', desc: 'Называю <strong>точную сумму</strong> до начала работы. Никаких «а ещё надо доплатить» в процессе.' },
-  { title: 'Скажу правду, даже неудобную', desc: 'Не обещаю 100% победу, если шансы 50/50. Зато вы <strong>точно знаете</strong>, на что рассчитывать.' },
-  { title: 'Отвечаю даже в полночь', desc: 'Развод не ждёт рабочих часов. Вопрос в 3 ночи? <strong>Отвечу</strong>. Паника перед заседанием? Разберём.' },
+  { title: 'Знаю каждого судью Воронежа', desc: '10 лет в одних залах. Знаю, <strong>как каждый судья принимает решения</strong>, на что обращает внимание и что раздражает. 500+ дел — это не теория, это опыт.' },
+  { title: 'Забираю инициативу с первого дня', desc: 'Не жду, пока ударят — <strong>формирую встречные иски</strong>, подаю ходатайства, фиксирую доказательства. Пока другие «готовятся», я уже действую.' },
+  { title: 'Только семейное право — каждый день', desc: 'Не берусь за ДТП, кражи и земельные споры. <strong>Семейные дела — всё, чем я занимаюсь.</strong> Знаю нюансы, которые другие адвокаты даже не замечают.' },
+  { title: 'Цена в договоре — ни рубля сверху', desc: 'Называю <strong>точную сумму</strong> до начала работы. Без «а ещё госпошлина», «а ещё экспертиза». Сколько сказал — столько и будет.' },
+  { title: 'Скажу правду — даже неудобную', desc: 'Не обещаю 100% победу, если шансы 50/50. Зато вы <strong>не тратите деньги впустую</strong> и точно знаете, на что рассчитывать.' },
+  { title: 'На связи в 3 ночи и в воскресенье', desc: 'Развод не ждёт рабочих часов. Паника перед заседанием? Вопрос среди ночи? <strong>Отвечу.</strong> Потому что для вас это не «рабочий вопрос» — это жизнь.' },
 ]
 
 const steps = [
@@ -299,7 +299,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <div className="lg:hidden flex justify-center mt-8">
+        <div className="lg:hidden flex justify-center mt-0">
           <img src="/images/photos/about.webp" alt="Адвокат Андреещев" className="w-full max-w-[720px] object-contain block" style={{ marginBottom: '-1px' }} />
         </div>
       </section>
@@ -437,7 +437,7 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="flex flex-col items-center text-center px-4">
-              <div className="w-52 h-52 rounded-full border-4 border-gold-400 overflow-hidden mb-6 mt-4">
+              <div className="w-80 h-80 lg:w-52 lg:h-52 rounded-full border-4 border-gold-400 overflow-hidden mb-6 mt-4">
                 <img src="/images/photos/about.webp" alt="Адвокат Андреещев" className="w-full h-full object-cover object-top" />
               </div>
               <h3 className="font-serif text-2xl font-bold text-white mb-1">Андреещев Денис</h3>
@@ -495,7 +495,7 @@ export default function HomePage() {
 
             <div className="h-[500px] lg:h-auto min-h-[500px] rounded-2xl overflow-hidden">
               <iframe
-                src="https://yandex.ru/map-widget/v1/?um=constructor%3A1&source=constructor&ll=39.2199%2C51.6615&z=16&pt=39.2199%2C51.6615%2Cpm2rdm"
+                src="https://yandex.com/map-widget/v1/org/advokat_andreyeshchev_d_v_/240751878307/?ll=39.199631%2C51.682955&z=16"
                 title="Карта"
                 className="w-full h-full border-0"
               />

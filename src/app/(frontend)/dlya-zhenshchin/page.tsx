@@ -90,17 +90,17 @@ export default function FemaleLandingPage() {
         <div className="relative z-20 max-w-7xl mx-auto px-6 w-full">
           <div className="max-w-2xl">
             <span className="text-gold-400 font-medium tracking-[0.15em] mb-4 block uppercase text-xs text-center lg:text-left mt-[20px] lg:mt-0">Защита прав женщин при разводе</span>
-            <div className="w-[60px] h-[3px] bg-gold-400 mb-8" />
+            <div className="w-[60px] h-[3px] bg-gold-400 mb-8 mx-auto lg:mx-0" />
             <h1 className="font-serif text-5xl md:text-7xl text-white font-bold leading-tight mb-6 text-center lg:text-left">
               Защищаю права<br /><span className="text-gold-400">женщин</span> при разводе
             </h1>
-            <p className="text-xl text-gray-300 mb-10 font-light max-w-lg text-center lg:text-left">Добьюсь справедливых алиментов, защищу ваше имущество и обеспечу стабильность для вас и детей.</p>
-            <div className="flex justify-center lg:hidden -mb-5">
-              <img src="/images/photos/hero-female.webp" alt="Адвокат Андреещев" className="h-[80vh] w-auto object-contain object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 15%, black 90%, transparent 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 15%, black 90%, transparent 100%)' }} />
+            <p className="text-xl text-gray-300 mb-0 font-light max-w-lg text-center lg:text-left lg:mb-10">Добьюсь справедливых алиментов, защищу Ваше имущество и обеспечу стабильность для Вас и Ваших детей.</p>
+            <div className="flex justify-center lg:hidden" style={{ marginLeft: '-5px' }}>
+              <img src="/images/photos/hero-female.webp" alt="Адвокат Андреещев" className="min-w-[130vw] h-[420px] shrink-0 object-cover object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 3%, black 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 3%, black 100%)' }} />
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <a href="tel:+79204130096" className="btn-gold rounded-xl px-8 py-4 text-navy-900 font-bold text-lg text-center transition-transform hover:scale-[0.98]">Бесплатная консультация</a>
-              <a href="#problems" className="bg-white rounded-xl px-8 py-4 text-navy-900 font-semibold text-lg text-center hover:bg-gray-100 transition-colors">С чем вы столкнулись?</a>
+              <a href="#problems" className="bg-white rounded-xl px-8 py-4 text-navy-900 font-semibold text-lg text-center hover:bg-gray-100 transition-colors">С чем Вы столкнулись?</a>
             </div>
           </div>
         </div>
@@ -111,7 +111,7 @@ export default function FemaleLandingPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="gold-line mx-auto mb-6" />
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-navy-900 mb-4">С чем вы столкнулись?</h2>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-navy-900 mb-4">С чем Вы столкнулись?</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {painPoints.map((p, i) => {
@@ -139,9 +139,9 @@ export default function FemaleLandingPage() {
       {/* Quote */}
       <section className="py-24 bg-navy-900">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="flex-shrink-0 w-full lg:w-auto">
-              <img src="/images/photos/quote-female.webp" alt="Адвокат Андреещев" className="w-full max-w-[500px] mx-auto lg:w-[350px] h-auto rounded-2xl shadow-2xl object-cover" />
+          <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-12">
+            <div className="flex-shrink-0 w-full lg:w-auto flex justify-center">
+              <img src="/images/photos/quote-female.webp" alt="Адвокат Андреещев" className="w-[85vw] max-w-[520px] lg:w-[350px] h-auto rounded-2xl object-cover" />
             </div>
             <div>
               <div className="w-[60px] h-[3px] bg-gold-400 mb-6 mx-auto lg:mx-0" />
@@ -252,7 +252,7 @@ export default function FemaleLandingPage() {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="flex flex-col items-center text-center px-4">
-              <div className="w-52 h-52 rounded-full border-4 border-gold-400 overflow-hidden mb-6 mt-4">
+              <div className="w-80 h-80 lg:w-52 lg:h-52 rounded-full border-4 border-gold-400 overflow-hidden mb-6 mt-4">
                 <img src="/images/photos/about.webp" alt="Адвокат Андреещев" className="w-full h-full object-cover object-top" />
               </div>
               <h3 className="font-serif text-2xl font-bold text-white mb-1">Андреещев Денис</h3>
@@ -310,7 +310,7 @@ export default function FemaleLandingPage() {
 
             <div className="h-[500px] lg:h-auto min-h-[500px] rounded-2xl overflow-hidden">
               <iframe
-                src="https://yandex.ru/map-widget/v1/?um=constructor%3A1&source=constructor&ll=39.2199%2C51.6615&z=16&pt=39.2199%2C51.6615%2Cpm2rdm"
+                src="https://yandex.com/map-widget/v1/org/advokat_andreyeshchev_d_v_/240751878307/?ll=39.199631%2C51.682955&z=16"
                 title="Карта"
                 className="w-full h-full border-0"
               />

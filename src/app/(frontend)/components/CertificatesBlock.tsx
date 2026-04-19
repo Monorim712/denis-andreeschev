@@ -12,6 +12,7 @@ export function CertificatesBlock({ certificates }: { certificates: Certificate[
   const trackRef = useRef<HTMLDivElement>(null)
   const posRef = useRef(0)
   const autoRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const touchRef = useRef<{ x: number; y: number } | null>(null)
 
   const total = certificates.length
   const slides = total > 0 ? [...certificates, ...certificates.slice(0, Math.min(3, total))] : []
@@ -60,6 +61,22 @@ export function CertificatesBlock({ certificates }: { certificates: Certificate[
     return () => { if (autoRef.current) clearInterval(autoRef.current) }
   }, [total, goNext])
 
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    touchRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+  }, [])
+
+  const onTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (!touchRef.current) return
+    const dx = e.changedTouches[0].clientX - touchRef.current.x
+    const dy = e.changedTouches[0].clientY - touchRef.current.y
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+      if (dx < 0) goNext()
+      else goPrev()
+      resetAuto()
+    }
+    touchRef.current = null
+  }, [goNext, goPrev, resetAuto])
+
   useEffect(() => {
     if (!doc) return
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setDoc(null) }
@@ -91,7 +108,7 @@ export function CertificatesBlock({ certificates }: { certificates: Certificate[
             →
           </button>
 
-          <div ref={trackRef} className="flex gap-6" style={{ willChange: 'transform' }}>
+          <div ref={trackRef} className="flex gap-6" style={{ willChange: 'transform' }} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
             {slides.map((cert, i) => (
               <button
                 key={i}
