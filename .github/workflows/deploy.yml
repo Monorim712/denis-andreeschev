@@ -73,3 +73,8 @@ jobs:
             sed -i 's/^            //' .env.local
             pm2 restart denis-andreeschev
             pm2 save
+            mkdir -p /home/deploy/backups
+            if ! crontab -l 2>/dev/null | grep -q 'database.db'; then
+              (crontab -l 2>/dev/null; echo '0 3 * * * cp /home/deploy/denis-andreeschev/database.db /home/deploy/backups/db-$(date +\%Y\%m\%d).db') | crontab -
+              (crontab -l 2>/dev/null; echo '0 4 * * * find /home/deploy/backups -name "db-*.db" -mtime +30 -delete') | crontab -
+            fi
