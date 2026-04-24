@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+Host: https://denis-andreeschev.ru
+Sitemap: https://denis-andreeschev.ru/sitemap.xml

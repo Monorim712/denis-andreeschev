@@ -18,6 +18,12 @@ function formatPhone(raw: string): string {
   return out
 }
 
+declare global {
+  interface Window {
+    ym?: (id: number, method: string, goal: string) => void
+  }
+}
+
 type Props = {
   title: string
   buttonText: string
@@ -67,6 +73,7 @@ export function FormModal({ title, buttonText, className, page, children }: Prop
       })
       if (!res.ok) throw new Error()
       setStatus('sent')
+      window.ym?.(108580980, 'reachGoal', 'form_submit')
     } catch {
       setStatus('error')
     }

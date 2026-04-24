@@ -17,6 +17,12 @@ function formatPhone(raw: string): string {
   return out
 }
 
+declare global {
+  interface Window {
+    ym?: (id: number, method: string, goal: string) => void
+  }
+}
+
 export function AskFormClient() {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('+7 ')
@@ -51,6 +57,7 @@ export function AskFormClient() {
       })
       if (!res.ok) throw new Error()
       setStatus('sent')
+      window.ym?.(108580980, 'reachGoal', 'form_submit')
       setTimeout(() => { setName(''); setPhone('+7 '); setStatus('idle') }, 3000)
     } catch {
       setStatus('error')
