@@ -29,6 +29,7 @@ export function FormModal({ title, buttonText, className, children }: Props) {
   const [open, setOpen] = useState(false)
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('+7 ')
+  const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
   const [sent, setSent] = useState(false)
 
@@ -59,6 +60,7 @@ export function FormModal({ title, buttonText, className, children }: Props) {
     setTimeout(() => {
       setName('')
       setPhone('+7 ')
+      setEmail('')
       setMessage('')
       setSent(false)
       setOpen(false)
@@ -72,8 +74,8 @@ export function FormModal({ title, buttonText, className, children }: Props) {
       </button>
 
       {open && createPortal(
-        <div className="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setOpen(false)}>
-          <div className="relative bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm overflow-y-auto no-scrollbar p-4" onClick={() => setOpen(false)}>
+          <div className="relative bg-white rounded-2xl max-w-md w-full shadow-2xl mx-auto min-h-0" style={{ marginTop: 'max(1rem, 3vh)', marginBottom: '160px' }} onClick={(e) => e.stopPropagation()}>
             <button type="button" onClick={() => setOpen(false)} className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center text-white z-10 text-lg">✕</button>
 
             <div className="bg-navy-900 px-8 pt-8 pb-6">
@@ -88,7 +90,7 @@ export function FormModal({ title, buttonText, className, children }: Props) {
                 <p className="text-gray-500">Я свяжусь с вами в ближайшее время</p>
               </div>
             ) : (
-              <form onSubmit={onSubmit} className="px-8 py-6 space-y-4">
+              <form onSubmit={onSubmit} className="px-8 py-6 pb-10 space-y-4">
                 <div>
                   <label className="text-navy-900 text-sm font-semibold mb-1.5 block">Ваше имя</label>
                   <input
@@ -114,6 +116,16 @@ export function FormModal({ title, buttonText, className, children }: Props) {
                   />
                 </div>
                 <div>
+                  <label className="text-navy-900 text-sm font-semibold mb-1.5 block">Электронная почта <span className="text-gray-400 font-normal">(необязательно)</span></label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="example@mail.ru"
+                    className="w-full rounded-xl border border-gray-200 px-5 py-3.5 text-navy-900 placeholder-gray-400 focus:outline-none focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-colors"
+                  />
+                </div>
+                <div>
                   <label className="text-navy-900 text-sm font-semibold mb-1.5 block">Сообщение <span className="text-gray-400 font-normal">(необязательно)</span></label>
                   <textarea
                     value={message}
@@ -131,7 +143,8 @@ export function FormModal({ title, buttonText, className, children }: Props) {
                 </button>
                 <p className="text-gray-400 text-xs text-center">
                   Нажимая кнопку, вы соглашаетесь с{' '}
-                  <a href="/privacy" className="text-navy-900 underline hover:text-gold-500">политикой конфиденциальности</a>
+                  <a href="/data-processing" className="text-navy-900 underline hover:text-gold-500">политикой обработки персональных данных</a>{' '}и даёте{' '}
+                  <a href="/consent" className="text-navy-900 underline hover:text-gold-500">согласие на обработку персональных данных</a>
                 </p>
               </form>
             )}

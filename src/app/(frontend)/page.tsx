@@ -6,8 +6,8 @@ import { FormModal } from './components/FormModal'
 import { MobileToolbar } from './components/MobileToolbar'
 
 const services = [
-  { icon: 'gavel', title: 'Расторжение брака', desc: 'Развод через суд или ЗАГС. Представительство без вашего присутствия.' },
-  { icon: 'home_work', title: 'Раздел имущества', desc: 'Защита вашей доли в квартирах, бизнесе, автомобилях и накоплениях.' },
+  { icon: 'description', title: 'Наследственные дела', desc: 'Вступление в наследство, оспаривание завещаний, раздел наследственного имущества.' },
+  { icon: 'home_work', title: 'Раздел имущества', desc: 'Защита Ваших интересов при разделе квартир, бизнеса, автомобилей и накоплений.' },
   { icon: 'family_restroom', title: 'Споры о детях', desc: 'Определение места жительства ребёнка и порядка общения.' },
   { icon: 'account_balance_wallet', title: 'Алименты', desc: 'Взыскание, изменение размера, задолженность по алиментам.' },
   { icon: 'shield_person', title: 'Лишение родительских прав', desc: 'Лишение или ограничение родительских прав в интересах ребёнка.' },
@@ -15,12 +15,12 @@ const services = [
 ]
 
 const advantages = [
-  { title: 'Знаю каждого судью Воронежа', desc: '10 лет в одних залах. Знаю, <strong>как каждый судья принимает решения</strong>, на что обращает внимание и что раздражает. 500+ дел — это не теория, это опыт.' },
-  { title: 'Забираю инициативу с первого дня', desc: 'Не жду, пока ударят — <strong>формирую встречные иски</strong>, подаю ходатайства, фиксирую доказательства. Пока другие «готовятся», я уже действую.' },
-  { title: 'Только семейное право — каждый день', desc: 'Не берусь за ДТП, кражи и земельные споры. <strong>Семейные дела — всё, чем я занимаюсь.</strong> Знаю нюансы, которые другие адвокаты даже не замечают.' },
-  { title: 'Цена в договоре — ни рубля сверху', desc: 'Называю <strong>точную сумму</strong> до начала работы. Без «а ещё госпошлина», «а ещё экспертиза». Сколько сказал — столько и будет.' },
-  { title: 'Скажу правду — даже неудобную', desc: 'Не обещаю 100% победу, если шансы 50/50. Зато вы <strong>не тратите деньги впустую</strong> и точно знаете, на что рассчитывать.' },
-  { title: 'На связи в 3 ночи и в воскресенье', desc: 'Развод не ждёт рабочих часов. Паника перед заседанием? Вопрос среди ночи? <strong>Отвечу.</strong> Потому что для вас это не «рабочий вопрос» — это жизнь.' },
+  { title: '15+ лет судебной практики', desc: '<strong>Глубокое знание судебной практики</strong>.<br />500+ дел — это не теория, это опыт.' },
+  { title: 'Активная позиция с первого дня', desc: 'Занимаю <strong>активную позицию в защите Ваших интересов</strong> — формирую встречные иски, подаю ходатайства, фиксирую доказательства. Пока другие «готовятся», я уже действую.' },
+  { title: 'Узкая специализация — глубокие знания', desc: 'Семейное и наследственное право — <strong>моя узкая специализация</strong>, которая позволяет видеть то, что другие адвокаты даже не замечают.' },
+  { title: 'Прозрачная стоимость услуг', desc: '<strong>Стоимость услуг адвоката фиксируется в договоре</strong>. Судебные расходы (экспертизы, госпошлины) зависят от хода дела — заранее предупрежу о возможных затратах.' },
+  { title: 'Честная оценка перспектив', desc: 'Без прикрас <strong>максимально объективно доложу об обстоятельствах и перспективах</strong> дела — Вы не потратите деньги впустую и будете иметь чёткое представление о путях разрешения проблемы.' },
+  { title: 'Всегда на связи', desc: 'Семейные дела не ждут рабочих часов. <strong>Вы всегда можете обратиться</strong> — отвечу, проконсультирую, поддержу. Потому что для Вас это не «рабочий вопрос» — это жизнь.' },
 ]
 
 const steps = [
@@ -36,21 +36,26 @@ const faqItems = [
   { q: 'Муж/жена не даёт видеться с ребёнком. Что делать?', a: 'Это нарушение закона. Оба родителя имеют равные права на общение с ребёнком. Подаём в суд заявление об определении порядка общения — суд установит точный график, который обязаны соблюдать обе стороны. За нарушение — штраф и даже изменение места жительства ребёнка.' },
   { q: 'Супруг спрятал имущество или переписал на родственников. Можно что-то сделать?', a: 'Да. Сделки по выводу имущества можно оспорить в суде, если они совершены без вашего согласия. Также суд вправе наложить арест на спорное имущество, чтобы его не продали до раздела. Чем раньше обратитесь — тем больше шансов вернуть.' },
   { q: 'Сколько длится развод и можно ли ускорить?', a: 'Простой развод без споров — 1-2 месяца. С разделом имущества и детьми — от 3 до 8 месяцев. Ускорить можно: грамотная подготовка документов, правильная подсудность и отсутствие процессуальных ошибок экономят 2-3 месяца.' },
-  { q: 'Сколько стоят услуги адвоката?', a: 'Простой развод — от 20 000 ₽, сложные дела с разделом имущества и спорами о детях — от 50 000 ₽. Точную стоимость называю после анализа ситуации и фиксирую в договоре. Никаких доплат в процессе — сколько сказал, столько и будет.' },
+  { q: 'Сколько стоят услуги адвоката?', a: 'Стоимость услуг адвоката фиксируется в договоре после анализа Вашей ситуации. Судебные расходы (экспертизы, госпошлины) зависят от хода дела — заранее предупрежу о возможных затратах. Точные цены — в разделе «Стоимость услуг» на этой странице.' },
   { q: 'Можно ли отсудить ребёнка отцу?', a: 'Да, и таких решений всё больше. Суд смотрит не на пол родителя, а на интересы ребёнка: жилищные условия, доход, участие в воспитании, мнение самого ребёнка (с 10 лет). Правильно собранная доказательная база — ключ к успеху.' },
   { q: 'Нужно ли мне лично ходить в суд?', a: 'Нет. По доверенности я полностью представляю ваши интересы — от подачи иска до получения решения. Вам не придётся видеться с бывшим супругом, отпрашиваться с работы или нервничать в коридоре суда.' },
   { q: 'Бывший супруг подал на алименты больше, чем я зарабатываю. Что делать?', a: 'Размер алиментов определяется судом на основе подтверждённого дохода. Если требования завышены — предоставим справки, докажем реальный заработок. Также можно подать встречный иск об уменьшении размера алиментов.' },
   { q: 'Квартира куплена до брака, но супруг претендует на неё. Заберут?', a: 'Добрачное имущество разделу не подлежит. Но если в браке делался капитальный ремонт за общие деньги — суд может признать увеличение стоимости совместным имуществом. Важно доказать, когда и на чьи средства приобретено жильё.' },
+  { q: 'Пропущен срок вступления в наследство. Можно ли его восстановить?', a: 'Да, если причина пропуска уважительная — болезнь, незнание о смерти наследодателя, нахождение за границей. Суд восстановит срок, если Вы обратитесь в течение 6 месяцев после того, как причина пропуска отпала. Также можно признать фактическое принятие наследства, если Вы пользовались имуществом, оплачивали коммунальные услуги или долги.' },
+  { q: 'Родственники не пускают в квартиру умершего и забрали документы. Что делать?', a: 'Это незаконно. Нужно немедленно подать заявление нотариусу о принятии наследства — для этого документы на имущество не обязательны, нотариус запросит их сам. Параллельно можно обратиться в полицию по факту самоуправства и в суд за защитой наследственных прав.' },
+  { q: 'Можно ли оспорить завещание?', a: 'Да, если есть основания: завещатель не понимал значения своих действий, находился под давлением, был недееспособен, или завещание оформлено с нарушениями. Назначается посмертная психиатрическая экспертиза, исследуются медицинские документы. Оспорить можно в течение 1 года с момента, когда Вы узнали о нарушении.' },
+  { q: 'Как делится наследство, если нет завещания?', a: 'По закону наследники призываются по очередям. Первая очередь — дети, супруг и родители. Всё делится поровну между наследниками одной очереди. Если кто-то из наследников первой очереди умер раньше — его доля переходит к внукам по праву представления.' },
+  { q: 'Один из наследников при жизни ухаживал за умершим. Может ли он получить больше?', a: 'Сам по себе уход не даёт права на увеличенную долю. Но если наследник вкладывал свои деньги в имущество (ремонт, содержание), это можно учесть при разделе. Также завещатель мог составить завещание в пользу того, кто за ним ухаживал, или заключить договор ренты.' },
 ]
 
 const certificates = [
-  { src: '/images/certificates/gramota-new.jpg', alt: 'Почётная грамота' },
-  { src: '/images/certificates/certificate 1_page-0001.jpg', alt: 'Сертификат 1' },
-  { src: '/images/certificates/certificate 2_page-0001.jpg', alt: 'Сертификат 2' },
-  { src: '/images/certificates/certificate 3_page-0001.jpg', alt: 'Сертификат 3' },
-  { src: '/images/certificates/certificate 4_page-0001.jpg', alt: 'Сертификат 4' },
-  { src: '/images/certificates/certificate 5_page-0001.jpg', alt: 'Сертификат 5' },
-  { src: '/images/certificates/certificate 6_page-0001.jpg', alt: 'Сертификат 6' },
+  { src: '/images/certificates/gramota-new.webp', alt: 'Почётная грамота' },
+  { src: '/images/certificates/certificate 1_page-0001.webp', alt: 'Сертификат 1' },
+  { src: '/images/certificates/certificate 2_page-0001.webp', alt: 'Сертификат 2' },
+  { src: '/images/certificates/certificate 3_page-0001.webp', alt: 'Сертификат 3' },
+  { src: '/images/certificates/certificate 4_page-0001.webp', alt: 'Сертификат 4' },
+  { src: '/images/certificates/certificate 5_page-0001.webp', alt: 'Сертификат 5' },
+  { src: '/images/certificates/certificate 6_page-0001.webp', alt: 'Сертификат 6' },
 ]
 
 const reviews = [
@@ -86,11 +91,11 @@ const jsonLd = {
   name: 'Адвокат Андреещев Денис Валерьевич',
   description: 'Адвокат по семейным делам в Воронеже',
   url: 'https://denis-andreeschev.ru',
-  telephone: ['+79204130096', '+79507770608'],
+  telephone: '+79507770608',
   email: 'denis.andreeschev2015@yandex.ru',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Московский проспект, д. 90',
+    streetAddress: 'ул. Урицкого, д. 70',
     addressLocality: 'Воронеж',
     addressRegion: 'Воронежская область',
     addressCountry: 'RU',
@@ -108,7 +113,7 @@ export default function HomePage() {
       <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
         <div className="max-w-[1440px] mx-auto px-6 py-3 flex items-center justify-center lg:justify-start gap-8 flex-nowrap">
           <a href="#" className="shrink-0 leading-tight flex items-center gap-3">
-            <img src="/images/logo.png" alt="Логотип" className="w-10 h-10" />
+            <img src="/images/logo.webp" alt="Логотип" className="w-10 h-10" />
             <div>
               <span className="font-serif text-navy-900 text-sm block">Адвокат по семейным делам</span>
               <span className="font-serif font-bold text-navy-900 text-lg block">Андреещев Д.В.</span>
@@ -127,11 +132,11 @@ export default function HomePage() {
           </div>
           <div className="hidden lg:flex items-center gap-3 shrink-0">
             <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-[#26A5E4] flex items-center justify-center hover:brightness-110 transition-all"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
-            <a href="https://max.ru/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full flex items-center justify-center hover:brightness-110 transition-all" style={{background: 'linear-gradient(135deg, #6C3AED, #2563EB)'}}><img src="/images/icons/max-icon.png" alt="Max" className="w-5 h-5" /></a>
-            <a href="tel:+79204130096" className="w-9 h-9 rounded-full bg-navy-900 flex items-center justify-center text-white hover:bg-gold-400 hover:text-navy-900 transition-colors"><span className="material-symbols-outlined text-lg">call</span></a>
-            <FormModal title="Задать вопрос" buttonText="Отправить" className="font-serif btn-gold px-6 py-2.5 text-navy-900 font-semibold text-sm transition-transform whitespace-nowrap">
-              Задать вопрос
-            </FormModal>
+            <a href="https://max.ru/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full flex items-center justify-center hover:brightness-110 transition-all" style={{background: 'linear-gradient(135deg, #6C3AED, #2563EB)'}}><img src="/images/icons/max-icon.webp" alt="Max" className="w-5 h-5" /></a>
+            <a href="tel:+79507770608" className="flex items-center gap-2 font-serif btn-gold px-6 py-2.5 text-navy-900 font-semibold text-sm transition-transform whitespace-nowrap">
+              <span className="material-symbols-outlined text-lg">call</span>
+              8 (950) 777-06-08
+            </a>
           </div>
         </div>
       </nav>
@@ -142,19 +147,19 @@ export default function HomePage() {
         <div className="relative z-20 max-w-[1440px] mx-auto px-6 w-full">
           <div className="relative flex flex-col lg:flex-row items-center lg:items-end">
             <div className="relative z-20 flex-1 pt-8 lg:pt-40 pb-0 lg:pb-16 flex flex-col items-center lg:items-start">
-              <span className="text-gold-400 font-serif tracking-[0.25em] uppercase text-sm block leading-tight text-center lg:text-left lg:absolute lg:top-4 lg:left-0 mb-[60px] lg:mb-0">Адвокат<br />по семейным делам</span>
-              <h1 className="font-serif text-6xl md:text-7xl xl:text-8xl text-white font-bold leading-[0.95] mb-0 lg:mb-10 text-center lg:text-left">
+              <span className="text-gold-400 font-serif tracking-[0.25em] uppercase text-sm block leading-tight text-center lg:text-left lg:absolute lg:top-4 lg:left-0 mb-[60px] lg:mb-0">Адвокат<br />по семейному и<br />наследственному праву</span>
+              <h1 className="font-serif text-6xl md:text-7xl xl:text-8xl text-white font-bold leading-[0.95] mb-0 lg:mb-10 text-center lg:text-left -mt-[20px] lg:mt-0">
                 Денис<br /><span className="text-gold-400">Андреещев</span>
               </h1>
-              <div className="flex justify-center lg:hidden -mb-5" style={{ marginTop: '-15px', paddingLeft: '10px' }}>
+              <div className="flex justify-center lg:hidden -mb-5" style={{ marginTop: '10px', paddingLeft: '10px' }}>
                 <img src="/images/photos/hero-main.webp" alt="Адвокат Андреещев" className="h-[45vh] w-auto object-contain object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 15%, black 90%, transparent 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 15%, black 90%, transparent 100%)' }} />
               </div>
               <FormModal title="Бесплатная консультация" buttonText="Записаться" className="btn-gold px-10 py-5 text-navy-900 font-bold text-lg transition-transform w-full lg:w-auto lg:inline-block text-center">
                 Бесплатная консультация
               </FormModal>
             </div>
-            <div className="relative z-10 hidden lg:flex justify-center lg:absolute lg:-bottom-24 lg:left-1/2 lg:-translate-x-1/2">
-              <img src="/images/photos/hero-main.webp" alt="Адвокат Андреещев" className="h-[85vh] w-auto object-contain object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 10%, black 90%, transparent 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 10%, black 90%, transparent 100%)' }} />
+            <div className="relative z-10 hidden lg:flex justify-center lg:absolute lg:-bottom-[116px] lg:left-[calc(50%+130px)] lg:-translate-x-1/2">
+              <img src="/images/photos/hero-main.webp" alt="Адвокат Андреещев" className="h-[127vh] w-auto object-contain object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 10%, black 90%, transparent 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 10%, black 90%, transparent 100%)' }} />
             </div>
             <div className="relative z-20 flex-1 self-start pt-4 pb-0 hidden lg:flex justify-end">
               <p className="font-serif text-white text-5xl xl:text-6xl font-bold leading-[2.1] text-right">Защита того,<br />что <span className="text-gold-400">дороже</span><br /><span className="text-gold-400">всего!</span></p>
@@ -175,7 +180,7 @@ export default function HomePage() {
             </div>
             <div className="flex flex-col items-center">
               <div className="w-24 h-24 rounded-full bg-navy-900 flex items-center justify-center mb-3">
-                <span className="font-serif text-2xl font-bold text-gold-400">10+</span>
+                <span className="font-serif text-2xl font-bold text-gold-400">15+</span>
               </div>
               <div className="text-navy-900 text-sm font-semibold">лет опыта</div>
             </div>
@@ -200,13 +205,22 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-8">
             <div className="gold-line mx-auto mb-6" />
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-navy-900 mb-4">Расскажите о себе</h2>
-            <p className="text-navy-900/60 text-lg">Нажмите на гирю, чтобы увидеть решения для вашей ситуации</p>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-navy-900">Нажмите на гирю, чтобы увидеть решения для Вашей ситуации</h2>
           </div>
-          <div className="relative max-w-2xl mx-auto">
-            <img src="/images/photos/scales.webp" alt="Весы правосудия" className="w-full h-auto" />
-            <Link href="/dlya-muzhchin" className="absolute top-[45%] left-[3%] w-[35%] h-[35%] rounded-2xl hover:bg-gold-400/20 transition-all cursor-pointer" title="Я муж / отец" />
-            <Link href="/dlya-zhenshchin" className="absolute top-[42%] right-[3%] w-[35%] h-[38%] rounded-2xl hover:bg-gold-400/20 transition-all cursor-pointer" title="Я жена / мать" />
+          <div className="relative max-w-4xl mx-auto">
+            <img src="/images/photos/scales.webp" alt="Весы правосудия" loading="lazy" className="w-full h-auto" />
+            <Link href="/dlya-muzhchin" className="absolute top-[45%] left-[3%] w-[35%] h-[35%] rounded-2xl hover:bg-gold-400/20 transition-all cursor-pointer group" title="Я муж / отец">
+
+            </Link>
+            <Link href="/dlya-zhenshchin" className="absolute top-[42%] right-[3%] w-[35%] h-[38%] rounded-2xl hover:bg-gold-400/20 transition-all cursor-pointer group" title="Я жена / мать">
+
+            </Link>
+            <div className="absolute top-[62%] -left-[6%] md:left-[2%] animate-bounce pointer-events-none">
+              <span className="text-navy-900 text-6xl md:text-7xl font-bold">→</span>
+            </div>
+            <div className="absolute top-[59%] -right-[6%] md:right-[2%] animate-bounce pointer-events-none">
+              <span className="text-navy-900 text-6xl md:text-7xl font-bold">←</span>
+            </div>
           </div>
         </div>
       </section>
@@ -217,7 +231,7 @@ export default function HomePage() {
           <div className="text-center mb-12">
             <div className="gold-line mx-auto mb-6" />
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Чем я могу помочь</h2>
-            <p className="text-gray-400 text-lg">Специализируюсь на семейных делах — это моя основная практика</p>
+            <p className="text-gray-400 text-lg">Специализируюсь на семейных и наследственных делах — это моя основная практика</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((s, i) => {
@@ -244,7 +258,7 @@ export default function HomePage() {
 
       {/* Advantages */}
       <section id="advantages" className="relative py-24 bg-white overflow-hidden">
-        <img src="/images/photos/advantages-bg.webp" alt="" className="absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none" />
+        <img src="/images/photos/advantages-bg.webp" alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none" />
         <div className="absolute inset-0 bg-white/50 pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -283,33 +297,33 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="flex-shrink-0 hidden lg:block">
-              <img src="/images/photos/about.webp" alt="Адвокат Андреещев" width={480} height={600} className="block" style={{ marginBottom: '-1px', marginLeft: '-30px' }} />
+              <img src="/images/photos/about.webp" alt="Адвокат Андреещев" loading="lazy" width={480} height={600} className="block" style={{ marginBottom: '-1px', marginLeft: '-30px' }} />
             </div>
-            <div>
+            <div className="text-center lg:text-left">
               <div className="gold-line mb-6 mx-auto lg:mx-0" />
-              <p className="text-gold-600 font-semibold tracking-[0.15em] uppercase text-sm mb-4 text-center lg:text-left">Адвокат по семейным спорам</p>
-              <h2 className="font-serif text-4xl md:text-5xl font-bold text-navy-900 mb-8 text-center lg:text-left">Андреещев Денис <span className="text-gold-400">Валерьевич</span></h2>
+              <p className="text-gold-600 font-semibold tracking-[0.15em] uppercase text-sm mb-4">Адвокат по семейным и наследственным спорам</p>
+              <h2 className="font-serif text-4xl md:text-5xl font-bold text-navy-900 mb-8">Андреещев Денис <span className="text-gold-400">Валерьевич</span></h2>
               <p className="text-navy-900/80 text-xl leading-relaxed mb-6">
-                Пока другие адвокаты берутся за всё подряд — от ДТП до земельных споров — я занимаюсь <strong className="text-navy-900">только семейными делами</strong>. Каждый день. Уже больше 10 лет. Знаю каждого судью в Воронеже и как он принимает решения.
+                Всю свою карьеру я посвятил <strong className="text-navy-900">семейному и наследственному праву.<br />15 лет. Более 500 дел</strong>. Узкая специализация позволяет глубоко разбираться в каждом деле и находить решения там, где другие их не видят.
               </p>
               <p className="text-navy-900/80 text-xl leading-relaxed mb-8">
-                Развод — это не просто суд. Это ваши дети, ваш дом, ваши нервы. <strong className="text-navy-900">Я сделаю так, чтобы вы прошли через это один раз и правильно</strong> — без лишних заседаний, без сюрпризов, без потерь, которых можно избежать.
+                Когда на кону Ваша семья, дом и будущее детей — нужен тот, кто <strong className="text-navy-900">прошёл через сотни таких дел и знает каждый поворот</strong>. Я сделаю так, чтобы Вы прошли через это один раз и правильно — без лишних заседаний, без сюрпризов, без потерь.
               </p>
               <p className="text-navy-900/80 text-xl leading-relaxed mb-8">
-                Я не просто веду дело — <strong className="text-navy-900">я сопровождаю вас от хаоса к спокойствию</strong>. Через все жизненные сложности, пока вы не почувствуете, что худшее позади.
+                Моя задача — <strong className="text-navy-900">защитить Ваши интересы и добиться лучшего результата</strong>. Вы занимаетесь своей жизнью, я — Вашим делом.
               </p>
               <div className="text-navy-900 font-semibold text-lg">Адвокат, рег. номер 36/2348 в реестре адвокатов Воронежской области</div>
             </div>
           </div>
         </div>
         <div className="lg:hidden flex justify-center mt-0">
-          <img src="/images/photos/about.webp" alt="Адвокат Андреещев" className="w-full max-w-[720px] object-contain block" style={{ marginBottom: '-1px' }} />
+          <img src="/images/photos/about.webp" alt="Адвокат Андреещев" loading="lazy" className="w-full max-w-[720px] object-contain block" style={{ marginBottom: '-1px' }} />
         </div>
       </section>
 
       {/* Steps */}
       <section id="steps" className="relative py-24 bg-navy-900 overflow-hidden">
-        <img src="/images/photos/steps-bg.webp" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" style={{ filter: 'blur(8px)', transform: 'scale(1.05)' }} />
+        <img src="/images/photos/steps-bg.webp" alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover pointer-events-none" style={{ filter: 'blur(8px)', transform: 'scale(1.05)' }} />
         <div className="absolute inset-0 bg-navy-900/40 pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -390,13 +404,13 @@ export default function HomePage() {
                   <FormModal title="Записаться на консультацию" buttonText="Записаться" className="btn-gold rounded-xl px-10 py-5 text-navy-900 font-bold text-lg text-center transition-transform">
                     Записаться
                   </FormModal>
-                  <a href="tel:+79204130096" className="bg-navy-900 rounded-xl px-10 py-5 text-white font-semibold text-center hover:bg-navy-800 transition-colors">
+                  <a href="tel:+79507770608" className="bg-navy-900 rounded-xl px-10 py-5 text-white font-semibold text-center hover:bg-navy-800 transition-colors">
                     Позвонить
                   </a>
                 </div>
               </div>
               <div className="flex-shrink-0 self-end -mt-5 lg:mt-0">
-                <img src="/images/photos/cta-photo.webp" alt="Адвокат Андреещев" className="h-[250px] lg:h-[400px] w-auto object-contain block mx-auto" />
+                <img src="/images/photos/cta-photo.webp" alt="Адвокат Андреещев" loading="lazy" className="h-[250px] lg:h-[400px] w-auto object-contain block mx-auto" />
               </div>
             </div>
           </div>
@@ -441,17 +455,13 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="flex flex-col items-center text-center px-4">
               <div className="w-80 h-80 lg:w-52 lg:h-52 rounded-full border-4 border-gold-400 overflow-hidden mb-6 mt-4">
-                <img src="/images/photos/about.webp" alt="Адвокат Андреещев" className="w-full h-full object-cover object-top" />
+                <img src="/images/photos/about.webp" alt="Адвокат Андреещев" loading="lazy" className="w-full h-full object-cover object-top" />
               </div>
               <h3 className="font-serif text-2xl font-bold text-white mb-1">Андреещев Денис</h3>
               <h3 className="font-serif text-2xl font-bold text-white mb-3">Валерьевич</h3>
               <p className="text-gold-400 font-semibold text-sm mb-4">Адвокат по семейным делам</p>
               <div className="w-12 h-[2px] bg-gold-400 mb-4" />
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">Член Адвокатской палаты Воронежской области. Более 10 лет практики в сфере семейного права.</p>
-              <div className="hidden lg:flex items-center gap-3">
-                <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-[#26A5E4] hover:brightness-110 flex items-center justify-center transition-all"><svg viewBox="0 0 24 24" className="w-6 h-6 fill-white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
-                <a href="https://max.ru/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:brightness-110" style={{background: 'linear-gradient(135deg, #6C3AED, #2563EB)'}}><img src="/images/icons/max-icon.png" alt="Max" className="w-6 h-6" /></a>
-              </div>
+              <p className="text-gray-400 text-sm leading-relaxed mb-6">Член Адвокатской палаты Воронежской области. Более 15 лет практики в сфере семейного права.</p>
             </div>
 
             <div className="space-y-4 flex flex-col justify-center">
@@ -461,8 +471,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <div className="text-gray-500 text-xs uppercase tracking-wider mb-1">Телефон</div>
-                  <a href="tel:+79204130096" className="text-white font-bold text-lg hover:text-gold-400 transition-colors block">8 (920) 413-00-96</a>
-                  <a href="tel:+79507770608" className="text-white font-semibold text-sm hover:text-gold-400 transition-colors block">8 (950) 777-06-08</a>
+                  <a href="tel:+79507770608" className="text-white font-bold text-lg hover:text-gold-400 transition-colors block">8 (950) 777-06-08</a>
                 </div>
               </div>
               <div className="flex items-center gap-5 p-5 rounded-xl bg-white/5 border border-white/10">
@@ -491,7 +500,7 @@ export default function HomePage() {
                 <div>
                   <div className="text-gray-500 text-xs uppercase tracking-wider mb-1">Адрес</div>
                   <div className="text-white font-bold">г. Воронеж</div>
-                  <div className="text-gray-400 text-sm">Московский проспект, д. 90</div>
+                  <div className="text-gray-400 text-sm">ул. Урицкого, д. 70</div>
                 </div>
               </div>
             </div>
@@ -515,14 +524,10 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
               <div className="flex items-center gap-3 mb-6">
-                <img src="/images/logo.png" alt="Логотип" className="w-12 h-12 brightness-0 invert" />
+                <img src="/images/logo.webp" alt="Логотип" className="w-12 h-12 brightness-0 invert" />
                 <span className="font-serif text-white font-bold text-lg">Адвокат Андреещев Д.В.</span>
               </div>
               <div className="space-y-3">
-                <a href="tel:+79204130096" className="flex items-center justify-center lg:justify-start gap-3 text-gray-300 hover:text-gold-400 transition-colors">
-                  <span className="material-symbols-outlined text-gold-400 text-lg">call</span>
-                  <span>8 (920) 413-00-96</span>
-                </a>
                 <a href="tel:+79507770608" className="flex items-center justify-center lg:justify-start gap-3 text-gray-300 hover:text-gold-400 transition-colors">
                   <span className="material-symbols-outlined text-gold-400 text-lg">call</span>
                   <span>8 (950) 777-06-08</span>
@@ -531,10 +536,6 @@ export default function HomePage() {
                   <span className="material-symbols-outlined text-gold-400 text-lg">mail</span>
                   <span>denis.andreeschev2015@yandex.ru</span>
                 </a>
-              </div>
-              <div className="hidden lg:flex items-center gap-3 mt-5">
-                <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#26A5E4] hover:brightness-110 flex items-center justify-center transition-all"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
-                <a href="https://max.ru/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center hover:brightness-110 transition-all" style={{background: 'linear-gradient(135deg, #6C3AED, #2563EB)'}}><img src="/images/icons/max-icon.png" alt="Max" className="w-5 h-5" /></a>
               </div>
             </div>
 

@@ -2,11 +2,32 @@ node_modules/
 .next/
 database.db
 .env
+.env.local
 *.log
 .playwright-mcp/
-screenshot-*.png
-screenshot-*.jpg
-timeweb-*.md
 .claude/
 .vscode/
 media/
+tsconfig.tsbuildinfo
+
+# Скриншоты тестирования (корень проекта)
+/check-*.png
+/desktop-*.png
+/female-*.png
+/fix-*.png
+/gender-*.png
+/hero-*.png
+/male-*.png
+/mobile-*.png
+/optimized-*.png
+/site-*.png
+/timeweb-*.png
+
+# Временные файлы
+/dns-*.md
+/support-*.md
+/timeweb-*.md
+/register_timeweb.js
+/setup-server.sh
+/docs/
+/img/

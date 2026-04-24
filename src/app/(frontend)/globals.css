@@ -70,6 +70,9 @@ html, body {
   font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
 }
 
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
 .scroll-gallery::-webkit-scrollbar { height: 6px; }
 .scroll-gallery::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 3px; }
 .scroll-gallery::-webkit-scrollbar-thumb { background: #D4B877; border-radius: 3px; }
@@ -79,6 +82,12 @@ html, body {
   50% { opacity: 0.85; }
 }
 .pulse-subtle { animation: pulse-subtle 3s ease-in-out infinite; }
+
+@keyframes weight-ring {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
+}
+.weight-ring { animation: weight-ring 2.5s ease-in-out infinite; }
 
 .safe-area-bottom {
   padding-bottom: env(safe-area-inset-bottom, 0px);

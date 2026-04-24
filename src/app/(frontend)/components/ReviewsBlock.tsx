@@ -50,7 +50,9 @@ export function ReviewsBlock({ reviews }: { reviews: Review[] }) {
   const [active, setActive] = useState<Review | null>(null)
   const [current, setCurrent] = useState(0)
   const trackRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
   const autoRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const visibleRef = useRef(true)
 
   const filtered = useMemo(() => {
     if (filter === 'all') return reviews
@@ -85,13 +87,23 @@ export function ReviewsBlock({ reviews }: { reviews: Review[] }) {
   }, [filtered.length, scrollTo])
 
   useEffect(() => {
-    autoRef.current = setInterval(next, 5000)
-    return () => { if (autoRef.current) clearInterval(autoRef.current) }
+    if (!sectionRef.current) return
+    const observer = new IntersectionObserver(([entry]) => {
+      visibleRef.current = entry.isIntersecting
+      if (entry.isIntersecting) {
+        if (autoRef.current) clearInterval(autoRef.current)
+        autoRef.current = setInterval(next, 5000)
+      } else {
+        if (autoRef.current) clearInterval(autoRef.current)
+      }
+    }, { threshold: 0.1 })
+    observer.observe(sectionRef.current)
+    return () => { observer.disconnect(); if (autoRef.current) clearInterval(autoRef.current) }
   }, [next])
 
   const resetAuto = () => {
     if (autoRef.current) clearInterval(autoRef.current)
-    autoRef.current = setInterval(next, 5000)
+    if (visibleRef.current) autoRef.current = setInterval(next, 5000)
   }
 
   useEffect(() => {
@@ -103,7 +115,7 @@ export function ReviewsBlock({ reviews }: { reviews: Review[] }) {
   }, [active])
 
   return (
-    <section id="reviews" className="py-24 bg-navy-900">
+    <section id="reviews" ref={sectionRef} className="py-24 bg-navy-900">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <div className="gold-line mx-auto mb-6" />
@@ -133,7 +145,7 @@ export function ReviewsBlock({ reviews }: { reviews: Review[] }) {
                     : 'border-white/20 text-white hover:border-gold-400'
                 }`}
               >
-                {f.icon && <img src={f.icon} alt="" className="w-5 h-5" />}
+                {f.icon && <img src={f.icon} alt="" loading="lazy" className="w-5 h-5" />}
                 {f.label}
               </button>
             ))}
@@ -172,7 +184,7 @@ export function ReviewsBlock({ reviews }: { reviews: Review[] }) {
                         <div className="min-w-0 flex-1">
                           <div className="font-semibold text-navy-900 text-sm truncate">{r.name}</div>
                           <div className="text-gray-400 text-xs truncate flex items-center gap-1">
-                            {SOURCE_ICONS[r.source] && <img src={SOURCE_ICONS[r.source]} alt="" className="w-4 h-4 flex-shrink-0" />}
+                            {SOURCE_ICONS[r.source] && <img src={SOURCE_ICONS[r.source]} alt="" loading="lazy" className="w-4 h-4 flex-shrink-0" />}
                             {SOURCE_LABELS[r.source] || r.source}
                           </div>
                         </div>

@@ -10,7 +10,9 @@ type Certificate = {
 export function CertificatesBlock({ certificates }: { certificates: Certificate[] }) {
   const [doc, setDoc] = useState<Certificate | null>(null)
   const trackRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
   const autoRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const visibleRef = useRef(true)
 
   const total = certificates.length
   const CARD_W = 280
@@ -36,16 +38,30 @@ export function CertificatesBlock({ certificates }: { certificates: Certificate[
     }
   }, [CARD_W])
 
+  const startAuto = useCallback(() => {
+    if (autoRef.current) clearInterval(autoRef.current)
+    if (!visibleRef.current) return
+    autoRef.current = setInterval(scrollNext, 3000)
+  }, [scrollNext])
+
   const resetAuto = useCallback(() => {
     if (autoRef.current) clearInterval(autoRef.current)
     autoRef.current = setInterval(scrollNext, 3000)
   }, [scrollNext])
 
   useEffect(() => {
-    if (total === 0) return
-    autoRef.current = setInterval(scrollNext, 3000)
-    return () => { if (autoRef.current) clearInterval(autoRef.current) }
-  }, [total, scrollNext])
+    if (total === 0 || !sectionRef.current) return
+    const observer = new IntersectionObserver(([entry]) => {
+      visibleRef.current = entry.isIntersecting
+      if (entry.isIntersecting) {
+        startAuto()
+      } else {
+        if (autoRef.current) clearInterval(autoRef.current)
+      }
+    }, { threshold: 0.1 })
+    observer.observe(sectionRef.current)
+    return () => { observer.disconnect(); if (autoRef.current) clearInterval(autoRef.current) }
+  }, [total, startAuto])
 
   useEffect(() => {
     const track = trackRef.current
@@ -54,13 +70,11 @@ export function CertificatesBlock({ certificates }: { certificates: Certificate[
     const onScroll = () => {
       if (autoRef.current) clearInterval(autoRef.current)
       clearTimeout(timeout)
-      timeout = setTimeout(() => {
-        autoRef.current = setInterval(scrollNext, 3000)
-      }, 3000)
+      timeout = setTimeout(startAuto, 3000)
     }
     track.addEventListener('scroll', onScroll, { passive: true })
     return () => { track.removeEventListener('scroll', onScroll); clearTimeout(timeout) }
-  }, [scrollNext])
+  }, [startAuto])
 
   useEffect(() => {
     if (!doc) return
@@ -71,7 +85,7 @@ export function CertificatesBlock({ certificates }: { certificates: Certificate[
   }, [doc])
 
   return (
-    <section id="credentials" className="py-12 lg:py-24 bg-white">
+    <section id="credentials" ref={sectionRef} className="py-12 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <div className="gold-line mx-auto mb-6" />
@@ -107,7 +121,7 @@ export function CertificatesBlock({ certificates }: { certificates: Certificate[
                 style={{ border: '6px solid #3A4A2C', borderRadius: '16px', boxShadow: '0 8px 24px rgba(0,0,0,0.2)' }}
                 aria-label={`Открыть ${cert.alt}`}
               >
-                <img src={cert.src} alt={cert.alt} className="w-full h-full object-cover" />
+                <img src={cert.src} alt={cert.alt} loading="lazy" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-navy-900/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <span className="text-white text-3xl">🔍</span>
                 </div>
