@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import { MetrikaGoals } from './components/MetrikaGoals'
+import './fonts.css'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -41,15 +42,12 @@ export default function FrontendLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ru">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&subset=cyrillic&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
-          rel="stylesheet"
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href="/fonts/nunito-cyrillic.woff2"
+          crossOrigin=""
         />
         <link
           rel="preload"
@@ -59,6 +57,9 @@ export default function FrontendLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
+        <Script id="material-symbols" strategy="afterInteractive">{`
+          var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap';document.head.appendChild(l);
+        `}</Script>
         <Script id="yandex-metrika" strategy="lazyOnload">{`
           (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -70,7 +71,7 @@ export default function FrontendLayout({ children }: { children: ReactNode }) {
         `}</Script>
         <noscript><div><img src="https://mc.yandex.ru/watch/108580980" style={{position:'absolute',left:'-9999px'}} alt="" /></div></noscript>
         <MetrikaGoals />
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   )
