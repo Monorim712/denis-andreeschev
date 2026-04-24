@@ -17,6 +17,7 @@ export const Media: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'alt',
+    defaultColumns: ['filename', 'alt', 'category', 'updatedAt'],
     listSearchableFields: ['alt', 'category'],
     group: 'Контент',
   },
