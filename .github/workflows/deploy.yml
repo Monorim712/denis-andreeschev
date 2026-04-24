@@ -22,6 +22,8 @@ jobs:
         run: npm run build
         env:
           PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+          DATABASE_URI: file:./database.db
+          NEXT_PUBLIC_SITE_URL: https://denis-andreeschev.ru
 
       - name: Package build
         run: |
@@ -53,14 +55,12 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
+          command_timeout: 5m
           script: |
-            mkdir -p /root/denis-andreeschev
-            cd /root/denis-andreeschev
+            cd /home/deploy/denis-andreeschev
             rm -rf .next src public
             tar xzf /tmp/deploy.tar.gz
             rm /tmp/deploy.tar.gz
             npm install --omit=dev
-            npx payload migrate
-            pm2 delete denis-andreeschev 2>/dev/null || true
-            PORT=3005 pm2 start npm --name denis-andreeschev -- start
+            pm2 restart denis-andreeschev
             pm2 save
