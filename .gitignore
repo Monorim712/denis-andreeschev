@@ -11,6 +11,8 @@ media/
 tsconfig.tsbuildinfo
 
 # Скриншоты тестирования (корень проекта)
+/screenshot-*.png
+/screenshot-*.jpg
 /check-*.png
 /desktop-*.png
 /female-*.png
@@ -22,6 +24,9 @@ tsconfig.tsbuildinfo
 /optimized-*.png
 /site-*.png
 /timeweb-*.png
+
+# PNG-оригиналы (в репу идут только WebP)
+public/images/photos/*.png
 
 # Временные файлы
 /dns-*.md

@@ -28,6 +28,10 @@ export default function FrontendLayout({ children }: { children: ReactNode }) {
           rel="stylesheet"
         />
         <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+          rel="stylesheet"
+        />
+        <link
           rel="preload"
           as="image"
           href="/images/photos/hero-main.webp"
@@ -35,11 +39,6 @@ export default function FrontendLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
-        <Script id="material-symbols" strategy="lazyOnload">{`
-          var l=document.createElement('link');l.rel='stylesheet';
-          l.href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap';
-          document.head.appendChild(l);
-        `}</Script>
         <Script id="yandex-metrika" strategy="lazyOnload">{`
           (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};

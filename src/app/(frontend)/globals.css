@@ -24,10 +24,17 @@
   --font-sans: 'Nunito', sans-serif;
 }
 
-html, body {
+html {
+  overflow-y: scroll !important;
+  height: auto !important;
+}
+
+body {
   font-family: 'Nunito', system-ui, -apple-system, sans-serif;
-  scroll-behavior: smooth;
   color: #3A4A2C;
+  overflow-y: visible !important;
+  height: auto !important;
+  min-height: 0 !important;
 }
 
 .font-serif {

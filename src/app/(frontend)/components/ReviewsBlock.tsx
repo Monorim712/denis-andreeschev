@@ -18,18 +18,18 @@ const SOURCE_LABELS: Record<string, string> = {
 }
 
 const SOURCE_ICONS: Record<string, string> = {
-  'yandex-karty': '/images/icons/yandex-karty.png',
-  'yandex-uslugi': '/images/icons/yandex-uslugi.png',
-  harant: '/images/icons/harant.png',
-  avito: '/images/icons/avito.png',
+  'yandex-karty': '/images/icons/yandex-karty.webp',
+  'yandex-uslugi': '/images/icons/yandex-uslugi.webp',
+  harant: '/images/icons/harant.webp',
+  avito: '/images/icons/avito.webp',
 }
 
 const FILTERS = [
   { value: 'all', label: 'Все', icon: '' },
-  { value: 'yandex-karty', label: 'Яндекс.Карты', icon: '/images/icons/yandex-karty.png' },
-  { value: 'yandex-uslugi', label: 'Яндекс.Услуги', icon: '/images/icons/yandex-uslugi.png' },
-  { value: 'harant', label: 'Harant.ru', icon: '/images/icons/harant.png' },
-  { value: 'avito', label: 'Авито', icon: '/images/icons/avito.png' },
+  { value: 'yandex-karty', label: 'Яндекс.Карты', icon: '/images/icons/yandex-karty.webp' },
+  { value: 'yandex-uslugi', label: 'Яндекс.Услуги', icon: '/images/icons/yandex-uslugi.webp' },
+  { value: 'harant', label: 'Harant.ru', icon: '/images/icons/harant.webp' },
+  { value: 'avito', label: 'Авито', icon: '/images/icons/avito.webp' },
 ]
 
 function PhoneFrame({ children }: { children: React.ReactNode }) {

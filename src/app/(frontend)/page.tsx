@@ -20,7 +20,7 @@ const advantages = [
   { title: 'Узкая специализация — глубокие знания', desc: 'Семейное и наследственное право — <strong>моя узкая специализация</strong>, которая позволяет видеть то, что другие адвокаты даже не замечают.' },
   { title: 'Прозрачная стоимость услуг', desc: '<strong>Стоимость услуг адвоката фиксируется в договоре</strong>. Судебные расходы (экспертизы, госпошлины) зависят от хода дела — заранее предупрежу о возможных затратах.' },
   { title: 'Честная оценка перспектив', desc: 'Без прикрас <strong>максимально объективно доложу об обстоятельствах и перспективах</strong> дела — Вы не потратите деньги впустую и будете иметь чёткое представление о путях разрешения проблемы.' },
-  { title: 'Всегда на связи', desc: 'Семейные дела не ждут рабочих часов. <strong>Вы всегда можете обратиться</strong> — отвечу, проконсультирую, поддержу. Потому что для Вас это не «рабочий вопрос» — это жизнь.' },
+  { title: 'Всегда на связи', desc: '<strong>Вы всегда можете обратиться</strong> — отвечу, проконсультирую, поддержу. Потому что для Вас это не «рабочий вопрос» — это жизнь.' },
 ]
 
 const steps = [
@@ -131,8 +131,7 @@ export default function HomePage() {
             <a href="#contacts" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Контакты</a>
           </div>
           <div className="hidden lg:flex items-center gap-3 shrink-0">
-            <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-[#26A5E4] flex items-center justify-center hover:brightness-110 transition-all"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
-            <a href="https://max.ru/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full flex items-center justify-center hover:brightness-110 transition-all" style={{background: 'linear-gradient(135deg, #6C3AED, #2563EB)'}}><img src="/images/icons/max-icon.webp" alt="Max" className="w-5 h-5" /></a>
+            <a href="https://max.ru/u/f9LHodD0cOJCIYFhSO2FQ-tCJ6vSaJBCE6FcWrEYTFQbhNODHfY4gBYXwQ0" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full flex items-center justify-center hover:brightness-110 transition-all" style={{background: 'linear-gradient(135deg, #7C3AED 0%, #6D28D9 50%, #4F46E5 100%)'}}><img src="/images/icons/max-icon.webp" alt="Max" className="w-5 h-5" /></a>
             <a href="tel:+79507770608" className="flex items-center gap-2 font-serif btn-gold px-6 py-2.5 text-navy-900 font-semibold text-sm transition-transform whitespace-nowrap">
               <span className="material-symbols-outlined text-lg">call</span>
               8 (950) 777-06-08
@@ -142,7 +141,7 @@ export default function HomePage() {
       </nav>
 
       {/* Hero */}
-      <header className="relative lg:min-h-screen flex items-end lg:items-center bg-navy-900 overflow-hidden pt-20">
+      <header className="relative lg:min-h-[85vh] flex items-end lg:items-center bg-navy-900 overflow-hidden pt-20">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-900/20 via-transparent to-navy-900/60" />
         <div className="relative z-20 max-w-[1440px] mx-auto px-6 w-full">
           <div className="relative flex flex-col lg:flex-row items-center lg:items-end">
@@ -154,7 +153,10 @@ export default function HomePage() {
               <div className="flex justify-center lg:hidden -mb-5" style={{ marginTop: '10px', paddingLeft: '10px' }}>
                 <img src="/images/photos/hero-main.webp" alt="Адвокат Андреещев" className="h-[45vh] w-auto object-contain object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 15%, black 90%, transparent 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 15%, black 90%, transparent 100%)' }} />
               </div>
-              <FormModal title="Бесплатная консультация" buttonText="Записаться" className="btn-gold px-10 py-5 text-navy-900 font-bold text-lg transition-transform w-full lg:w-auto lg:inline-block text-center">
+              <a href="tel:+79507770608" className="btn-gold px-10 py-5 text-navy-900 font-bold text-lg transition-transform w-full text-center lg:hidden">
+                Бесплатная консультация
+              </a>
+              <FormModal title="Бесплатная консультация" buttonText="Бесплатная консультация" className="btn-gold px-10 py-5 text-navy-900 font-bold text-lg transition-transform lg:inline-block text-center hidden lg:block">
                 Бесплатная консультация
               </FormModal>
             </div>
@@ -203,24 +205,17 @@ export default function HomePage() {
       {/* Gender Choice */}
       <section id="gender" className="py-20" style={{ background: 'linear-gradient(135deg, #F5EBD0 0%, #E8D19A 100%)' }}>
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-8">
+          <div className="text-center mb-12">
             <div className="gold-line mx-auto mb-6" />
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-navy-900">Нажмите на гирю, чтобы увидеть решения для Вашей ситуации</h2>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-navy-900">Выберите Вашу ситуацию</h2>
           </div>
-          <div className="relative max-w-4xl mx-auto">
-            <img src="/images/photos/scales.webp" alt="Весы правосудия" loading="lazy" className="w-full h-auto" />
-            <Link href="/dlya-muzhchin" className="absolute top-[45%] left-[3%] w-[35%] h-[35%] rounded-2xl hover:bg-gold-400/20 transition-all cursor-pointer group" title="Я муж / отец">
-
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 max-w-3xl mx-auto">
+            <Link href="/dlya-muzhchin" className="group">
+              <img src="/images/photos/gender-female.webp" alt="Я муж / отец" loading="lazy" className="w-56 h-56 md:w-72 md:h-72 rounded-full shadow-xl transition-transform group-hover:scale-105" />
             </Link>
-            <Link href="/dlya-zhenshchin" className="absolute top-[42%] right-[3%] w-[35%] h-[38%] rounded-2xl hover:bg-gold-400/20 transition-all cursor-pointer group" title="Я жена / мать">
-
+            <Link href="/dlya-zhenshchin" className="group">
+              <img src="/images/photos/gender-male.webp" alt="Я жена / мать" loading="lazy" className="w-56 h-56 md:w-72 md:h-72 rounded-full shadow-xl transition-transform group-hover:scale-105" />
             </Link>
-            <div className="absolute top-[62%] -left-[6%] md:left-[2%] animate-bounce pointer-events-none">
-              <span className="text-navy-900 text-6xl md:text-7xl font-bold">→</span>
-            </div>
-            <div className="absolute top-[59%] -right-[6%] md:right-[2%] animate-bounce pointer-events-none">
-              <span className="text-navy-900 text-6xl md:text-7xl font-bold">←</span>
-            </div>
           </div>
         </div>
       </section>
@@ -393,7 +388,7 @@ export default function HomePage() {
                 </div>
                 <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy-900 mb-6 text-center lg:text-left">15 минут, которые могут сэкономить вам миллионы</h2>
                 <ul className="space-y-3 mb-8">
-                  {['Покажу слабые места — где вы теряете деньги, детей или имущество прямо сейчас', 'Разберём ошибки, которые ещё можно исправить, пока не поздно', 'Честно скажу — нужен вам адвокат или справитесь без меня', 'Назову точные сроки и стоимость — без «это зависит от многих факторов»'].map((item, i) => (
+                  {['Покажу слабые места — где вы теряете деньги, детей или имущество прямо сейчас', 'Разберём ошибки, которые ещё можно исправить, пока не поздно', 'Сообщу, в каких случаях без адвоката не обойтись', 'Подскажу, какие документы подготовить заранее, чтобы не терять время'].map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-gray-600">
                       <span className="text-gold-500 mt-0.5">✓</span>
                       {item}
@@ -519,7 +514,7 @@ export default function HomePage() {
       <MobileToolbar />
 
       {/* Footer */}
-      <footer className="bg-navy-900 pt-16 pb-24 lg:pb-8">
+      <footer className="bg-navy-900 pt-16 pb-32 lg:pb-40">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left">

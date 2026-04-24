@@ -69,6 +69,20 @@ export default function CookiesPage() {
         <p className="mb-4">8.1. Оператор оставляет за собой право вносить изменения в настоящее Соглашение. Актуальная версия всегда доступна на данной странице.</p>
 
         <p className="mb-4">8.2. Продолжение использования Сайта после публикации изменений означает согласие Пользователя с обновлёнными условиями.</p>
+
+        <div className="mt-8 p-6 bg-gold-50 rounded-xl">
+          <h3 className="font-bold mb-3">Реквизиты Оператора</h3>
+          <p>Адвокат Андреещев Денис Валерьевич</p>
+          <p>ИНН: 366217679949</p>
+          <p>Адрес: г. Воронеж, ул. Урицкого, д. 70</p>
+          <p>Телефон: 8 (950) 777-06-08</p>
+          <p>Email: denis.andreeschev2015@yandex.ru</p>
+          <p>Сайт: https://denis-andreeschev.ru</p>
+        </div>
+
+        <div className="mt-12 text-center">
+          <a href="/" className="btn-gold inline-block px-8 py-3 text-navy-900 font-semibold">Вернуться на главную</a>
+        </div>
       </div>
     </>
   )

@@ -61,4 +61,6 @@ jobs:
             rm /tmp/deploy.tar.gz
             npm install --omit=dev
             npx payload migrate
-            pm2 restart denis-andreeschev || pm2 start npm --name denis-andreeschev -- start
+            pm2 delete denis-andreeschev 2>/dev/null || true
+            PORT=3005 pm2 start npm --name denis-andreeschev -- start
+            pm2 save
