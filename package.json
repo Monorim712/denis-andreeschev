@@ -27,6 +27,7 @@
     "@payloadcms/richtext-lexical": "^3.83.0",
     "graphql": "^16.13.2",
     "next": "^16.2.4",
+    "nodemailer": "^8.0.6",
     "payload": "^3.83.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
@@ -35,6 +36,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.2",
     "@types/node": "^25.5.2",
+    "@types/nodemailer": "^8.0.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "postcss": "^8.5.9",

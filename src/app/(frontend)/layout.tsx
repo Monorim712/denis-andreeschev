@@ -9,11 +9,30 @@ export const metadata: Metadata = {
     template: '%s | Адвокат Андреещев',
   },
   description: 'Семейный адвокат в Воронеже. Развод, алименты, раздел имущества, споры о детях. Бесплатная первичная консультация. Опыт 15+ лет.',
-  keywords: 'адвокат воронеж, семейный адвокат, развод воронеж, алименты, раздел имущества, адвокат по семейным делам',
+  keywords: 'адвокат воронеж, семейный адвокат, развод воронеж, алименты, раздел имущества, адвокат по семейным делам, адвокат андреещев, юрист воронеж',
+  metadataBase: new URL('https://denis-andreeschev.ru'),
+  alternates: { canonical: '/' },
+  robots: { index: true, follow: true },
+  icons: {
+    icon: [
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+    shortcut: '/favicon.ico',
+  },
+  manifest: '/site.webmanifest',
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
     siteName: 'Адвокат Андреещев Денис Валерьевич',
+    title: 'Адвокат по семейным делам в Воронеже — Андреещев Денис Валерьевич',
+    description: 'Семейный адвокат в Воронеже. Развод, алименты, раздел имущества, споры о детях. Опыт 15+ лет.',
+    url: 'https://denis-andreeschev.ru',
+    images: [{ url: '/images/photos/hero-main.webp', width: 1200, height: 630, alt: 'Адвокат Андреещев Денис Валерьевич' }],
+  },
+  verification: {
+    yandex: 'ee849922aa6ed043',
   },
 }
 

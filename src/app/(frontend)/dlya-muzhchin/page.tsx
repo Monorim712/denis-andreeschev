@@ -117,7 +117,7 @@ export default async function MaleLandingPage() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <a href="tel:+79507770608" className="lg:hidden btn-gold rounded-xl px-8 py-4 text-navy-900 font-bold text-lg text-center transition-transform hover:scale-[0.98]">Бесплатная консультация</a>
-              <FormModal title="Бесплатная консультация" buttonText="Записаться" className="hidden lg:block btn-gold rounded-xl px-8 py-4 text-navy-900 font-bold text-lg text-center transition-transform hover:scale-[0.98]">Бесплатная консультация</FormModal>
+              <FormModal title="Бесплатная консультация" buttonText="Записаться" page="male" className="hidden lg:block btn-gold rounded-xl px-8 py-4 text-navy-900 font-bold text-lg text-center transition-transform hover:scale-[0.98]">Бесплатная консультация</FormModal>
               <a href="#problems" className="bg-white rounded-xl px-8 py-4 text-navy-900 font-semibold text-lg text-center hover:bg-gray-100 transition-colors">С чем Вы столкнулись?</a>
             </div>
           </div>
@@ -233,7 +233,7 @@ export default async function MaleLandingPage() {
                   ))}
                 </ul>
               </div>
-              <FormModal title="Записаться на консультацию" buttonText="Отправить" className="btn-gold rounded-xl px-10 py-5 text-navy-900 font-bold text-lg text-center transition-transform hover:scale-[0.98] flex-shrink-0">Записаться на консультацию</FormModal>
+              <FormModal title="Записаться на консультацию" buttonText="Отправить" page="male" className="btn-gold rounded-xl px-10 py-5 text-navy-900 font-bold text-lg text-center transition-transform hover:scale-[0.98] flex-shrink-0">Записаться на консультацию</FormModal>
             </div>
           </div>
         </div>

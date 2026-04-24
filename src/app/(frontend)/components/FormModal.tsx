@@ -22,16 +22,17 @@ type Props = {
   title: string
   buttonText: string
   className?: string
+  page?: string
   children: React.ReactNode
 }
 
-export function FormModal({ title, buttonText, className, children }: Props) {
+export function FormModal({ title, buttonText, className, page, children }: Props) {
   const [open, setOpen] = useState(false)
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('+7 ')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   useEffect(() => {
     if (!open) return
@@ -52,19 +53,34 @@ export function FormModal({ title, buttonText, className, children }: Props) {
     setPhone(formatPhone(e.target.value))
   }
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const digits = phone.replace(/\D/g, '')
     if (digits.length < 11) return
-    setSent(true)
-    setTimeout(() => {
+
+    setStatus('sending')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, email, message, page: page || 'main' }),
+      })
+      if (!res.ok) throw new Error()
+      setStatus('sent')
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  const onClose = () => {
+    setOpen(false)
+    if (status === 'sent' || status === 'error') {
       setName('')
       setPhone('+7 ')
       setEmail('')
       setMessage('')
-      setSent(false)
-      setOpen(false)
-    }, 2000)
+      setStatus('idle')
+    }
   }
 
   return (
@@ -74,20 +90,32 @@ export function FormModal({ title, buttonText, className, children }: Props) {
       </button>
 
       {open && createPortal(
-        <div className="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm overflow-y-auto no-scrollbar p-4" onClick={() => setOpen(false)}>
+        <div className="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm overflow-y-auto no-scrollbar p-4" onClick={onClose}>
           <div className="relative bg-white rounded-2xl max-w-md w-full shadow-2xl mx-auto min-h-0" style={{ marginTop: 'max(1rem, 3vh)', marginBottom: '160px' }} onClick={(e) => e.stopPropagation()}>
-            <button type="button" onClick={() => setOpen(false)} className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center text-white z-10 text-lg">✕</button>
+            <button type="button" onClick={onClose} className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center text-white z-10 text-lg">✕</button>
 
             <div className="bg-navy-900 px-8 pt-8 pb-6">
               <h3 className="font-serif text-2xl font-bold text-white pr-12">{title}</h3>
-              <p className="text-gray-400 text-sm mt-2">Оставьте заявку и я свяжусь с вами в ближайшее время</p>
+              <p className="text-gray-400 text-sm mt-2">Оставьте заявку и я свяжусь с Вами в ближайшее время</p>
             </div>
 
-            {sent ? (
+            {status === 'sent' ? (
               <div className="px-8 py-12 text-center">
-                <div className="text-5xl mb-4">✓</div>
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                </div>
                 <h4 className="font-serif text-xl font-bold text-navy-900 mb-2">Заявка отправлена!</h4>
-                <p className="text-gray-500">Я свяжусь с вами в ближайшее время</p>
+                <p className="text-gray-500">Спасибо за обращение. Я свяжусь с Вами в ближайшее время.</p>
+                <button type="button" onClick={onClose} className="mt-6 btn-gold px-8 py-3 text-navy-900 font-semibold text-sm">Закрыть</button>
+              </div>
+            ) : status === 'error' ? (
+              <div className="px-8 py-12 text-center">
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                </div>
+                <h4 className="font-serif text-xl font-bold text-navy-900 mb-2">Ошибка отправки</h4>
+                <p className="text-gray-500">Позвоните напрямую: <a href="tel:+79507770608" className="text-navy-900 font-semibold underline">8 (950) 777-06-08</a></p>
+                <button type="button" onClick={() => setStatus('idle')} className="mt-6 btn-gold px-8 py-3 text-navy-900 font-semibold text-sm">Попробовать ещё раз</button>
               </div>
             ) : (
               <form onSubmit={onSubmit} className="px-8 py-6 pb-10 space-y-4">
@@ -98,7 +126,7 @@ export function FormModal({ title, buttonText, className, children }: Props) {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
-                    placeholder="Как к вам обращаться?"
+                    placeholder="Как к Вам обращаться?"
                     className="w-full rounded-xl border border-gray-200 px-5 py-3.5 text-navy-900 placeholder-gray-400 focus:outline-none focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-colors"
                   />
                 </div>
@@ -130,19 +158,20 @@ export function FormModal({ title, buttonText, className, children }: Props) {
                   <textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Кратко опишите вашу ситуацию"
+                    placeholder="Кратко опишите Вашу ситуацию"
                     rows={3}
                     className="w-full rounded-xl border border-gray-200 px-5 py-3.5 text-navy-900 placeholder-gray-400 focus:outline-none focus:border-gold-400 focus:ring-2 focus:ring-gold-400/20 transition-colors resize-none"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full btn-gold py-4 text-navy-900 font-bold text-base transition-transform hover:scale-[0.98]"
+                  disabled={status === 'sending'}
+                  className="w-full btn-gold py-4 text-navy-900 font-bold text-base transition-transform hover:scale-[0.98] disabled:opacity-70"
                 >
-                  {buttonText}
+                  {status === 'sending' ? 'Отправка...' : buttonText}
                 </button>
                 <p className="text-gray-400 text-xs text-center">
-                  Нажимая кнопку, вы соглашаетесь с{' '}
+                  Нажимая кнопку, Вы соглашаетесь с{' '}
                   <a href="/data-processing" className="text-navy-900 underline hover:text-gold-500">политикой обработки персональных данных</a>{' '}и даёте{' '}
                   <a href="/consent" className="text-navy-900 underline hover:text-gold-500">согласие на обработку персональных данных</a>
                 </p>

@@ -20,7 +20,7 @@ function formatPhone(raw: string): string {
 export function AskFormClient() {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('+7 ')
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   const onPhoneKey = (e: KeyboardEvent<HTMLInputElement>) => {
     const el = e.currentTarget
@@ -37,10 +37,25 @@ export function AskFormClient() {
     if (!phone || phone.length < 3) setPhone('+7 ')
   }
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setSent(true)
-    setTimeout(() => { setName(''); setPhone('+7 '); setSent(false) }, 2500)
+    const digits = phone.replace(/\D/g, '')
+    if (digits.length < 11) return
+
+    setStatus('sending')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, page: 'main' }),
+      })
+      if (!res.ok) throw new Error()
+      setStatus('sent')
+      setTimeout(() => { setName(''); setPhone('+7 '); setStatus('idle') }, 3000)
+    } catch {
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 3000)
+    }
   }
 
   return (
@@ -63,10 +78,10 @@ export function AskFormClient() {
       />
       <button
         type="submit"
-        disabled={sent}
+        disabled={status === 'sending' || status === 'sent'}
         className="btn-gold px-8 py-4 text-navy-900 font-bold text-base transition-transform hover:scale-[0.98] whitespace-nowrap disabled:opacity-70"
       >
-        {sent ? 'Спасибо!' : 'Отправить'}
+        {status === 'sending' ? 'Отправка...' : status === 'sent' ? 'Заявка отправлена!' : status === 'error' ? 'Ошибка, попробуйте ещё' : 'Отправить'}
       </button>
     </form>
   )

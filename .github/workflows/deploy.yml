@@ -63,5 +63,13 @@ jobs:
             rm /tmp/deploy.tar.gz
             npm install --omit=dev
             npx payload migrate || true
+            cat > .env.local <<ENVEOF
+            PAYLOAD_SECRET=${{ secrets.PAYLOAD_SECRET }}
+            DATABASE_URI=file:./database.db
+            NEXT_PUBLIC_SITE_URL=https://denis-andreeschev.ru
+            SMTP_USER=${{ secrets.SMTP_USER }}
+            SMTP_PASS=${{ secrets.SMTP_PASS }}
+            ENVEOF
+            sed -i 's/^            //' .env.local
             pm2 restart denis-andreeschev
             pm2 save
