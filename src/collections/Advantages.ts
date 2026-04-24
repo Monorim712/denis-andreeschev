@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 export const Advantages: CollectionConfig = {
   slug: 'advantages',
   labels: { singular: 'Преимущество', plural: 'Преимущества' },
+  access: { read: () => true },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'order'],

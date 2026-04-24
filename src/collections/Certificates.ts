@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 export const Certificates: CollectionConfig = {
   slug: 'certificates',
   labels: { singular: 'Сертификат', plural: 'Сертификаты' },
+  access: { read: () => true },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'image', 'order'],

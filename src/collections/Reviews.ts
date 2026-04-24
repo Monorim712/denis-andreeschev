@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 export const Reviews: CollectionConfig = {
   slug: 'reviews',
   labels: { singular: 'Отзыв', plural: 'Отзывы' },
+  access: { read: () => true },
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'source', 'date', 'rating'],

@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 export const FAQ: CollectionConfig = {
   slug: 'faq',
   labels: { singular: 'Вопрос', plural: 'Частые вопросы (FAQ)' },
+  access: { read: () => true },
   admin: {
     useAsTitle: 'question',
     defaultColumns: ['question', 'page', 'order'],

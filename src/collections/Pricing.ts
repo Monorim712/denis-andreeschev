@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 export const Pricing: CollectionConfig = {
   slug: 'pricing',
   labels: { singular: 'Тариф', plural: 'Цены' },
+  access: { read: () => true },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'price', 'popular', 'order'],

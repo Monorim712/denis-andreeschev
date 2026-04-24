@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 export const Steps: CollectionConfig = {
   slug: 'steps',
   labels: { singular: 'Этап', plural: 'Этапы работы' },
+  access: { read: () => true },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['number', 'title', 'order'],
