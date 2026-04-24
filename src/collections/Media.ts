@@ -9,9 +9,15 @@ export const Media: CollectionConfig = {
   upload: {
     staticDir: 'media',
     mimeTypes: ['image/*'],
+    adminThumbnail: 'thumbnail',
+    imageSizes: [
+      { name: 'thumbnail', width: 300, height: 300, position: 'centre' },
+      { name: 'medium', width: 800 },
+    ],
   },
   admin: {
     useAsTitle: 'alt',
+    listSearchableFields: ['alt', 'category'],
     group: 'Контент',
   },
   fields: [

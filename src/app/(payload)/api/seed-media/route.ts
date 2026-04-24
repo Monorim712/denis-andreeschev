@@ -23,16 +23,24 @@ async function uploadImage(
   return doc.id
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   const payload = await getPayload({ config })
   const results: string[] = []
   const mediaIds: Record<string, number> = {}
 
   const publicDir = path.join(process.cwd(), 'public', 'images')
+  const url = new URL(request.url)
+  const force = url.searchParams.get('force') === 'true'
 
   const { totalDocs } = await payload.count({ collection: 'media' })
-  if (totalDocs > 0) {
-    return NextResponse.json({ results: ['Media already seeded, skipping. Delete all media first to re-seed.'] })
+  if (totalDocs > 0 && !force) {
+    return NextResponse.json({ results: ['Media already seeded. Use ?force=true to re-seed.'] })
+  }
+
+  if (totalDocs > 0 && force) {
+    await payload.delete({ collection: 'certificates', where: { id: { exists: true } } })
+    await payload.delete({ collection: 'media', where: { id: { exists: true } } })
+    results.push(`Deleted ${totalDocs} existing media + certificates`)
   }
 
   // === Upload photos ===
