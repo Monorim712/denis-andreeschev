@@ -62,5 +62,6 @@ jobs:
             tar xzf /tmp/deploy.tar.gz
             rm /tmp/deploy.tar.gz
             npm install --omit=dev
+            npx payload migrate || true
             pm2 restart denis-andreeschev
             pm2 save
