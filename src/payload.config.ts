@@ -13,6 +13,7 @@ import { Certificates } from './collections/Certificates'
 import { FAQ } from './collections/FAQ'
 import { Steps } from './collections/Steps'
 import { Pricing } from './collections/Pricing'
+import { Advantages } from './collections/Advantages'
 import { SiteSettings } from './globals/SiteSettings'
 
 const filename = fileURLToPath(import.meta.url)
@@ -25,7 +26,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Services, Reviews, Certificates, FAQ, Steps, Pricing],
+  collections: [Users, Media, Services, Reviews, Certificates, FAQ, Steps, Pricing, Advantages],
   globals: [SiteSettings],
   editor: lexicalEditor(),
   i18n: {

@@ -75,6 +75,7 @@ export interface Config {
     faq: Faq;
     steps: Step;
     pricing: Pricing;
+    advantages: Advantage;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -90,6 +91,7 @@ export interface Config {
     faq: FaqSelect<false> | FaqSelect<true>;
     steps: StepsSelect<false> | StepsSelect<true>;
     pricing: PricingSelect<false> | PricingSelect<true>;
+    advantages: AdvantagesSelect<false> | AdvantagesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -215,7 +217,7 @@ export interface Review {
   id: number;
   name: string;
   text: string;
-  source: 'yandex-karty' | 'google' | 'avito' | 'website';
+  source: 'yandex-karty' | 'yandex-uslugi' | 'harant' | 'avito';
   rating?: number | null;
   /**
    * Формат: дд.мм.гггг
@@ -291,6 +293,21 @@ export interface Pricing {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "advantages".
+ */
+export interface Advantage {
+  id: number;
+  title: string;
+  /**
+   * Можно использовать <strong>, <br /> для форматирования
+   */
+  description: string;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -344,6 +361,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pricing';
         value: number | Pricing;
+      } | null)
+    | ({
+        relationTo: 'advantages';
+        value: number | Advantage;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -505,6 +526,17 @@ export interface PricingSelect<T extends boolean = true> {
         id?: T;
       };
   popular?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "advantages_select".
+ */
+export interface AdvantagesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;

@@ -27,9 +27,9 @@ export const Reviews: CollectionConfig = {
       type: 'select',
       options: [
         { label: 'Яндекс Карты', value: 'yandex-karty' },
-        { label: 'Google', value: 'google' },
+        { label: 'Яндекс Услуги', value: 'yandex-uslugi' },
+        { label: 'Harant.ru', value: 'harant' },
         { label: 'Avito', value: 'avito' },
-        { label: 'Сайт', value: 'website' },
       ],
       required: true,
     },
