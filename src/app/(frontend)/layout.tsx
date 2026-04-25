@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     images: [{ url: '/images/photos/hero-main.webp', width: 1200, height: 630, alt: 'Адвокат Андреещев Денис Валерьевич' }],
   },
   verification: {
-    yandex: 'ee849922aa6ed043',
+    yandex: '1ca873674a09ea28',
   },
 }
 
