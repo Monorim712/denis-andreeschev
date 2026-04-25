@@ -80,12 +80,22 @@ jobs:
             server {
                 listen 80;
                 server_name denis-andreeschev.ru www.denis-andreeschev.ru;
-                return 301 https://$host$request_uri;
+                return 301 https://denis-andreeschev.ru$request_uri;
             }
 
             server {
                 listen 443 ssl http2;
-                server_name denis-andreeschev.ru www.denis-andreeschev.ru;
+                server_name www.denis-andreeschev.ru;
+
+                ssl_certificate /etc/letsencrypt/live/denis-andreeschev.ru/fullchain.pem;
+                ssl_certificate_key /etc/letsencrypt/live/denis-andreeschev.ru/privkey.pem;
+
+                return 301 https://denis-andreeschev.ru$request_uri;
+            }
+
+            server {
+                listen 443 ssl http2;
+                server_name denis-andreeschev.ru;
 
                 ssl_certificate /etc/letsencrypt/live/denis-andreeschev.ru/fullchain.pem;
                 ssl_certificate_key /etc/letsencrypt/live/denis-andreeschev.ru/privkey.pem;
