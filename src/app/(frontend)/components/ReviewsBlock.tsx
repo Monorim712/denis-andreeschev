@@ -120,7 +120,7 @@ export function ReviewsBlock({ reviews }: { reviews: Review[] }) {
         <div className="text-center mb-16">
           <div className="gold-line mx-auto mb-6" />
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Отзывы клиентов</h2>
-          <p className="text-gray-400 text-lg">Реальные отзывы с Яндекс.Карт, Яндекс.Услуг, Harant.ru и Авито</p>
+          <p className="text-gray-300 text-lg">Реальные отзывы с Яндекс.Карт, Яндекс.Услуг, Harant.ru и Авито</p>
         </div>
 
         <div className="flex flex-col lg:flex-row flex-wrap items-center justify-center gap-2 mb-10">
@@ -153,17 +153,19 @@ export function ReviewsBlock({ reviews }: { reviews: Review[] }) {
         </div>
 
         {filtered.length === 0 ? (
-          <p className="text-center text-gray-400">Нет отзывов в этой категории</p>
+          <p className="text-center text-gray-300">Нет отзывов в этой категории</p>
         ) : (
           <div className="relative">
             <button
               onClick={() => { prev(); resetAuto() }}
+              aria-label="Предыдущий отзыв"
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white text-xl transition-colors backdrop-blur-sm"
             >
               ←
             </button>
             <button
               onClick={() => { next(); resetAuto() }}
+              aria-label="Следующий отзыв"
               className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white text-xl transition-colors backdrop-blur-sm"
             >
               →
@@ -183,7 +185,7 @@ export function ReviewsBlock({ reviews }: { reviews: Review[] }) {
                         <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-navy-900 font-bold flex-shrink-0">{letter}</div>
                         <div className="min-w-0 flex-1">
                           <div className="font-semibold text-navy-900 text-sm truncate">{r.name}</div>
-                          <div className="text-gray-400 text-xs truncate flex items-center gap-1">
+                          <div className="text-gray-600 text-xs truncate flex items-center gap-1">
                             {SOURCE_ICONS[r.source] && <img src={SOURCE_ICONS[r.source]} alt="" loading="lazy" className="w-4 h-4 flex-shrink-0" />}
                             {SOURCE_LABELS[r.source] || r.source}
                           </div>
@@ -191,7 +193,7 @@ export function ReviewsBlock({ reviews }: { reviews: Review[] }) {
                       </div>
                       <div className="px-5 pb-2 flex items-center gap-2">
                         <div className="flex text-yellow-400 text-sm">★★★★★</div>
-                        <span className="text-gray-400 text-xs">{r.date}</span>
+                        <span className="text-gray-600 text-xs">{r.date}</span>
                       </div>
                       <div className="px-5 pb-6 flex-1">
                         <p className="text-gray-700 leading-relaxed text-sm">{r.text}</p>
@@ -212,7 +214,8 @@ export function ReviewsBlock({ reviews }: { reviews: Review[] }) {
                 <button
                   key={i}
                   onClick={() => { scrollTo(i); resetAuto() }}
-                  className={`w-2.5 h-2.5 rounded-full transition-all ${i === current ? 'bg-gold-400 w-6' : 'bg-white/30 hover:bg-white/50'}`}
+                  aria-label={`Отзыв ${i + 1}`}
+                  className={`w-4 h-4 rounded-full transition-all ${i === current ? 'bg-gold-400 w-6' : 'bg-white/30 hover:bg-white/50'}`}
                 />
               ))}
             </div>
@@ -228,7 +231,7 @@ export function ReviewsBlock({ reviews }: { reviews: Review[] }) {
               <div className="w-16 h-16 rounded-full bg-navy-900 flex items-center justify-center text-gold-400 font-bold text-2xl flex-shrink-0">{(active.name?.[0] || '?').toUpperCase()}</div>
               <div className="flex-1 min-w-0 pr-10">
                 <div className="text-navy-900 font-bold text-lg truncate">{active.name}</div>
-                <div className="text-gray-500 text-sm flex items-center gap-1.5">
+                <div className="text-gray-600 text-sm flex items-center gap-1.5">
                   {SOURCE_ICONS[active.source] && <img src={SOURCE_ICONS[active.source]} alt="" className="w-5 h-5" />}
                   {SOURCE_LABELS[active.source] || active.source} · {active.date}
                 </div>

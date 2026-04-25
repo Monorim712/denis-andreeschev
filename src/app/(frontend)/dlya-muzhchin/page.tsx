@@ -72,7 +72,7 @@ export default async function MaleLandingPage() {
       <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
         <div className="max-w-[1440px] mx-auto px-6 py-3 flex items-center justify-center lg:justify-start gap-8 flex-nowrap">
           <a href="/" className="shrink-0 leading-tight flex items-center gap-3">
-            <img src="/images/logo.webp" alt="Логотип" className="w-10 h-10" />
+            <img src="/images/logo.webp" alt="Логотип" width={96} height={96} className="w-10 h-10 object-contain" />
             <div>
               <span className="font-serif text-navy-900 text-sm block">Адвокат по семейным делам</span>
               <span className="font-serif font-bold text-navy-900 text-lg block">Андреещев Д.В.</span>
@@ -90,7 +90,7 @@ export default async function MaleLandingPage() {
             <a href="#contacts" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Контакты</a>
           </div>
           <div className="hidden lg:flex items-center gap-3 shrink-0">
-            <a href="https://max.ru/u/f9LHodD0cOJCIYFhSO2FQ-tCJ6vSaJBCE6FcWrEYTFQbhNODHfY4gBYXwQ0" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full flex items-center justify-center hover:brightness-110 transition-all" style={{background: 'linear-gradient(135deg, #7C3AED 0%, #6D28D9 50%, #4F46E5 100%)'}}><img src="/images/icons/max-icon.webp" alt="Max" className="w-5 h-5" /></a>
+            <a href="https://max.ru/u/f9LHodD0cOJCIYFhSO2FQ-tCJ6vSaJBCE6FcWrEYTFQbhNODHfY4gBYXwQ0" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full flex items-center justify-center hover:brightness-110 transition-all" style={{background: 'linear-gradient(135deg, #7C3AED 0%, #6D28D9 50%, #4F46E5 100%)'}}><img src="/images/icons/max-icon.webp" alt="Max" width={20} height={20} className="w-5 h-5" /></a>
             <a href="tel:+79507770608" className="flex items-center gap-2 font-serif btn-gold px-6 py-2.5 text-navy-900 font-semibold text-sm transition-transform whitespace-nowrap">
               <span className="material-symbols-outlined text-lg">call</span>
               8 (950) 777-06-08
@@ -102,7 +102,7 @@ export default async function MaleLandingPage() {
       {/* Hero */}
       <header className="relative lg:min-h-screen flex items-end lg:items-center overflow-hidden pt-20" style={{ background: 'linear-gradient(165deg, #2A3A1E 0%, #3A4A2C 40%, #4D6340 100%)' }}>
         <div className="absolute right-0 bottom-0 w-1/2 h-full hidden lg:flex items-end justify-center z-[1]">
-          <img src="/images/photos/hero-male.webp" alt="Адвокат Андреещев" className="h-[110vh] w-auto object-contain object-bottom" style={{ marginBottom: '-30px' }} />
+          <img src="/images/photos/hero-male.webp" alt="Адвокат Андреещев" width={518} height={600} loading="lazy" className="h-[110vh] w-auto object-contain object-bottom" style={{ marginBottom: '-30px' }} />
         </div>
         <div className="relative z-20 max-w-7xl mx-auto px-6 w-full">
           <div className="max-w-2xl">
@@ -113,7 +113,7 @@ export default async function MaleLandingPage() {
             </h1>
             <p className="text-xl text-gray-300 mb-[10px] font-light max-w-lg text-center lg:text-left lg:mb-10">Сохраню Ваше имущество, бизнес и право на общение с детьми. Без эмоций — только закон и стратегия.</p>
             <div className="flex justify-center lg:hidden" style={{ marginLeft: '-5px', marginTop: '-70px', marginBottom: '-8px' }}>
-              <img src="/images/photos/hero-male.webp" alt="Адвокат Андреещев" className="min-w-[130vw] h-auto shrink-0 object-contain object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 3%, black 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 3%, black 100%)' }} />
+              <img src="/images/photos/hero-male.webp" alt="Адвокат Андреещев" width={518} height={600} className="min-w-[130vw] h-auto shrink-0 object-contain object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 3%, black 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 3%, black 100%)' }} />
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <a href="tel:+79507770608" className="lg:hidden btn-gold rounded-xl px-8 py-4 text-navy-900 font-bold text-lg text-center transition-transform hover:scale-[0.98]">Бесплатная консультация</a>
@@ -159,7 +159,7 @@ export default async function MaleLandingPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-12">
             <div className="flex-shrink-0 w-full lg:w-auto flex justify-center">
-              <img src="/images/photos/quote-male.webp" alt="Адвокат Андреещев" loading="lazy" className="w-[85vw] max-w-[520px] lg:w-[350px] h-auto rounded-2xl object-cover" />
+              <img src="/images/photos/quote-male.webp" alt="Адвокат Андреещев" width={520} height={650} loading="lazy" className="w-[85vw] max-w-[520px] lg:w-[350px] h-auto rounded-2xl object-cover" />
             </div>
             <div>
               <div className="w-[60px] h-[3px] bg-gold-400 mb-6 mx-auto lg:mx-0" />
@@ -178,7 +178,7 @@ export default async function MaleLandingPage() {
 
       {/* What I Do */}
       <section className="relative py-24 bg-white overflow-hidden">
-        <img src="/images/photos/advantages-bg.webp" alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none" />
+        <img src="/images/photos/advantages-bg.webp" alt="" width={1440} height={900} loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none" />
         <div className="absolute inset-0 bg-white/50 pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -219,10 +219,10 @@ export default async function MaleLandingPage() {
               <div>
                 <div className="flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-3 mb-4 text-center sm:text-left">
                   <div className="flex items-center gap-3">
-                    <span className="text-gray-400 line-through text-lg">3 000 ₽</span>
+                    <span className="text-gray-500 line-through text-lg">3 000 ₽</span>
                     <span className="text-navy-700 font-bold text-2xl">Бесплатно</span>
                   </div>
-                  <span className="text-gray-400 text-sm">/ первичная консультация — 15 минут</span>
+                  <span className="text-gray-600 text-sm">/ первичная консультация — 15 минут</span>
                 </div>
                 <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy-900 mb-6 text-center lg:text-left">Каждый день промедления — в пользу другой стороны</h2>
                 <ul className="space-y-3">
@@ -241,13 +241,13 @@ export default async function MaleLandingPage() {
 
       {/* Steps */}
       <section id="steps" className="relative py-24 bg-navy-900 overflow-hidden">
-        <img src="/images/photos/steps-bg.webp" alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover pointer-events-none" style={{ filter: 'blur(8px)', transform: 'scale(1.05)' }} />
+        <img src="/images/photos/steps-bg.webp" alt="" width={1440} height={900} loading="lazy" className="absolute inset-0 w-full h-full object-cover pointer-events-none" style={{ filter: 'blur(8px)', transform: 'scale(1.05)' }} />
         <div className="absolute inset-0 bg-navy-900/40 pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="gold-line mx-auto mb-6" />
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Прозрачная схема работы</h2>
-            <p className="text-gray-400 text-lg">6 понятных этапов от консультации до результата</p>
+            <p className="text-gray-300 text-lg">6 понятных этапов от консультации до результата</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {steps.map((s) => {
@@ -282,7 +282,7 @@ export default async function MaleLandingPage() {
           <div className="text-center mb-12">
             <div className="gold-line mx-auto mb-6" />
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Стоимость услуг</h2>
-            <p className="text-gray-400 text-lg">Фиксированная цена в договоре — без скрытых доплат</p>
+            <p className="text-gray-300 text-lg">Фиксированная цена в договоре — без скрытых доплат</p>
           </div>
           <div className="rounded-2xl border border-white/10 overflow-hidden">
             {pricing.map((row, i) => (
@@ -292,7 +292,7 @@ export default async function MaleLandingPage() {
               </div>
             ))}
           </div>
-          <p className="text-gray-500 text-sm text-center mt-6">* Точная стоимость определяется после анализа Вашей ситуации</p>
+          <p className="text-gray-300 text-sm text-center mt-6">* Точная стоимость определяется после анализа Вашей ситуации</p>
         </div>
       </section>
 
@@ -329,18 +329,18 @@ export default async function MaleLandingPage() {
           <div className="text-center mb-12">
             <div className="gold-line mx-auto mb-6" />
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Контакты</h2>
-            <p className="text-gray-400 text-lg">Свяжитесь со мной любым удобным способом — на связи 24/7!</p>
+            <p className="text-gray-300 text-lg">Свяжитесь со мной любым удобным способом — на связи 24/7!</p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="flex flex-col items-center text-center px-4">
               <div className="w-80 h-80 lg:w-52 lg:h-52 rounded-full border-4 border-gold-400 overflow-hidden mb-6 mt-4">
-                <img src="/images/photos/about.webp" alt="Адвокат Андреещев" loading="lazy" className="w-full h-full object-cover object-top" />
+                <img src="/images/photos/about.webp" alt="Адвокат Андреещев" width={480} height={600} loading="lazy" className="w-full h-full object-cover object-top" />
               </div>
               <h3 className="font-serif text-2xl font-bold text-white mb-1">Андреещев Денис</h3>
               <h3 className="font-serif text-2xl font-bold text-white mb-3">Валерьевич</h3>
               <p className="text-gold-400 font-semibold text-sm mb-4">Адвокат по семейным делам</p>
               <div className="w-12 h-[2px] bg-gold-400 mb-4" />
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">Член Адвокатской палаты Воронежской области. Более 15 лет практики в сфере семейного права.</p>
+              <p className="text-gray-300 text-sm leading-relaxed mb-6">Член Адвокатской палаты Воронежской области. Более 15 лет практики в сфере семейного права.</p>
             </div>
 
             <div className="space-y-4 flex flex-col justify-center">
@@ -349,7 +349,7 @@ export default async function MaleLandingPage() {
                   <span className="material-symbols-outlined text-gold-400 text-2xl">call</span>
                 </div>
                 <div>
-                  <div className="text-gray-500 text-xs uppercase tracking-wider mb-1">Телефон</div>
+                  <div className="text-gray-300 text-xs uppercase tracking-wider mb-1">Телефон</div>
                   <a href="tel:+79507770608" className="text-white font-bold text-lg hover:text-gold-400 transition-colors block">8 (950) 777-06-08</a>
                 </div>
               </div>
@@ -358,7 +358,7 @@ export default async function MaleLandingPage() {
                   <span className="material-symbols-outlined text-gold-400 text-2xl">mail</span>
                 </div>
                 <div>
-                  <div className="text-gray-500 text-xs uppercase tracking-wider mb-1">Email</div>
+                  <div className="text-gray-300 text-xs uppercase tracking-wider mb-1">Email</div>
                   <a href="mailto:denis.andreeschev2015@yandex.ru" className="text-white font-bold hover:text-gold-400 transition-colors text-sm lg:text-base break-all">denis.andreeschev2015@yandex.ru</a>
                 </div>
               </div>
@@ -367,7 +367,7 @@ export default async function MaleLandingPage() {
                   <span className="material-symbols-outlined text-gold-400 text-2xl">schedule</span>
                 </div>
                 <div>
-                  <div className="text-gray-500 text-xs uppercase tracking-wider mb-1">Режим работы</div>
+                  <div className="text-gray-300 text-xs uppercase tracking-wider mb-1">Режим работы</div>
                   <div className="text-white font-bold">Круглосуточно, без выходных</div>
                   <div className="flex items-center gap-1.5 mt-1"><span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" /><span className="text-green-400 text-xs">На связи сейчас</span></div>
                 </div>
@@ -377,9 +377,9 @@ export default async function MaleLandingPage() {
                   <span className="material-symbols-outlined text-gold-400 text-2xl">location_on</span>
                 </div>
                 <div>
-                  <div className="text-gray-500 text-xs uppercase tracking-wider mb-1">Адрес</div>
+                  <div className="text-gray-300 text-xs uppercase tracking-wider mb-1">Адрес</div>
                   <div className="text-white font-bold">г. Воронеж</div>
-                  <div className="text-gray-400 text-sm">ул. Урицкого, д. 70</div>
+                  <div className="text-gray-300 text-sm">ул. Урицкого, д. 70</div>
                 </div>
               </div>
             </div>
@@ -403,7 +403,7 @@ export default async function MaleLandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
               <div className="flex items-center gap-3 mb-6">
-                <img src="/images/logo.webp" alt="Логотип" className="w-12 h-12 brightness-0 invert" />
+                <img src="/images/logo.webp" alt="Логотип" width={96} height={96} className="w-12 h-12 object-contain brightness-0 invert" />
                 <span className="font-serif text-white font-bold text-lg">Адвокат Андреещев Д.В.</span>
               </div>
               <div className="space-y-3">

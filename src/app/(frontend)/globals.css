@@ -99,3 +99,12 @@ body {
 .safe-area-bottom {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
+
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+.hero-contain {
+  contain: layout style;
+}

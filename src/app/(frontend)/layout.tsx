@@ -42,6 +42,7 @@ export default function FrontendLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ru">
       <head>
+        <style dangerouslySetInnerHTML={{ __html: '@media(min-width:1024px){.desktop-hero-wrap{display:flex!important}}' }} />
         <link
           rel="preload"
           as="font"
@@ -52,22 +53,32 @@ export default function FrontendLayout({ children }: { children: ReactNode }) {
         <link
           rel="preload"
           as="image"
+          type="image/webp"
+          href="/images/photos/hero-main-mobile.webp"
+          media="(max-width: 1023px)"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
           href="/images/photos/hero-main.webp"
           media="(min-width: 1024px)"
         />
       </head>
       <body>
         <Script id="material-symbols" strategy="afterInteractive">{`
-          var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap';document.head.appendChild(l);
+          var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_balance_wallet,block,call,close,description,family_restroom,handshake,home_work,hourglass_top,location_on,mail,menu,schedule,shield,shield_person&display=swap';document.head.appendChild(l);
         `}</Script>
         <Script id="yandex-metrika" strategy="lazyOnload">{`
-          (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-          })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=108580980','ym');
-          ym(108580980,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+          setTimeout(function(){
+            (function(m,e,t,r,i,k,a){
+              m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+              m[i].l=1*new Date();
+              for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+              k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+            })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=108580980','ym');
+            ym(108580980,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+          },3000);
         `}</Script>
         <noscript><div><img src="https://mc.yandex.ru/watch/108580980" style={{position:'absolute',left:'-9999px'}} alt="" /></div></noscript>
         <MetrikaGoals />

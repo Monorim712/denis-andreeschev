@@ -2,9 +2,14 @@ import { withPayload } from '@payloadcms/next/withPayload'
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  productionBrowserSourceMaps: false,
   images: {
     formats: ['image/webp'],
     minimumCacheTTL: 31536000,
+  },
+  webpack: (config) => {
+    config.devtool = false
+    return config
   },
   async headers() {
     return [

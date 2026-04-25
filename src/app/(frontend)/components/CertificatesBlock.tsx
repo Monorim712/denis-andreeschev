@@ -96,12 +96,14 @@ export function CertificatesBlock({ certificates }: { certificates: Certificate[
         <div className="relative">
           <button
             onClick={() => { scrollPrev(); resetAuto() }}
+            aria-label="Предыдущий сертификат"
             className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-navy-900/70 hover:bg-navy-900 flex items-center justify-center text-white text-xl transition-colors"
           >
             ←
           </button>
           <button
             onClick={() => { scrollNext(); resetAuto() }}
+            aria-label="Следующий сертификат"
             className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-navy-900/70 hover:bg-navy-900 flex items-center justify-center text-white text-xl transition-colors"
           >
             →

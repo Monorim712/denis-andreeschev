@@ -41,14 +41,14 @@ export function MobileToolbar() {
         <div className="flex items-center justify-around px-4 py-2">
           <a href="https://max.ru/u/f9LHodD0cOJCIYFhSO2FQ-tCJ6vSaJBCE6FcWrEYTFQbhNODHfY4gBYXwQ0" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 py-1">
             <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{background: 'linear-gradient(135deg, #7C3AED 0%, #6D28D9 50%, #4F46E5 100%)'}}>
-              <img src="/images/icons/max-icon.webp" alt="Max" className="w-5 h-5" />
+              <img src="/images/icons/max-icon.webp" alt="Max" width={20} height={20} className="w-5 h-5" />
             </div>
-            <span className="text-white/60 text-[10px]">Max</span>
+            <span className="text-white/80 text-[10px]">Max</span>
           </a>
 
           <a href="tel:+79507770608" className="flex flex-col items-center gap-1 py-1">
-            <div className="w-12 h-12 rounded-full btn-gold flex items-center justify-center -mt-4 shadow-lg shadow-gold-400/30">
-              <span className="material-symbols-outlined text-navy-900 text-2xl">call</span>
+            <div className="w-10 h-10 rounded-full btn-gold flex items-center justify-center shadow-lg shadow-gold-400/30">
+              <span className="material-symbols-outlined text-navy-900 text-xl">call</span>
             </div>
             <span className="text-gold-400 text-[10px] font-semibold">Звонок</span>
           </a>
@@ -57,14 +57,14 @@ export function MobileToolbar() {
             <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
               <span className="material-symbols-outlined text-white text-xl">mail</span>
             </div>
-            <span className="text-white/60 text-[10px]">Почта</span>
+            <span className="text-white/80 text-[10px]">Почта</span>
           </a>
 
           <button onClick={() => setOpen(true)} className="flex flex-col items-center gap-1 py-1">
             <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
               <span className="material-symbols-outlined text-white text-xl">menu</span>
             </div>
-            <span className="text-white/60 text-[10px]">Меню</span>
+            <span className="text-white/80 text-[10px]">Меню</span>
           </button>
         </div>
       </div>
@@ -77,7 +77,7 @@ export function MobileToolbar() {
         <div className="p-6">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
-              <img src="/images/logo.webp" alt="Логотип" className="w-10 h-10 brightness-0 invert" />
+              <img src="/images/logo.webp" alt="Логотип" width={96} height={96} className="w-10 h-10 object-contain brightness-0 invert" />
               <span className="font-serif text-white font-bold text-base">Андреещев Д.В.</span>
             </div>
             <button onClick={close} className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
@@ -113,7 +113,7 @@ export function MobileToolbar() {
               <span className="font-semibold">8 (950) 777-06-08</span>
             </a>
             <div className="flex items-center gap-3">
-              <a href="https://max.ru/u/f9LHodD0cOJCIYFhSO2FQ-tCJ6vSaJBCE6FcWrEYTFQbhNODHfY4gBYXwQ0" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center" style={{background: 'linear-gradient(135deg, #7C3AED 0%, #6D28D9 50%, #4F46E5 100%)'}}><img src="/images/icons/max-icon.webp" alt="Max" className="w-5 h-5" /></a>
+              <a href="https://max.ru/u/f9LHodD0cOJCIYFhSO2FQ-tCJ6vSaJBCE6FcWrEYTFQbhNODHfY4gBYXwQ0" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center" style={{background: 'linear-gradient(135deg, #7C3AED 0%, #6D28D9 50%, #4F46E5 100%)'}}><img src="/images/icons/max-icon.webp" alt="Max" width={20} height={20} className="w-5 h-5" /></a>
             </div>
           </div>
         </div>
