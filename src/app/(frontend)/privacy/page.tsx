@@ -6,11 +6,13 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-white py-20 px-6">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="font-serif text-3xl md:text-4xl font-bold text-navy-900 text-center mb-4">ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</h1>
-        <h2 className="font-serif text-xl md:text-2xl font-bold text-navy-900 text-center mb-12">ПЕРСОНАЛЬНЫХ ДАННЫХ</h2>
-
+    <>
+      <div className="bg-navy-900 pt-24 pb-12 text-center px-6">
+        <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-white uppercase tracking-wide">
+          Политика конфиденциальности<br />персональных данных
+        </h1>
+      </div>
+      <div className="max-w-4xl mx-auto px-6 py-16 text-navy-900">
         <div className="prose prose-navy max-w-none text-navy-900/80 text-sm leading-relaxed space-y-6">
 
           <h3 className="text-lg font-bold text-navy-900">1. Общие положения</h3>
@@ -130,6 +132,6 @@ export default function PrivacyPage() {
           <a href="/" className="btn-gold inline-block px-8 py-3 text-navy-900 font-semibold">Вернуться на главную</a>
         </div>
       </div>
-    </div>
+    </>
   )
 }
