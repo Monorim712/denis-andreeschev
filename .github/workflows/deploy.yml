@@ -177,3 +177,37 @@ jobs:
               (crontab -l 2>/dev/null; echo '0 3 * * * cp /home/deploy/denis-andreeschev/database.db /var/backups/denis-andreeschev/db-$(date +\%Y\%m\%d).db') | crontab -
               (crontab -l 2>/dev/null; echo '0 4 * * * find /var/backups/denis-andreeschev -name "db-*.db" -mtime +30 -delete') | crontab -
             fi
+
+            # Disable ufw to prevent port blocking
+            sudo ufw disable 2>/dev/null || true
+            # Ensure iptables allows web traffic
+            sudo iptables -C INPUT -p tcp --dport 80 -j ACCEPT 2>/dev/null || sudo iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+            sudo iptables -C INPUT -p tcp --dport 443 -j ACCEPT 2>/dev/null || sudo iptables -I INPUT -p tcp --dport 443 -j ACCEPT
+
+      - name: Server diagnostics
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            echo "=== UFW STATUS ==="
+            sudo ufw status 2>/dev/null || echo "ufw not installed"
+            echo "=== IPTABLES (INPUT) ==="
+            sudo iptables -L INPUT -n --line-numbers 2>/dev/null | head -20
+            echo "=== NGINX STATUS ==="
+            sudo systemctl status nginx --no-pager -l 2>&1 | head -15
+            echo "=== PM2 STATUS ==="
+            pm2 status
+            echo "=== PM2 LOGS (last 30) ==="
+            pm2 logs --nostream --lines 30 2>&1 | tail -40
+            echo "=== MEMORY ==="
+            free -m
+            echo "=== DISK ==="
+            df -h /
+            echo "=== LISTENING PORTS ==="
+            sudo ss -tlnp | grep -E ':(80|443|3000)\s'
+            echo "=== CURL LOCAL ==="
+            curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/ 2>&1
+            echo ""
