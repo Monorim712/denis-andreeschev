@@ -11,6 +11,13 @@ export const revalidate = 60
 export const metadata: Metadata = {
   title: 'Адвокат для женщин при разводе в Воронеже — защита прав матерей',
   description: 'Защита прав женщин при разводе. Алименты, раздел имущества, определение места жительства ребёнка. Адвокат Андреещев — 15+ лет опыта.',
+  keywords: 'адвокат для женщин воронеж, развод женщин, защита прав матерей, алименты воронеж, раздел имущества, место жительства ребёнка, адвокат андреещев',
+  alternates: { canonical: '/dlya-zhenshchin' },
+  openGraph: {
+    title: 'Адвокат для женщин при разводе в Воронеже — защита прав матерей',
+    description: 'Защита прав женщин при разводе. Алименты, раздел имущества, определение места жительства ребёнка. Опыт 15+ лет.',
+    url: 'https://denis-andreeschev.ru/dlya-zhenshchin',
+  },
 }
 
 const defaultPainPoints = [
@@ -122,7 +129,7 @@ export default async function FemaleLandingPage() {
             <div className="flex justify-center lg:hidden" style={{ marginLeft: '-5px', marginTop: '-30px' }}>
               <img src="/images/photos/hero-female.webp" alt="Адвокат Андреещев" width={518} height={600} className="min-w-[130vw] h-auto shrink-0 object-contain object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 3%, black 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 3%, black 100%)' }} />
             </div>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 pb-6">
               <a href="tel:+79507770608" className="lg:hidden btn-gold rounded-xl px-8 py-4 text-navy-900 font-bold text-lg text-center transition-transform hover:scale-[0.98]">Бесплатная консультация</a>
               <FormModal title="Бесплатная консультация" buttonText="Записаться" page="female" className="hidden lg:block btn-gold rounded-xl px-8 py-4 text-navy-900 font-bold text-lg text-center transition-transform hover:scale-[0.98]">Бесплатная консультация</FormModal>
               <a href="#problems" className="bg-white rounded-xl px-8 py-4 text-navy-900 font-semibold text-lg text-center hover:bg-gray-100 transition-colors">С чем Вы столкнулись?</a>

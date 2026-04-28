@@ -11,6 +11,13 @@ export const revalidate = 60
 export const metadata: Metadata = {
   title: 'Адвокат для мужчин при разводе в Воронеже — защита прав отцов',
   description: 'Защита прав мужчин при разводе. Сохранение имущества, бизнеса, общение с детьми. Адвокат Андреещев — 15+ лет опыта в семейных делах.',
+  keywords: 'адвокат для мужчин воронеж, развод мужчин, защита прав отцов, раздел имущества при разводе, общение с детьми после развода, адвокат андреещев',
+  alternates: { canonical: '/dlya-muzhchin' },
+  openGraph: {
+    title: 'Адвокат для мужчин при разводе в Воронеже — защита прав отцов',
+    description: 'Защита прав мужчин при разводе. Сохранение имущества, бизнеса, общение с детьми. Опыт 15+ лет.',
+    url: 'https://denis-andreeschev.ru/dlya-muzhchin',
+  },
 }
 
 const defaultPainPoints = [
@@ -122,7 +129,7 @@ export default async function MaleLandingPage() {
             <div className="flex justify-center lg:hidden" style={{ marginLeft: '-5px', marginTop: '-70px', marginBottom: '-8px' }}>
               <img src="/images/photos/hero-male.webp" alt="Адвокат Андреещев" width={518} height={600} className="min-w-[130vw] h-auto shrink-0 object-contain object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 3%, black 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 3%, black 100%)' }} />
             </div>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 pb-6">
               <a href="tel:+79507770608" className="lg:hidden btn-gold rounded-xl px-8 py-4 text-navy-900 font-bold text-lg text-center transition-transform hover:scale-[0.98]">Бесплатная консультация</a>
               <FormModal title="Бесплатная консультация" buttonText="Записаться" page="male" className="hidden lg:block btn-gold rounded-xl px-8 py-4 text-navy-900 font-bold text-lg text-center transition-transform hover:scale-[0.98]">Бесплатная консультация</FormModal>
               <a href="#problems" className="bg-white rounded-xl px-8 py-4 text-navy-900 font-semibold text-lg text-center hover:bg-gray-100 transition-colors">С чем Вы столкнулись?</a>

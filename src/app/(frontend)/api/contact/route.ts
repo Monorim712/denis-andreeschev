@@ -30,7 +30,8 @@ export async function POST(request: Request) {
       auth: { user: SMTP_USER, pass: SMTP_PASS },
     })
 
-    const pageLabel = page === 'male' ? 'Для мужчин' : page === 'female' ? 'Для женщин' : 'Главная'
+    const pageLabels: Record<string, string> = { male: 'Для мужчин', female: 'Для женщин', inheritance: 'Наследство', main: 'Главная' }
+    const pageLabel = pageLabels[page] || 'Главная'
 
     await transporter.sendMail({
       from: `"Сайт адвоката" <${SMTP_USER}>`,

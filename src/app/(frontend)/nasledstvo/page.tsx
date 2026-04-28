@@ -11,6 +11,13 @@ export const revalidate = 60
 export const metadata: Metadata = {
   title: 'Юрист по наследству в Воронеже — оформление, споры, восстановление сроков',
   description: 'Юрист по наследственным делам. Оформление наследства, восстановление пропущенных сроков, оспаривание завещаний, наследственные споры. Бесплатная консультация.',
+  keywords: 'юрист по наследству воронеж, наследственные дела, оформление наследства, восстановление сроков наследства, оспаривание завещания, наследственные споры, адвокат андреещев',
+  alternates: { canonical: '/nasledstvo' },
+  openGraph: {
+    title: 'Юрист по наследству в Воронеже — оформление, споры, восстановление сроков',
+    description: 'Оформление наследства, восстановление пропущенных сроков, оспаривание завещаний. Бесплатная консультация.',
+    url: 'https://denis-andreeschev.ru/nasledstvo',
+  },
 }
 
 const situations = [
@@ -163,7 +170,7 @@ export default async function InheritancePage() {
             <div className="flex justify-center lg:hidden" style={{ marginLeft: '-5px', marginTop: '-20px', marginBottom: '-8px' }}>
               <img src="/images/photos/hero-main.webp" alt="Юрист по наследству" width={362} height={420} className="min-w-[91vw] h-auto shrink-0 object-contain object-bottom" style={{ mask: 'linear-gradient(to top, transparent 0%, black 3%, black 100%)', WebkitMask: 'linear-gradient(to top, transparent 0%, black 3%, black 100%)' }} />
             </div>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 pb-6">
               <a href="tel:+79507770608" className="lg:hidden btn-gold rounded-xl px-8 py-4 text-navy-900 font-bold text-lg text-center transition-transform hover:scale-[0.98]">Бесплатная консультация</a>
               <FormModal title="Бесплатная консультация" buttonText="Записаться" page="inheritance" className="hidden lg:block btn-gold rounded-xl px-8 py-4 text-navy-900 font-bold text-lg text-center transition-transform hover:scale-[0.98]">Бесплатная консультация</FormModal>
             </div>
