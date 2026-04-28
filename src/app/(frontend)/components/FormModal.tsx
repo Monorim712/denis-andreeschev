@@ -97,7 +97,7 @@ export function FormModal({ title, buttonText, className, page, children }: Prop
       </button>
 
       {open && createPortal(
-        <div className="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm overflow-y-auto no-scrollbar p-4" onClick={onClose}>
+        <div className="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm overflow-y-auto p-4" style={{ WebkitOverflowScrolling: 'touch' }} onClick={onClose}>
           <div className="relative bg-white rounded-2xl max-w-md w-full shadow-2xl mx-auto min-h-0" style={{ marginTop: 'max(1rem, 3vh)', marginBottom: '160px' }} onClick={(e) => e.stopPropagation()}>
             <button type="button" onClick={onClose} className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center text-white z-10 text-lg">✕</button>
 

@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { ReviewsBlock } from './components/ReviewsBlock'
 import { CertificatesBlock } from './components/CertificatesBlock'
-import { AskFormClient } from './components/AskFormClient'
 import { FormModal } from './components/FormModal'
 import { MobileToolbar } from './components/MobileToolbar'
 import { getServices, getAdvantages, getSteps, getFaq, getReviews, getCertificates, getPricing } from '@/lib/data'
@@ -17,11 +16,6 @@ const defaultFaqItems = [
   { q: 'Нужно ли мне лично ходить в суд?', a: 'Нет. По доверенности я полностью представляю ваши интересы — от подачи иска до получения решения. Вам не придётся видеться с бывшим супругом, отпрашиваться с работы или нервничать в коридоре суда.' },
   { q: 'Бывший супруг подал на алименты больше, чем я зарабатываю. Что делать?', a: 'Размер алиментов определяется судом на основе подтверждённого дохода. Если требования завышены — предоставим справки, докажем реальный заработок. Также можно подать встречный иск об уменьшении размера алиментов.' },
   { q: 'Квартира куплена до брака, но супруг претендует на неё. Заберут?', a: 'Добрачное имущество разделу не подлежит. Но если в браке делался капитальный ремонт за общие деньги — суд может признать увеличение стоимости совместным имуществом. Важно доказать, когда и на чьи средства приобретено жильё.' },
-  { q: 'Пропущен срок вступления в наследство. Можно ли его восстановить?', a: 'Да, если причина пропуска уважительная — болезнь, незнание о смерти наследодателя, нахождение за границей. Суд восстановит срок, если Вы обратитесь в течение 6 месяцев после того, как причина пропуска отпала. Также можно признать фактическое принятие наследства, если Вы пользовались имуществом, оплачивали коммунальные услуги или долги.' },
-  { q: 'Родственники не пускают в квартиру умершего и забрали документы. Что делать?', a: 'Это незаконно. Нужно немедленно подать заявление нотариусу о принятии наследства — для этого документы на имущество не обязательны, нотариус запросит их сам. Параллельно можно обратиться в полицию по факту самоуправства и в суд за защитой наследственных прав.' },
-  { q: 'Можно ли оспорить завещание?', a: 'Да, если есть основания: завещатель не понимал значения своих действий, находился под давлением, был недееспособен, или завещание оформлено с нарушениями. Назначается посмертная психиатрическая экспертиза, исследуются медицинские документы. Оспорить можно в течение 1 года с момента, когда Вы узнали о нарушении.' },
-  { q: 'Как делится наследство, если нет завещания?', a: 'По закону наследники призываются по очередям. Первая очередь — дети, супруг и родители. Всё делится поровну между наследниками одной очереди. Если кто-то из наследников первой очереди умер раньше — его доля переходит к внукам по праву представления.' },
-  { q: 'Один из наследников при жизни ухаживал за умершим. Может ли он получить больше?', a: 'Сам по себе уход не даёт права на увеличенную долю. Но если наследник вкладывал свои деньги в имущество (ремонт, содержание), это можно учесть при разделе. Также завещатель мог составить завещание в пользу того, кто за ним ухаживал, или заключить договор ренты.' },
 ]
 
 const jsonLd = {
@@ -71,14 +65,21 @@ export default async function HomePage() {
             </div>
           </a>
           <div className="hidden lg:flex flex-1 items-center justify-center gap-6 xl:gap-8 flex-nowrap">
-            <a href="#services" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap py-2 min-h-[48px] flex items-center">Услуги</a>
+            <div className="relative group">
+              <a href="#services" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap py-2 min-h-[48px] flex items-center gap-1">Услуги <span className="text-[10px] leading-none group-hover:rotate-180 transition-transform">▼</span></a>
+              <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-[220px]">
+                  <Link href="/dlya-muzhchin" className="block px-5 py-3 text-sm text-navy-900/70 hover:text-navy-900 hover:bg-gold-50 transition-colors">Защита прав мужчин</Link>
+                  <Link href="/dlya-zhenshchin" className="block px-5 py-3 text-sm text-navy-900/70 hover:text-navy-900 hover:bg-gold-50 transition-colors">Защита прав женщин</Link>
+                  <Link href="/nasledstvo" className="block px-5 py-3 text-sm text-navy-900/70 hover:text-navy-900 hover:bg-gold-50 transition-colors">Наследство</Link>
+                </div>
+              </div>
+            </div>
             <a href="#advantages" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap py-2 min-h-[48px] flex items-center">Преимущества</a>
             <a href="#about" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap py-2 min-h-[48px] flex items-center">Об адвокате</a>
-            <a href="#steps" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap py-2 min-h-[48px] flex items-center">Этапы</a>
             <a href="#pricing" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap py-2 min-h-[48px] flex items-center">Цены</a>
             <a href="#credentials" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap py-2 min-h-[48px] flex items-center">Сертификаты</a>
             <a href="#reviews" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap py-2 min-h-[48px] flex items-center">Отзывы</a>
-            <a href="#faq" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap py-2 min-h-[48px] flex items-center">FAQ</a>
             <a href="#contacts" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap py-2 min-h-[48px] flex items-center">Контакты</a>
           </div>
           <div className="hidden lg:flex items-center gap-3 shrink-0">
@@ -92,7 +93,7 @@ export default async function HomePage() {
       </nav>
 
       {/* Hero */}
-      <header className="hero-contain relative lg:min-h-[85vh] flex items-end lg:items-center bg-navy-900 overflow-hidden pt-20">
+      <header className="hero-contain relative lg:min-h-[70vh] flex items-end lg:items-center bg-navy-900 overflow-hidden pt-20">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-900/20 via-transparent to-navy-900/60 hidden lg:block" />
         <div className="relative z-20 max-w-[1440px] mx-auto px-6 w-full">
           <div className="relative flex flex-col lg:flex-row items-center lg:items-end">
@@ -102,7 +103,7 @@ export default async function HomePage() {
                 Денис<br /><span className="text-gold-400">Андреещев</span>
               </h1>
               <div className="flex justify-center lg:hidden -mb-5" style={{ marginTop: '10px', paddingLeft: '10px' }}>
-                <img src="/images/photos/hero-main-mobile.webp" alt="Адвокат Андреещев" width={360} height={417} fetchPriority="high" className="h-[45vh] w-auto object-contain object-bottom" />
+                <img src="/images/photos/hero-main-mobile.webp" alt="Адвокат Андреещев" width={360} height={417} fetchPriority="high" decoding="sync" className="h-[45vh] w-auto object-contain object-bottom" />
               </div>
               <a href="tel:+79507770608" className="btn-gold px-10 py-5 text-navy-900 font-bold text-lg transition-transform w-full text-center lg:hidden">
                 Бесплатная консультация
@@ -178,6 +179,20 @@ export default async function HomePage() {
             <div className="gold-line mx-auto mb-6" />
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Чем я могу помочь</h2>
             <p className="text-gray-300 text-lg">Специализируюсь на семейных и наследственных делах — это моя основная практика</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+            <Link href="/dlya-muzhchin" className="relative overflow-hidden rounded-3xl p-8 card-hover flex items-center gap-4 text-navy-900 border border-gold-400/30 hover:border-gold-400/60 transition-colors min-h-[80px]" style={{ background: 'linear-gradient(135deg, #F5EBD0 0%, #E8D19A 100%)' }}>
+              <span className="material-symbols-outlined text-3xl text-navy-900/70">shield_person</span>
+              <span className="font-bold text-lg">Защита прав мужчин</span>
+            </Link>
+            <Link href="/dlya-zhenshchin" className="relative overflow-hidden rounded-3xl p-8 card-hover flex items-center gap-4 text-navy-900 border border-gold-400/30 hover:border-gold-400/60 transition-colors min-h-[80px]" style={{ background: 'linear-gradient(135deg, #F5EBD0 0%, #E8D19A 100%)' }}>
+              <span className="material-symbols-outlined text-3xl text-navy-900/70">shield</span>
+              <span className="font-bold text-lg">Защита прав женщин</span>
+            </Link>
+            <Link href="/nasledstvo" className="relative overflow-hidden rounded-3xl p-8 card-hover flex items-center gap-4 text-navy-900 border border-gold-400/30 hover:border-gold-400/60 transition-colors min-h-[80px]" style={{ background: 'linear-gradient(135deg, #F5EBD0 0%, #E8D19A 100%)' }}>
+              <span className="material-symbols-outlined text-3xl text-navy-900/70">account_balance_wallet</span>
+              <span className="font-bold text-lg">Наследство</span>
+            </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((s, i) => {
@@ -466,7 +481,7 @@ export default async function HomePage() {
       <MobileToolbar />
 
       {/* Footer */}
-      <footer className="bg-navy-900 pt-16 pb-32 lg:pb-40">
+      <footer className="cv-auto bg-navy-900 pt-16 pb-32 lg:pb-40">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
@@ -489,15 +504,22 @@ export default async function HomePage() {
             <div className="hidden lg:block">
               <h3 className="font-serif text-white font-bold uppercase tracking-wider text-sm mb-6">Разделы сайта</h3>
               <div className="flex flex-col gap-3">
-                <a href="#services" className="text-gray-300 hover:text-gold-400 transition-colors text-sm">Услуги</a>
-                <a href="#advantages" className="text-gray-300 hover:text-gold-400 transition-colors text-sm">Преимущества</a>
-                <a href="#about" className="text-gray-300 hover:text-gold-400 transition-colors text-sm">Об адвокате</a>
-                <a href="#steps" className="text-gray-300 hover:text-gold-400 transition-colors text-sm">Этапы работы</a>
-                <a href="#credentials" className="text-gray-300 hover:text-gold-400 transition-colors text-sm">Сертификаты</a>
-                <a href="#reviews" className="text-gray-300 hover:text-gold-400 transition-colors text-sm">Отзывы</a>
-                <a href="#pricing" className="text-gray-300 hover:text-gold-400 transition-colors text-sm">Цены</a>
-                <a href="#faq" className="text-gray-300 hover:text-gold-400 transition-colors text-sm">Вопросы</a>
-                <a href="#contacts" className="text-gray-300 hover:text-gold-400 transition-colors text-sm">Контакты</a>
+                <div className="relative group">
+                  <a href="#services" className="text-gray-400 hover:text-gold-400 transition-colors text-sm flex items-center gap-1">Услуги <span className="text-[10px] leading-none group-hover:rotate-180 transition-transform">▼</span></a>
+                  <div className="absolute bottom-full left-0 pb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                    <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-[220px]">
+                      <a href="/dlya-muzhchin" className="block px-5 py-3 text-sm text-navy-900/70 hover:text-navy-900 hover:bg-gold-50 transition-colors">Защита прав мужчин</a>
+                      <a href="/dlya-zhenshchin" className="block px-5 py-3 text-sm text-navy-900/70 hover:text-navy-900 hover:bg-gold-50 transition-colors">Защита прав женщин</a>
+                      <a href="/nasledstvo" className="block px-5 py-3 text-sm text-navy-900/70 hover:text-navy-900 hover:bg-gold-50 transition-colors">Наследство</a>
+                    </div>
+                  </div>
+                </div>
+                <a href="#advantages" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Преимущества</a>
+                <a href="#about" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Об адвокате</a>
+                <a href="#pricing" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Цены</a>
+                <a href="#credentials" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Сертификаты</a>
+                <a href="#reviews" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Отзывы</a>
+                <a href="#contacts" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Контакты</a>
               </div>
             </div>
 

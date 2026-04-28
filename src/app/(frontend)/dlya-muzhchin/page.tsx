@@ -79,14 +79,21 @@ export default async function MaleLandingPage() {
             </div>
           </a>
           <div className="hidden lg:flex flex-1 items-center justify-center gap-6 xl:gap-8 flex-nowrap">
-            <a href="/#services" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Услуги</a>
+            <div className="relative group">
+              <a href="/#services" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap py-2 flex items-center gap-1">Услуги <span className="text-[10px] leading-none group-hover:rotate-180 transition-transform">▼</span></a>
+              <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-[220px]">
+                  <a href="/dlya-muzhchin" className="block px-5 py-3 text-sm text-navy-900 font-semibold hover:bg-gold-50 transition-colors">Защита прав мужчин</a>
+                  <a href="/dlya-zhenshchin" className="block px-5 py-3 text-sm text-navy-900/70 hover:text-navy-900 hover:bg-gold-50 transition-colors">Защита прав женщин</a>
+                  <a href="/nasledstvo" className="block px-5 py-3 text-sm text-navy-900/70 hover:text-navy-900 hover:bg-gold-50 transition-colors">Наследство</a>
+                </div>
+              </div>
+            </div>
             <a href="/#advantages" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Преимущества</a>
             <a href="/#about" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Об адвокате</a>
-            <a href="/#steps" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Этапы</a>
             <a href="/#pricing" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Цены</a>
             <a href="#credentials" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Сертификаты</a>
             <a href="#reviews" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Отзывы</a>
-            <a href="#faq" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">FAQ</a>
             <a href="#contacts" className="font-serif text-navy-900/70 hover:text-navy-900 text-sm transition-colors whitespace-nowrap">Контакты</a>
           </div>
           <div className="hidden lg:flex items-center gap-3 shrink-0">
@@ -100,9 +107,9 @@ export default async function MaleLandingPage() {
       </nav>
 
       {/* Hero */}
-      <header className="relative lg:min-h-screen flex items-end lg:items-center overflow-hidden pt-20" style={{ background: 'linear-gradient(165deg, #2A3A1E 0%, #3A4A2C 40%, #4D6340 100%)' }}>
+      <header className="relative lg:min-h-[70vh] flex items-end lg:items-start overflow-hidden pt-20 lg:pt-[90px]" style={{ background: 'linear-gradient(165deg, #2A3A1E 0%, #3A4A2C 40%, #4D6340 100%)' }}>
         <div className="absolute right-0 bottom-0 w-1/2 h-full hidden lg:flex items-end justify-center z-[1]">
-          <img src="/images/photos/hero-male.webp" alt="Адвокат Андреещев" width={518} height={600} loading="lazy" className="h-[110vh] w-auto object-contain object-bottom" style={{ marginBottom: '-30px' }} />
+          <Image src="/images/photos/hero-male.webp" alt="Адвокат Андреещев" width={518} height={600} priority className="h-full w-auto object-contain object-bottom" />
         </div>
         <div className="relative z-20 max-w-7xl mx-auto px-6 w-full">
           <div className="max-w-2xl">
@@ -422,11 +429,21 @@ export default async function MaleLandingPage() {
               <h3 className="font-serif text-white font-bold uppercase tracking-wider text-sm mb-6">Разделы</h3>
               <div className="flex flex-col gap-3">
                 <a href="/" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Главная</a>
-                <a href="/dlya-muzhchin" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Защита прав мужчин</a>
-                <a href="/dlya-zhenshchin" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Защита прав женщин</a>
-                <a href="/#services" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Услуги</a>
+                <div className="relative group">
+                  <a href="/#services" className="text-gray-400 hover:text-gold-400 transition-colors text-sm flex items-center gap-1">Услуги <span className="text-[10px] leading-none group-hover:rotate-180 transition-transform">▼</span></a>
+                  <div className="absolute bottom-full left-0 pb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                    <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-[220px]">
+                      <a href="/dlya-muzhchin" className="block px-5 py-3 text-sm text-navy-900/70 hover:text-navy-900 hover:bg-gold-50 transition-colors">Защита прав мужчин</a>
+                      <a href="/dlya-zhenshchin" className="block px-5 py-3 text-sm text-navy-900/70 hover:text-navy-900 hover:bg-gold-50 transition-colors">Защита прав женщин</a>
+                      <a href="/nasledstvo" className="block px-5 py-3 text-sm text-navy-900/70 hover:text-navy-900 hover:bg-gold-50 transition-colors">Наследство</a>
+                    </div>
+                  </div>
+                </div>
+                <a href="/#advantages" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Преимущества</a>
+                <a href="/#about" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Об адвокате</a>
+                <a href="/#pricing" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Цены</a>
+                <a href="/#credentials" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Сертификаты</a>
                 <a href="/#reviews" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Отзывы</a>
-                <a href="/#faq" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Вопросы</a>
                 <a href="/#contacts" className="text-gray-400 hover:text-gold-400 transition-colors text-sm">Контакты</a>
               </div>
             </div>

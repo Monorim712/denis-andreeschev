@@ -45,13 +45,6 @@ export default function FrontendLayout({ children }: { children: ReactNode }) {
         <style dangerouslySetInnerHTML={{ __html: '@media(min-width:1024px){.desktop-hero-wrap{display:flex!important}}' }} />
         <link
           rel="preload"
-          as="font"
-          type="font/woff2"
-          href="/fonts/nunito-cyrillic.woff2"
-          crossOrigin=""
-        />
-        <link
-          rel="preload"
           as="image"
           type="image/webp"
           href="/images/photos/hero-main-mobile.webp"
@@ -61,16 +54,27 @@ export default function FrontendLayout({ children }: { children: ReactNode }) {
         <link
           rel="preload"
           as="image"
+          type="image/webp"
           href="/images/photos/hero-main.webp"
           media="(min-width: 1024px)"
+          fetchPriority="high"
         />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href="/fonts/nunito-cyrillic.woff2"
+          crossOrigin=""
+        />
+        <link rel="dns-prefetch" href="https://mc.yandex.ru" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
       </head>
       <body>
-        <Script id="material-symbols" strategy="afterInteractive">{`
-          var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_balance_wallet,block,call,close,description,family_restroom,handshake,home_work,hourglass_top,location_on,mail,menu,schedule,shield,shield_person&display=swap';document.head.appendChild(l);
+        <Script id="material-symbols" strategy="lazyOnload">{`
+          var cb=function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_balance_wallet,block,call,check_circle,close,description,family_restroom,gavel,group_add,handshake,home,home_work,hourglass_top,location_on,mail,menu,partner_exchange,payments,public,real_estate_agent,schedule,shield,shield_person,target,timer_off,workspace_premium&display=swap';l.media='print';l.onload=function(){l.media="all"};document.head.appendChild(l)};if('requestIdleCallback' in window){requestIdleCallback(cb)}else{setTimeout(cb,200)};
         `}</Script>
         <Script id="yandex-metrika" strategy="lazyOnload">{`
-          setTimeout(function(){
+          var _ym_loaded=false;function _ym_init(){if(_ym_loaded)return;_ym_loaded=true;
             (function(m,e,t,r,i,k,a){
               m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
               m[i].l=1*new Date();
@@ -78,7 +82,12 @@ export default function FrontendLayout({ children }: { children: ReactNode }) {
               k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
             })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=108580980','ym');
             ym(108580980,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
-          },3000);
+          }
+          document.addEventListener('scroll',_ym_init,{once:true,passive:true});
+          document.addEventListener('click',_ym_init,{once:true});
+          document.addEventListener('touchstart',_ym_init,{once:true,passive:true});
+          document.addEventListener('keydown',_ym_init,{once:true});
+          setTimeout(_ym_init,15000);
         `}</Script>
         <noscript><div><img src="https://mc.yandex.ru/watch/108580980" style={{position:'absolute',left:'-9999px'}} alt="" /></div></noscript>
         <MetrikaGoals />

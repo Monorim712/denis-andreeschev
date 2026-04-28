@@ -5,7 +5,7 @@ import { useState, useCallback, useEffect } from 'react'
 const mainLinks = [
   { href: '/dlya-muzhchin', label: 'Защита прав мужчин' },
   { href: '/dlya-zhenshchin', label: 'Защита прав женщин' },
-  { href: '/#services', label: 'Услуги' },
+  { href: '/nasledstvo', label: 'Наследство' },
   { href: '/#advantages', label: 'Преимущества' },
   { href: '/#about', label: 'Об адвокате' },
   { href: '/#steps', label: 'Этапы работы' },

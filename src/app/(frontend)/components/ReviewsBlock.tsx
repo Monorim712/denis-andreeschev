@@ -115,7 +115,7 @@ export function ReviewsBlock({ reviews }: { reviews: Review[] }) {
   }, [active])
 
   return (
-    <section id="reviews" ref={sectionRef} className="py-24 bg-navy-900">
+    <section id="reviews" ref={sectionRef} className="cv-auto py-24 bg-navy-900">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <div className="gold-line mx-auto mb-6" />
